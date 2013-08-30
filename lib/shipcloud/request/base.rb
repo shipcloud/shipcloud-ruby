@@ -12,7 +12,6 @@ module Shipcloud
         raise AuthenticationError if Shipcloud.api_key.nil?
         connection.setup_https
         send_request
-
         validator.validated_data_for(response)
       end
 

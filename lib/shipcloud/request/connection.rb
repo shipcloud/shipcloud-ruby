@@ -11,7 +11,8 @@ module Shipcloud
         @https             = Net::HTTP.new(API_BASE, Net::HTTP.https_default_port)
         @https.use_ssl     = true
         @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-        @https.ca_file     = File.join(ROOT_PATH, "data/paymill.crt")
+        # @https.ca_file     = File.join(ROOT_PATH, "data/shipcloud.crt")
+        # @https.set_debug_output $stdout
       end
 
       def request
