@@ -1,6 +1,7 @@
 module Shipcloud
   class Base
     include Shipcloud::Operations::Create
+    include Shipcloud::Operations::Find
 
     # Initializes an object using the given attributes
     #

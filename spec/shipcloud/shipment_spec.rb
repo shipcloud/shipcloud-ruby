@@ -51,4 +51,11 @@ describe Shipcloud::Shipment do
       Shipcloud::Shipment.create(valid_attributes)
     end
   end
+
+  describe ".find" do
+    it "makes a new GET request using the correct API endpoint to receive a specific subscription" do
+      Shipcloud.should_receive(:request).with(:get, "shipments/123", {}).and_return("id" => "123")
+      Shipcloud::Shipment.find("123")
+    end
+  end
 end
