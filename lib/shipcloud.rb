@@ -8,6 +8,11 @@ module Shipcloud
   API_VERSION = "v1"
   ROOT_PATH   = File.dirname(__FILE__)
 
+  API_HEADERS = {
+    "Content-Type" => "application/json",
+    "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API v#{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
+  }
+
   @@api_key = nil
 
   autoload :Base,           "shipcloud/base"
