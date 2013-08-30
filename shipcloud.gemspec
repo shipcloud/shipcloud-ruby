@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["stefan@webionate.de"]
   spec.description   = %q{A wrapper for the shipcloud API}
   spec.summary       = %q{A wrapper for the shipcloud API}
-  spec.homepage      = "https://github.com/shipcloud/shipcloud-ruby"
+  spec.homepage      = "https://github.com/webionate/shipcloud-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
