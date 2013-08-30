@@ -1,3 +1,4 @@
+[![Code Climate](https://codeclimate.com/github/webionate/shipcloud-ruby.png)](https://codeclimate.com/github/webionate/shipcloud-ruby)
 # shipcloud
 
 A Ruby wrapper for the shipcloud API
