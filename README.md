@@ -19,6 +19,34 @@ Or install it yourself as:
 
 ## Usage
 
+Before using the shipcloud API, you need to set the API access key:
+
+```
+Shipcloud.api_key = 'your-api-key-goes-here'
+```
+
+You can sign up for a developer account at *[shipcloud.io](http://www.shipcloud.io)*
+
+### Create a new shipment
+
+To create a new Shipment on the shipclod platform, you need to provide the name of the carrier, to- and from-address, and the package dimensions.
+For details, see *[shipcloud API documentation on Shipments](http://docs.shipcloud.apiary.io/#shipmentresources)*
+```
+Shipcloud::Shipment.create(
+    carrier: 'ups', 
+    from: from-address-params, 
+    to: to-address-params,
+    package: package-params,
+    create_shipping_label: true
+)
+```
+
+`Shipment#create` will return shipping label and tracking information, encapsulated in a `Shipcloud::Shipment` object:
+
+```
+shipment = Shipcloud::Shipment.create(...) # parameters ommitted
+shipment.tracking_url # -> http://track.shipcloud.io/uzdgu22z3ed12
+```
 
 ## Contributing
 
