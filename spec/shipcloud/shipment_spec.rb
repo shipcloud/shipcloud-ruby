@@ -58,4 +58,11 @@ describe Shipcloud::Shipment do
       Shipcloud::Shipment.find("123")
     end
   end
+
+  describe ".delete" do
+    it "makes a new DELETE request using the correct API endpoint" do
+      Shipcloud.should_receive(:request).with(:delete, "shipments/123", {}).and_return(true)
+      Shipcloud::Shipment.delete("123")
+    end
+  end
 end

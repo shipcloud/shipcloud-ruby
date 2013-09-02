@@ -11,8 +11,10 @@ module Shipcloud
       def validated_data_for(incoming_response)
         self.response = incoming_response
         verify_response_code
-        info.data = JSON.parse(response.body)
-        validate_response_data
+        if response.body
+          info.data = JSON.parse(response.body)
+          validate_response_data
+        end
         info.data
       end
 
@@ -24,7 +26,7 @@ module Shipcloud
       end
 
       def validate_response_data
-        raise APIError.new(info.data["error"]) if info.data["error"]
+        raise APIError.new(info.data["errors"]) if info.data["errors"]
       end
     end
   end
