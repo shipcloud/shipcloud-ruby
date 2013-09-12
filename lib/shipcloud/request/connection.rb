@@ -8,7 +8,7 @@ module Shipcloud
       end
 
       def setup_https
-        @https             = Net::HTTP.new(API_BASE, Net::HTTP.https_default_port)
+        @https             = Net::HTTP.new(Shipcloud.configuration.api_base, Net::HTTP.https_default_port)
         @https.use_ssl     = true
         @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
         # @https.ca_file     = File.join(ROOT_PATH, "data/shipcloud.crt")

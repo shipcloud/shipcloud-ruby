@@ -4,13 +4,12 @@ require "json"
 require "shipcloud/version"
 
 module Shipcloud
-  API_BASE    = "api.shipcloud.io"
   API_VERSION = "v1"
   ROOT_PATH   = File.dirname(__FILE__)
 
   API_HEADERS = {
     "Content-Type" => "application/json",
-    "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API v#{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
+    "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
   }
 
   @@api_key = nil
@@ -36,11 +35,33 @@ module Shipcloud
   class AuthenticationError < ShipcloudError; end
   class APIError            < ShipcloudError; end
 
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
+
+  def self.configure
+    yield(configuration)
+  end
+
+
+  class Configuration
+    attr_accessor :api_key, :api_base
+
+    def initialize
+      @api_key = nil
+      @api_base = 'api.shipcloud.io'
+    end
+  end
+
   # Returns the set api key
   #
   # @return [String] The api key
   def self.api_key
-    @@api_key
+    configuration.api_key
   end
 
   # Sets the api key
@@ -48,6 +69,7 @@ module Shipcloud
   # @param [String] api_key The api key
   def self.api_key=(api_key)
     @@api_key = api_key
+    configuration.api_key = api_key
   end
 
   # Makes a request against the shipcloud API
