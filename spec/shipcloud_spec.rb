@@ -64,5 +64,15 @@ describe Shipcloud do
       expect(Shipcloud.configuration.api_base).to eq 'api.shipcloud.dev'
     end
 
+    it 'defaults use_ssl to true' do
+      expect(Shipcloud.configuration.use_ssl).to be_true
+    end
+
+    it 'overwrites the default ssl mode' do
+      Shipcloud.configure do |config|
+        config.use_ssl = false
+      end
+      expect(Shipcloud.configuration.use_ssl).to be_false
+    end
   end
 end
