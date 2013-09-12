@@ -25,6 +25,14 @@ Before using the shipcloud API, you need to set the API access key:
 Shipcloud.api_key = 'your-api-key-goes-here'
 ```
 
+Since Version 0.3.0, you can also do this via a configuration block, e.g. in an initializer:
+
+```
+Shipcloud.configure do |config|
+  config.api_key = 'your-api-key-goes-here'
+end
+```
+
 You can sign up for a developer account at *[shipcloud.io](http://www.shipcloud.io)*
 
 ### Create a new shipment
