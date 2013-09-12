@@ -22,6 +22,7 @@ module Shipcloud
     autoload :Create,       "shipcloud/operations/create"
     autoload :Find,         "shipcloud/operations/find"
     autoload :Delete,       "shipcloud/operations/delete"
+    autoload :Update,       "shipcloud/operations/update"
   end
 
   module Request

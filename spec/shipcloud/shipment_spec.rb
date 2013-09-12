@@ -59,6 +59,13 @@ describe Shipcloud::Shipment do
     end
   end
 
+  describe ".update" do
+    it "makes a new PUT request using the correct API endpoint" do
+      Shipcloud.should_receive(:request).with(:put, "shipments/123", {:carrier => 'ups' }).and_return("data" => {})
+      Shipcloud::Shipment.update("123", {:carrier => 'ups' })
+    end
+  end
+
   describe ".delete" do
     it "makes a new DELETE request using the correct API endpoint" do
       Shipcloud.should_receive(:request).with(:delete, "shipments/123", {}).and_return(true)
