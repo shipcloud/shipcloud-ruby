@@ -74,5 +74,16 @@ describe Shipcloud do
       end
       expect(Shipcloud.configuration.use_ssl).to be_false
     end
+
+    it 'defaults debug to false' do
+      expect(Shipcloud.configuration.debug).to be false
+    end
+
+    it 'overwrites the default debug mode' do
+      Shipcloud.configure do |config|
+        config.debug = true
+      end
+      expect(Shipcloud.configuration.debug).to be true
+    end
   end
 end
