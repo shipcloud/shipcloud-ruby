@@ -25,7 +25,7 @@ Before using the shipcloud API, you need to set the API access key:
 Shipcloud.api_key = 'your-api-key-goes-here'
 ```
 
-Since Version 0.3.0, you can also do this via a configuration block, e.g. in an initializer:
+Since Version 0.4.0, you can also do this via a configuration block, e.g. in an initializer:
 
 ```
 Shipcloud.configure do |config|
@@ -63,4 +63,3 @@ shipment.tracking_url # -> http://track.shipcloud.io/uzdgu22z3ed12
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-

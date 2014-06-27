@@ -49,12 +49,13 @@ module Shipcloud
 
 
   class Configuration
-    attr_accessor :api_key, :api_base, :use_ssl
+    attr_accessor :api_key, :api_base, :use_ssl, :debug
 
     def initialize
       @api_key = nil
       @api_base = 'api.shipcloud.io'
       @use_ssl = true
+      @debug = false
     end
   end
 

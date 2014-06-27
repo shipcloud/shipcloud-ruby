@@ -12,12 +12,11 @@ module Shipcloud
           @https             = Net::HTTP.new(Shipcloud.configuration.api_base, Net::HTTP.https_default_port)
           @https.use_ssl     = true
           @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          # @https.ca_file     = File.join(ROOT_PATH, "data/shipcloud.crt")
         else
           @https             = Net::HTTP.new(Shipcloud.configuration.api_base, Net::HTTP.http_default_port)
           @https.use_ssl     = false
         end
-        @https.set_debug_output $stdout
+        @https.set_debug_output $stdout if Shipcloud.configuration.debug
       end
 
       def request
