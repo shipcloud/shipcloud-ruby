@@ -26,7 +26,7 @@ module Shipcloud
       end
 
       def validate_response_data
-        raise APIError.new(info.data["errors"]) if info.data["errors"]
+        raise APIError.new(info.data["errors"]) if info.is_a?(Hash) && info.data["errors"]
       end
     end
   end
