@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/webionate/shipcloud-ruby.png)](https://codeclimate.com/github/webionate/shipcloud-ruby) [![Build Status](https://travis-ci.org/webionate/shipcloud-ruby.png?branch=master)](https://travis-ci.org/webionate/shipcloud-ruby)
+[![Code Climate](https://codeclimate.com/github/shipcloud/shipcloud-ruby.png)](https://codeclimate.com/github/shipcloud/shipcloud-ruby) [![Build Status](https://travis-ci.org/shipcloud/shipcloud-ruby.png?branch=master)](https://travis-ci.org/shipcloud/shipcloud-ruby)
 # shipcloud
 
 A Ruby wrapper for the shipcloud API
@@ -41,8 +41,8 @@ To create a new Shipment on the shipclod platform, you need to provide the name 
 For details, see *[shipcloud API documentation on Shipments](http://docs.shipcloud.apiary.io/#shipmentresources)*
 ```
 Shipcloud::Shipment.create(
-    carrier: 'ups', 
-    from: from-address-params, 
+    carrier: 'ups',
+    from: from-address-params,
     to: to-address-params,
     package: package-params,
     create_shipping_label: true
