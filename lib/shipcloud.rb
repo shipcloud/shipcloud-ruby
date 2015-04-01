@@ -16,10 +16,12 @@ module Shipcloud
 
   autoload :Base,           "shipcloud/base"
   autoload :Shipment,       "shipcloud/shipment"
+  autoload :Carrier,        "shipcloud/carrier"
 
   module Operations
     autoload :Create,       "shipcloud/operations/create"
     autoload :Find,         "shipcloud/operations/find"
+    autoload :All,          "shipcloud/operations/all"
     autoload :Delete,       "shipcloud/operations/delete"
     autoload :Update,       "shipcloud/operations/update"
   end
