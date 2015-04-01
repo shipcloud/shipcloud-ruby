@@ -5,7 +5,7 @@ module Shipcloud
         # Loads all Objects of the resource
         def all
           response = Shipcloud.request(:get, "#{self.name.split("::").last.downcase}s", {})
-          response.each {|hash| self.new(hash) }
+          response.map {|hash| self.new(hash) }
         end
       end
 
