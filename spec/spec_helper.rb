@@ -4,3 +4,9 @@ require 'shipcloud'
 require 'rspec'
 require "webmock/rspec"
 require "pry"
+
+RSpec.configure do |config|
+  config.after(:each) do
+    Shipcloud.api_key = nil
+  end
+end
