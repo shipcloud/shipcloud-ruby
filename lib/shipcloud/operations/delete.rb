@@ -6,7 +6,7 @@ module Shipcloud
         #
         # @param [String] id The id of the object that gets deleted
         def delete(id)
-          response = Shipcloud.request(:delete, "#{self.name.split("::").last.downcase}s/#{id}", {})
+          response = Shipcloud.request(:delete, "#{base_url}/#{id}", {})
           true
         end
       end

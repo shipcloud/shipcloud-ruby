@@ -6,7 +6,7 @@ module Shipcloud
         #
         # @param [Hash] attributes The attributes of the created object
         def create(attributes)
-          response = Shipcloud.request(:post, "#{self.name.split("::").last.downcase}s", attributes)
+          response = Shipcloud.request(:post, base_url, attributes)
           self.new(response)
         end
       end

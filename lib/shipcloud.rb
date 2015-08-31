@@ -17,6 +17,7 @@ module Shipcloud
   autoload :Base,           "shipcloud/base"
   autoload :Shipment,       "shipcloud/shipment"
   autoload :Carrier,        "shipcloud/carrier"
+  autoload :Address,        "shipcloud/address"
 
   module Operations
     autoload :Create,       "shipcloud/operations/create"

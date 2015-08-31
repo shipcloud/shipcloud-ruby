@@ -18,5 +18,13 @@ module Shipcloud
         instance_variable_set("@#{key}", value)
       end
     end
+
+    def self.class_name
+      self.name.split("::").last
+    end
+
+    def self.base_url
+      "#{class_name.downcase}s"
+    end
   end
 end

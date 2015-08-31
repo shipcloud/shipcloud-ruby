@@ -7,7 +7,7 @@ module Shipcloud
         # @param [String] id The id of the object that should be found
         # @return [Shipcloud::Base] The found object
         def find(id)
-          response = Shipcloud.request(:get, "#{self.name.split("::").last.downcase}s/#{id}", {})
+          response = Shipcloud.request(:get, "#{base_url}/#{id}", {})
           self.new(response)
         end
       end
