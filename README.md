@@ -38,7 +38,7 @@ You can sign up for a developer account at *[shipcloud.io](http://www.shipcloud.
 ### Create a new shipment
 
 To create a new Shipment on the shipclod platform, you need to provide the name of the carrier, to- and from-address, and the package dimensions.
-For details, see *[shipcloud API documentation on Shipments](http://docs.shipcloud.apiary.io/#shipmentresources)*
+For details, see *[shipcloud API documentation on Shipments](http://developers.shipcloud.io/reference/#shipments)*
 ```
 Shipcloud::Shipment.create(
     carrier: 'ups',
