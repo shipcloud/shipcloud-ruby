@@ -3,11 +3,21 @@ require 'spec_helper'
 describe Shipcloud::Carrier do
   describe '#initialize' do
     it 'initializes all attributes correctly' do
-      valid_attributes = { name: 'bogus', display_name: 'Bogus Carrier' }
+      valid_attributes = {
+        name: 'bogus',
+        display_name: 'Bogus Carrier',
+        services: %w(
+          standard,
+          returns,
+          one_day,
+          one_day_early
+        )
+      }
       carrier = Shipcloud::Carrier.new(valid_attributes)
 
       expect(carrier.name).to eq 'bogus'
       expect(carrier.display_name).to eq 'Bogus Carrier'
+      expect(carrier.services).to eq %w(standard, returns, one_day, one_day_early)
     end
   end
 
@@ -33,22 +43,54 @@ describe Shipcloud::Carrier do
       stub_carriers_request
       allow(Shipcloud::Carrier).to receive(:new)
 
-      carriers = Shipcloud::Carrier.all
+      Shipcloud::Carrier.all
 
-      expect(Shipcloud::Carrier).to have_received(:new).
-        with({ 'name' => 'carrier_1', 'display_name' => 'Carrier 1' })
-      expect(Shipcloud::Carrier).to have_received(:new).
-        with({ 'name' => 'carrier_2', 'display_name' => 'Carrier 2' })
+      expect(Shipcloud::Carrier).to have_received(:new)
+        .with(
+          'name' => 'carrier_1',
+          'display_name' => 'Carrier 1',
+          'services' => %w(
+            standard,
+            returns,
+            one_day,
+            one_day_early
+          )
+        )
+      expect(Shipcloud::Carrier).to have_received(:new)
+        .with(
+          'name' => 'carrier_2',
+          'display_name' => 'Carrier 2',
+          'services' => %w(
+            standard,
+            returns
+          )
+        )
     end
   end
 
   def stub_carriers_request
-    allow(Shipcloud).to receive(:request).
-      with(:get, 'carriers', {}).
-      and_return(
+    allow(Shipcloud).to receive(:request)
+      .with(:get, 'carriers', {})
+      .and_return(
         [
-          { 'name' => 'carrier_1', 'display_name' => 'Carrier 1' },
-          { 'name' => 'carrier_2', 'display_name' => 'Carrier 2' },
+          {
+            'name' => 'carrier_1',
+            'display_name' => 'Carrier 1',
+            'services' => %w(
+              standard,
+              returns,
+              one_day,
+              one_day_early
+            )
+          },
+          {
+            'name' => 'carrier_2',
+            'display_name' => 'Carrier 2',
+            'services' => %w(
+              standard,
+              returns
+            )
+          }
         ]
       )
   end
