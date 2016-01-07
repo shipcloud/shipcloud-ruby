@@ -72,4 +72,119 @@ describe Shipcloud::Shipment do
       Shipcloud::Shipment.delete("123")
     end
   end
+
+  describe ".all" do
+    it "makes a new Get request using the correct API endpoint" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "shipments", {}).
+        and_return("shipments" => [])
+
+      Shipcloud::Shipment.all
+    end
+
+    it "returns a list of Shipment objects" do
+      stub_shipments_requests
+
+      shipments = Shipcloud::Shipment.all
+
+      shipments.each do |shipment|
+        expect(shipment).to be_a Shipcloud::Shipment
+      end
+    end
+
+    it "returns a filtered list of Shipment objects when using filter parameters" do
+      filter = {
+        "carrier" => "dhl",
+        "service" => "returns",
+        "reference_number" => "ref123456",
+        "carrier_tracking_no" => "43128000105",
+        "tracking_status" => "out_for_delivery",
+        "page" => 2,
+        "per_page" => 25,
+      }
+
+      expect(Shipcloud).to receive(:request).
+        with(:get, "shipments", filter).
+        and_return("shipments" => shipments_array)
+
+      Shipcloud::Shipment.all(filter)
+    end
+  end
+
+  def stub_shipments_requests
+    allow(Shipcloud).to receive(:request).
+      with(:get, "shipments", {}).
+      and_return("shipments" => shipments_array)
+  end
+
+  def shipments_array
+    [
+      { "id" => "86afb143f9c9c0cfd4eb7a7c26a5c616585a6271",
+        "carrier_tracking_no" => "43128000105",
+        "carrier" => "hermes",
+        "service" => "standard",
+        "created_at" => "2014-11-12T14:03:45+01:00",
+        "price" => 3.5,
+        "tracking_url" => "http://track.shipcloud.dev/de/86afb143f9",
+        "to" => {
+          "first_name" => "Hans",
+          "last_name" => "Meier",
+          "street" => "Semmelweg",
+          "street_no" => "1",
+          "zip_code" => "12345",
+          "city" => "Hamburg",
+          "country" => "DE"
+        },
+        "from" => {
+          "company" => "webionate GmbH",
+          "last_name" => "Fahlbusch",
+          "street" => "Lüdmoor",
+          "street_no" => "35a",
+          "zip_code" => "22175",
+          "city" => "Hamburg",
+          "country" => "DE"
+        },
+        "packages" => {
+          "id" => "be81573799958587ae891b983aabf9c4089fc462",
+          "length" => 10.0,
+          "width" => 10.0,
+          "height" => 10.0,
+          "weight" => 1.5
+        }
+      },
+      { "id" => "be81573799958587ae891b983aabf9c4089fc462",
+        "carrier_tracking_no" => "1Z12345E1305277940",
+        "carrier" => "ups",
+        "service" => "standard",
+        "created_at" => "2014-11-12T14:03:45+01:00",
+        "price" => 3.0,
+        "tracking_url" => "http://track.shipcloud.dev/de/be598a2fd2",
+        "to" => {
+          "first_name" => "Test",
+          "last_name" => "Kunde",
+          "street" => "Gluckstr.",
+          "street_no" => "57",
+          "zip_code" => "22081",
+          "city" => "Hamburg",
+          "country" => "DE"
+        },
+        "from" => {
+          "company" => "webionate GmbH",
+          "last_name" => "Fahlbusch",
+          "street" => "Lüdmoor",
+          "street_no" => "35a",
+          "zip_code" => "22175",
+          "city" => "Hamburg",
+          "country" => "DE"
+        },
+        "packages" => {
+          "id" => "74d4f1fc193d8a7ca542d1ee4e2021f3ddb82242",
+          "length" => 15.0,
+          "width" => 20.0,
+          "height" => 10.0,
+          "weight" => 2.0
+        }
+      }
+    ]
+  end
 end

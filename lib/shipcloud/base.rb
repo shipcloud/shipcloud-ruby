@@ -19,6 +19,14 @@ module Shipcloud
       end
     end
 
+    def self.camel_to_snakecase(string)
+      string.gsub(/::/, "/").
+        gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
+        gsub(/([a-z\d])([A-Z])/, '\1_\2').
+        tr("-", "_").
+        downcase
+    end
+
     def self.class_name
       self.name.split("::").last
     end
@@ -27,12 +35,10 @@ module Shipcloud
       "#{class_name.downcase}s"
     end
 
-    def self.camel_to_snakecase(string)
-      string.gsub(/::/, "/").
-        gsub(/([A-Z]+)([A-Z][a-z])/, '\1_\2').
-        gsub(/([a-z\d])([A-Z])/, '\1_\2').
-        tr("-", "_").
-        downcase
+    def self.create_response_root
+    end
+
+    def self.index_response_root
     end
   end
 end
