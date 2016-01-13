@@ -2,7 +2,6 @@ module Shipcloud
   module Request
     class Base
       attr_reader :info
-      attr_accessor :response
 
       def initialize(info)
         @info = info
@@ -11,22 +10,24 @@ module Shipcloud
       def perform
         raise AuthenticationError unless @info.api_key
         connection.setup_https
-        send_request
-        validator.validated_data_for(response)
+        response = connection.request
+        validate_response(response)
+        JSON.parse(response.body)
+      rescue JSON::ParserError
+        raise ShipcloudError.new(response)
       end
 
       protected
 
-      def send_request
-        self.response = connection.request
+      def validate_response(response)
+        error = ShipcloudError.from_response(response)
+        if error
+          raise error
+        end
       end
 
       def connection
         @connection ||= Connection.new(info)
-      end
-
-      def validator
-        @validator ||= Validator.new(info)
       end
     end
   end
