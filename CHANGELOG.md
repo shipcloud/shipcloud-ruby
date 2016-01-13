@@ -8,6 +8,7 @@
   - 2.1.7
   - 2.2.4
   - 2.3.0
+- Add ShipmentQuotes class returning the price for a certain shipment (#9)
 
 ### Removed
 - Dropped support for ruby 1.9.x in order to use the new language features of ruby 2.x. The official support of ruby 1.9.3 already ended on February 23, 2015 (https://www.ruby-lang.org/en/news/2014/01/10/ruby-1-9-3-will-end-on-2015/)

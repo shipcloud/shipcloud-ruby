@@ -18,6 +18,7 @@ module Shipcloud
   autoload :Shipment,       "shipcloud/shipment"
   autoload :Carrier,        "shipcloud/carrier"
   autoload :Address,        "shipcloud/address"
+  autoload :ShipmentQuote,  "shipcloud/shipment_quote"
   autoload :Webhook,        "shipcloud/webhook"
 
   module Operations
