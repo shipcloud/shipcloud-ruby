@@ -52,7 +52,7 @@ describe Shipcloud::ShipmentQuote do
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "shipment_quotes", valid_attributes).
+        with(:post, "shipment_quotes", valid_attributes, api_key: nil).
         and_return("data" => {})
 
       Shipcloud::ShipmentQuote.create(valid_attributes)

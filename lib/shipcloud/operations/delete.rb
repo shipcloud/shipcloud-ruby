@@ -5,8 +5,10 @@ module Shipcloud
         # Deletes the given object
         #
         # @param [String] id The id of the object that gets deleted
-        def delete(id)
-          response = Shipcloud.request(:delete, "#{base_url}/#{id}", {})
+        # @param \[String\] optional api_key The api key. If no api key is given, Shipcloud.api_key
+        # will be used for the request
+        def delete(id, api_key: nil)
+          Shipcloud.request(:delete, "#{base_url}/#{id}", {}, api_key: api_key)
           true
         end
       end

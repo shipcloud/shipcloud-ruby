@@ -3,7 +3,7 @@ require "spec_helper"
 describe Shipcloud::Request::Validator do
   describe "#validated_data_for" do
     it "validates the data" do
-      info = Shipcloud::Request::Info.new(:get, "random", OpenStruct.new(id: 1))
+      info = Shipcloud::Request::Info.new(:get, "random", "api_key", id: 1)
       validator = Shipcloud::Request::Validator.new info
       response = OpenStruct.new(body: '{"response":"ok"}', code: 200)
 
@@ -11,7 +11,7 @@ describe Shipcloud::Request::Validator do
     end
 
     it 'raises an APIError if the response contains errors' do
-      info = Shipcloud::Request::Info.new(:get, 'random', {})
+      info = Shipcloud::Request::Info.new(:get, "random", "api_key", {})
       validator = Shipcloud::Request::Validator.new info
       response = OpenStruct.new(body: '{"errors":["some error"]}', code: 200)
 

@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-
+- Add the possibility to specify the api key on every request. (#8)
 ### Removed
 
 ### Changed
