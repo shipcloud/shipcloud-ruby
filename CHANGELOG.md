@@ -3,10 +3,18 @@
 - This CHANGELOG file to hopefully serve as an evolving example of a standardized open source project CHANGELOG.
 - Create, find, update and index operations for address resource. (#4)
 - Services attribute to carriers call (#5)
-
+- Added the following ruby versions to travis-ci test runs:
+  - 2.1.7
+  - 2.2.4
+  - 2.3.0
 
 ### Removed
- - Dropped support for ruby 1.9.x in order to use the new language features of ruby 2.x. The official support of ruby 1.9.3 already ended on February 23, 2015 (https://www.ruby-lang.org/en/news/2014/01/10/ruby-1-9-3-will-end-on-2015/)
+- Dropped support for ruby 1.9.x in order to use the new language features of ruby 2.x. The official support of ruby 1.9.3 already ended on February 23, 2015 (https://www.ruby-lang.org/en/news/2014/01/10/ruby-1-9-3-will-end-on-2015/)
+- Removed the following ruby versions from travis-ci test runs:
+  - 2.1.5
+  - 2.2.1
+  - 2.2.2
+  - 2.2.3
 
 ### Changed
 - Start following [SemVer](http://semver.org) properly.
