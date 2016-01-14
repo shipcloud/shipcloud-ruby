@@ -1,4 +1,5 @@
-[![Code Climate](https://codeclimate.com/github/shipcloud/shipcloud-ruby.png)](https://codeclimate.com/github/shipcloud/shipcloud-ruby) [![Build Status](https://travis-ci.org/shipcloud/shipcloud-ruby.png?branch=master)](https://travis-ci.org/shipcloud/shipcloud-ruby)
+[![Code Climate](https://codeclimate.com/github/shipcloud/shipcloud-ruby.png)](https://codeclimate.com/github/shipcloud/shipcloud-ruby) [![Build Status](https://travis-ci.org/shipcloud/shipcloud-ruby.png?branch=master)](https://travis-ci.org/shipcloud/shipcloud-ruby) [![Dependency Status](https://gemnasium.com/shipcloud/shipcloud-ruby.svg)](https://gemnasium.com/shipcloud/shipcloud-ruby)
+
 # shipcloud
 
 A Ruby wrapper for the shipcloud API
