@@ -1,0 +1,84 @@
+## [Unreleased]
+### Added
+- This CHANGELOG file to hopefully serve as an evolving example of a standardized open source project CHANGELOG.
+- Create, find, update and index operations for address resource. (#4)
+- Services attribute to carriers call (#5)
+
+
+### Removed
+ - Dropped support for ruby 1.9.x in order to use the new language features of ruby 2.x. The official support of ruby 1.9.3 already ended on February 23, 2015 (https://www.ruby-lang.org/en/news/2014/01/10/ruby-1-9-3-will-end-on-2015/)
+
+### Changed
+- Start following [SemVer](http://semver.org) properly.
+- The link to the developer documenation for the Shipment ressource still pointed at Apiary; it now correctly points to the shipcloud Developer Portal's API section on Shipments.
+
+## [0.5.0] - 2015-04-02
+### Added
+- Call to list carriers (from @axelerator - #1)
+
+### Fixed
+- Fixed bug in error handling and array responses
+
+## [0.4.0] - 2014-06-27
+## Added
+- Added a console task to the rakefile to provide an easy accessible
+playground for the gem (15c5719)- http://erniemiller.org/2014/02/05/7-lines-every-gems-rakefile-should-have/
+- Added debug option to configuration to control debug output (4fd9dc529cb3862c2c7091007f39b54bbc91c14e)
+
+## Changed
+- Updated Gemfile and shipcloud.gemspec
+  - bundler version 1.6.0
+  - rake version ~> 10.3.0
+  - rspec version ~> 2.99.0'
+  - webmock version ~> 1.18.0
+  - pry version ~> 0.10.0
+
+## [0.3.0] - 2013-09-12
+## Added
+- Added shipment usage info to Readme
+- Added DELETE request for shipment resource
+- Added configuration via config block
+- Added possibility to configure http mode
+
+## [0.2.0] - 2013-08-30
+## Added
+- Added find operation
+- Added shipments attributes to allow easier access to response data
+
+## [0.1.0] - 2013-08-30
+## Added
+- Added basic request handling
+- Added Shipment class
+- Added user agent
+
+## Removed
+- Removed ssl certificate reference
+- Removed debug code
+
+## Fixed
+- Fixed request content-type and response validation
+
+
+-----------------------------------------------------------------------------------------
+
+Template:
+## [0.0.0] - 2014-05-31
+### Added
+- something was added
+
+### Changed
+- something changed
+
+### Deprecated
+- something is depricated
+
+### Removed
+- something was removed
+
+### Fixed
+- something was fixed
+
+### Security
+- a security fix
+
+Following "[Keep a CHANGELOG](http://keepachangelog.com/)"
