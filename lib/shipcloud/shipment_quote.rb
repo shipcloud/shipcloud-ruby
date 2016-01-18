@@ -3,14 +3,18 @@ module Shipcloud
     include Shipcloud::Operations::Create
 
     attr_accessor :from, :to, :carrier, :package, :service
-    attr_reader :shipment_quote
+    attr_reader :price
 
-    def self.base_url
-      "#{camel_to_snakecase(class_name)}s"
+    # Creates a new object
+    #
+    # @param [Hash] attributes The attributes of the created object
+    def self.create(attributes)
+      response = Shipcloud.request(:post, base_url, attributes)
+      new(response.fetch("shipment_quote", {}))
     end
 
-    def self.price
-      shipment_quote.price
+    def self.base_url
+      "shipment_quotes"
     end
   end
 end

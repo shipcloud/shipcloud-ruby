@@ -51,10 +51,24 @@ describe Shipcloud::ShipmentQuote do
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Shipcloud.should_receive(:request).
+      expect(Shipcloud).to receive(:request).
         with(:post, "shipment_quotes", valid_attributes).
         and_return("data" => {})
+
       Shipcloud::ShipmentQuote.create(valid_attributes)
+    end
+
+    it "initializes a ShipmentQuote with price" do
+      allow(Shipcloud).to receive(:request).
+        and_return(
+          "shipment_quote" => {
+            "price" => 42.12
+          }
+        )
+
+      shipment_quote = Shipcloud::ShipmentQuote.create(valid_attributes)
+
+      expect(shipment_quote.price).to eq 42.12
     end
   end
 end
