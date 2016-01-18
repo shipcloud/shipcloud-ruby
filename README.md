@@ -57,6 +57,40 @@ shipment = Shipcloud::Shipment.create(...) # parameters ommitted
 shipment.tracking_url # -> http://track.shipcloud.io/uzdgu22z3ed12
 ```
 
+### Get a shipment quote
+
+To get a shipment qoute from the shipclod platform, you need to provide the name of the carrier, the service, to- and from-address, and the package dimensions.
+For details, see *[shipcloud API documentation on shipment quotes](https://developers.shipcloud.io/reference/#shipment-quotes)*
+
+```ruby
+shipment_quote = Shipcloud::ShipmentQuote.create(
+  carrier: 'ups',
+  service: 'standard',
+  to: {
+    street: "Receiver street",
+    street_no: "123",
+    zip_code: "12345",
+    city: "Receiver town",
+    country: "DE"
+  },
+  from: {
+    street: "Sender street",
+    street_no: "321",
+    zip_code: "54321",
+    city: "Sender town",
+    country: "DE"
+  },
+  package: {
+    weight: 8,
+    width: 15,
+    length: 32,
+    height: 46,
+  },
+)
+
+shipment_quote.price # => 6.2
+```
+
 ## Contributing
 
 1. Fork it
