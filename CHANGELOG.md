@@ -1,6 +1,6 @@
 ## [Unreleased]
 ### Added
-- This CHANGELOG file to hopefully serve as an evolving example of a standardized open source project CHANGELOG.
+- This CHANGELOG file (Following "[Keep a CHANGELOG](http://keepachangelog.com/)")
 - Create, find, update and index operations for address resource. (#4)
 - Services attribute to carriers call (#5)
 - Create, find and index operations for webhook resource. (#7)
