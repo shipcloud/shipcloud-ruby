@@ -1,9 +1,10 @@
 AllCops:
-  RunRailsCops: true
   Exclude:
     - "vendor/**/*"
     - "db/schema.rb"
   UseCache: false
+Rails:
+  Enabled: true
 Rails/FindBy:
   Enabled: false
 Metrics/LineLength:
