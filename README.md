@@ -74,6 +74,20 @@ shipment = Shipcloud::Shipment.create(...) # parameters ommitted
 shipment.tracking_url # -> http://track.shipcloud.io/uzdgu22z3ed12
 ```
 
+### Get a list of shipments
+
+You can get a list of all shipments from the shipcloud platform. Shipments can be filtered by providing optional parameters. For more information and a list of valid parameters see *[shipcloud API documentation on Shipments Index](https://developers.shipcloud.io/reference/#getting-a-list-of-shipments)*
+
+```ruby
+Shipcloud::Shipment.all(
+  carrier: 'ups',
+  per_page: 25,
+  page: 2
+)
+```
+
+`Shipment#all` will return an array of `Shipcloud::Shipment` objects, matching the given parameters.
+
 ### Get a shipment quote
 
 To get a shipment qoute from the shipclod platform, you need to provide the name of the carrier, the service, to- and from-address, and the package dimensions.
