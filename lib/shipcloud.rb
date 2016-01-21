@@ -2,6 +2,7 @@ require "net/http"
 require "net/https"
 require "json"
 require "shipcloud/version"
+require "shipcloud/shipcloud_error"
 
 module Shipcloud
   API_VERSION = "v1"
@@ -31,12 +32,7 @@ module Shipcloud
     autoload :Base,         "shipcloud/request/base"
     autoload :Connection,   "shipcloud/request/connection"
     autoload :Info,         "shipcloud/request/info"
-    autoload :Validator,    "shipcloud/request/validator"
   end
-
-  class ShipcloudError < StandardError; end
-  class AuthenticationError < ShipcloudError; end
-  class APIError            < ShipcloudError; end
 
   class << self
     attr_accessor :configuration

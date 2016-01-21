@@ -1,10 +1,14 @@
 ## [Unreleased]
 ### Added
 - Add the possibility to specify the api key on every request. (#8)
+- Add some more specific error classes ```Shipcloud::ClientError```,```Shipcloud::ServerError```,
+  ```Shipcloud::InvalidRequestError```, ```Shipcloud::TooManyRequests``` and ```Shipcloud::NotFoundError``` (#11).
+- Access to the entire response and error descriptions from the error object (#11).
 
 ### Removed
 - Removed the following ruby versions from travis-ci test runs:
   - jruby-9.0.0.0
+- Removed ```Shipcloud::APIError```  in preference to more granular error classes (#11).
 
 ### Changed
 
