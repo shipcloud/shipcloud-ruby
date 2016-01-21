@@ -1,5 +1,14 @@
 ## [Unreleased]
 ### Added
+
+### Removed
+
+### Changed
+
+### Fixed
+
+## [0.7.0] - 2016-01-21
+### Added
 - Add the possibility to specify the api key on every request. (#8)
 - Add some more specific error classes ```Shipcloud::ClientError```,```Shipcloud::ServerError```,
   ```Shipcloud::InvalidRequestError```, ```Shipcloud::TooManyRequests``` and ```Shipcloud::NotFoundError``` (#11).
