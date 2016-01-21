@@ -12,8 +12,6 @@ module Shipcloud
     "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
   }
 
-  @@api_key = nil
-
   autoload :Base,           "shipcloud/base"
   autoload :Shipment,       "shipcloud/shipment"
   autoload :Carrier,        "shipcloud/carrier"
@@ -75,7 +73,6 @@ module Shipcloud
   #
   # @param [String] api_key The api key
   def self.api_key=(api_key)
-    @@api_key = api_key
     configuration.api_key = api_key
   end
 
@@ -84,9 +81,12 @@ module Shipcloud
   # @param [Symbol] http_method The http method to use, must be one of :get, :post, :put and :delete
   # @param [String] api_url The API url to use
   # @param [Hash] data The data to send, e.g. used when creating new objects.
+  # @param [String] optional api_key The api key. If no api key is given, Shipcloud.api_key will
+  # be used for the request
   # @return [Array] The parsed JSON response.
-  def self.request(http_method, api_url, data)
-    info = Request::Info.new(http_method, api_url, data)
+  def self.request(http_method, api_url, data, api_key: nil)
+    api_key ||= Shipcloud.api_key
+    info = Request::Info.new(http_method, api_url, api_key, data)
     Request::Base.new(info).perform
   end
 end

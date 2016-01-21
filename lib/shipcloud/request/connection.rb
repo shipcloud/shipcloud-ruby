@@ -38,7 +38,7 @@ module Shipcloud
                         else
                           Net::HTTP::Get.new(@info.path_with_params(@info.url, @info.data), API_HEADERS)
                         end
-        https_request.basic_auth(Shipcloud.api_key, "")
+        https_request.basic_auth(@info.api_key, "")
         https_request.body = @info.data.to_json if [:post, :put].include?(@info.http_method)
         https_request
       end

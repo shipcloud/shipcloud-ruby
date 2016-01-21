@@ -1,7 +1,10 @@
 ## [Unreleased]
 ### Added
+- Add the possibility to specify the api key on every request. (#8)
 
 ### Removed
+- Removed the following ruby versions from travis-ci test runs:
+  - jruby-9.0.0.0
 
 ### Changed
 

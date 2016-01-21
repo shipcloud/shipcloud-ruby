@@ -16,8 +16,8 @@ describe Shipcloud::Webhook do
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Shipcloud.should_receive(:request).
-        with(:post, "webhooks", valid_attributes).
+      expect(Shipcloud).to receive(:request).
+        with(:post, "webhooks", valid_attributes, api_key: nil).
         and_return("data" => {})
       Shipcloud::Webhook.create(valid_attributes)
     end
@@ -25,7 +25,9 @@ describe Shipcloud::Webhook do
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific webhook" do
-      Shipcloud.should_receive(:request).with(:get, "webhooks/123", {}).and_return("id" => "123")
+      expect(Shipcloud).to receive(:request).
+        with(:get, "webhooks/123", {}, api_key: nil).
+        and_return("id" => "123")
       Shipcloud::Webhook.find("123")
     end
   end
@@ -33,7 +35,7 @@ describe Shipcloud::Webhook do
   describe ".all" do
     it "makes a new Get request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:get, "webhooks", {}).
+        with(:get, "webhooks", {}, api_key: nil).
         and_return("webhooks" => [])
 
       Shipcloud::Webhook.all
@@ -52,7 +54,7 @@ describe Shipcloud::Webhook do
 
   def stub_webhooks_request
     allow(Shipcloud).to receive(:request).
-      with(:get, "webhooks", {}).
+      with(:get, "webhooks", {}, api_key: nil).
       and_return("webhooks" => webhooks_array)
   end
 

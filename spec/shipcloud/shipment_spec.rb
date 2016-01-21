@@ -47,28 +47,32 @@ describe Shipcloud::Shipment do
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
-      Shipcloud.should_receive(:request).with(:post, "shipments", valid_attributes).and_return("data" => {})
+      expect(Shipcloud).to receive(:request).
+        with(:post, "shipments", valid_attributes, api_key: nil).and_return("data" => {})
       Shipcloud::Shipment.create(valid_attributes)
     end
   end
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific subscription" do
-      Shipcloud.should_receive(:request).with(:get, "shipments/123", {}).and_return("id" => "123")
+      expect(Shipcloud).to receive(:request).with(:get, "shipments/123", {}, api_key: nil).
+        and_return("id" => "123")
       Shipcloud::Shipment.find("123")
     end
   end
 
   describe ".update" do
     it "makes a new PUT request using the correct API endpoint" do
-      Shipcloud.should_receive(:request).with(:put, "shipments/123", {:carrier => 'ups' }).and_return("data" => {})
-      Shipcloud::Shipment.update("123", {:carrier => 'ups' })
+      expect(Shipcloud).to receive(:request).
+        with(:put, "shipments/123", { carrier: "ups" }, api_key: nil).and_return("data" => {})
+      Shipcloud::Shipment.update("123", carrier: "ups")
     end
   end
 
   describe ".delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      Shipcloud.should_receive(:request).with(:delete, "shipments/123", {}).and_return(true)
+      expect(Shipcloud).to receive(:request).with(:delete, "shipments/123", {}, api_key: nil).
+        and_return(true)
       Shipcloud::Shipment.delete("123")
     end
   end
@@ -76,7 +80,7 @@ describe Shipcloud::Shipment do
   describe ".all" do
     it "makes a new Get request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:get, "shipments", {}).
+        with(:get, "shipments", {}, api_key: nil).
         and_return("shipments" => [])
 
       Shipcloud::Shipment.all
@@ -104,7 +108,7 @@ describe Shipcloud::Shipment do
       }
 
       expect(Shipcloud).to receive(:request).
-        with(:get, "shipments", filter).
+        with(:get, "shipments", filter, api_key: nil).
         and_return("shipments" => shipments_array)
 
       Shipcloud::Shipment.all(filter)
@@ -113,7 +117,7 @@ describe Shipcloud::Shipment do
 
   def stub_shipments_requests
     allow(Shipcloud).to receive(:request).
-      with(:get, "shipments", {}).
+      with(:get, "shipments", {}, api_key: nil).
       and_return("shipments" => shipments_array)
   end
 

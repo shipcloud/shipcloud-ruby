@@ -29,6 +29,20 @@ describe Shipcloud do
         WebMock.should have_requested(:get, "https://#{Shipcloud::api_key}:@#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}/transactions")
       end
     end
+
+    context "with an api key passed in as an argument" do
+      it "uses the given api key instead of the global one" do
+        WebMock.stub_request(:any, /#{Shipcloud.configuration.api_base}/).to_return(body: "{}")
+        Shipcloud.api_key = "global-api-key"
+
+        Shipcloud.request(:get, "transactions", {}, api_key: "123")
+
+        expect(WebMock).to have_requested(
+          :get,
+          "https://123:@#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}/transactions"
+        )
+      end
+    end
   end
 
   describe '.configure' do
