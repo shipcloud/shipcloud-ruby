@@ -32,7 +32,9 @@ describe Shipcloud::Webhook do
 
   describe ".all" do
     it "makes a new Get request using the correct API endpoint" do
-      expect(Shipcloud).to receive(:request).with(:get, "webhooks", {}).and_return([])
+      expect(Shipcloud).to receive(:request).
+        with(:get, "webhooks", {}).
+        and_return("webhooks" => [])
 
       Shipcloud::Webhook.all
     end
@@ -49,21 +51,25 @@ describe Shipcloud::Webhook do
   end
 
   def stub_webhooks_request
-    allow(Shipcloud).to receive(:request).with(:get, "webhooks", {}).and_return(
-      [
-        {
-          "id" => "583cfd8b-77c7-4447-a3a0-1568bb9cc553",
-          "url" => "https://example.com/webhook",
-          "event_types" => ["shipment.tracking.delayed", "shipment.tracking.delivered"],
-          "deactivated" => false
-        },
-        {
-          "id" => "e0ff4250-6c8e-494d-a069-afd9d566e372",
-          "url" => "https://example.com/webhook",
-          "event_types" => ["shipment.tracking.delayed", "shipment.tracking.delivered"],
-          "deactivated" => false
-        }
-      ]
-    )
+    allow(Shipcloud).to receive(:request).
+      with(:get, "webhooks", {}).
+      and_return("webhooks" => webhooks_array)
+  end
+
+  def webhooks_array
+    [
+      {
+        "id" => "583cfd8b-77c7-4447-a3a0-1568bb9cc553",
+        "url" => "https://example.com/webhook",
+        "event_types" => ["shipment.tracking.delayed", "shipment.tracking.delivered"],
+        "deactivated" => false
+      },
+      {
+        "id" => "e0ff4250-6c8e-494d-a069-afd9d566e372",
+        "url" => "https://example.com/webhook",
+        "event_types" => ["shipment.tracking.delayed", "shipment.tracking.delivered"],
+        "deactivated" => false
+      }
+    ]
   end
 end
