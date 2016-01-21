@@ -1,4 +1,4 @@
-## [Unreleased]
+## [0.6.0] - 2016-01-21
 ### Added
 - This CHANGELOG file (Following "[Keep a CHANGELOG](http://keepachangelog.com/)")
 - Create, find, update and index operations for address resource. (#4)
