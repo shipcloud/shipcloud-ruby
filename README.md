@@ -4,6 +4,8 @@
 
 A Ruby wrapper for the shipcloud API
 
+We have dropped the support of jruby-9, because there is an issue with mixing hash and keyword arguments (https://github.com/jruby/jruby/issues/3138). When this issue is fixed, we will support jruby-9 again.
+
 ## Installation
 
 Add this line to your application's Gemfile:
