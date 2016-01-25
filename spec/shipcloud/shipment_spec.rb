@@ -18,6 +18,15 @@ describe Shipcloud::Shipment do
         length: 40,
         width: 20,
         height: 20
+      },
+      metadata: {
+        product: {
+          name: "foo"
+        },
+        category: {
+          id: "123456",
+          name: "bar"
+        }
       }
     }
   end
@@ -42,6 +51,20 @@ describe Shipcloud::Shipment do
       expect(shipment.package[:length]).to eq 40
       expect(shipment.package[:width]).to eq 20
       expect(shipment.package[:height]).to eq 20
+    end
+
+    it "initializes the metadata correctly" do
+      metadata = {
+        category: {
+          id: "123456",
+          name: "bar"
+        },
+        product: {
+          name: "foo"
+        }
+      }
+
+      expect(shipment.metadata).to eq metadata
     end
   end
 
