@@ -1,5 +1,6 @@
 ## [Unreleased]
 ### Added
+- Add attribute ```metadata``` to class ```Shipcloud::Shipment``` in order to transmit JSON data (#16).
 
 ### Removed
 
