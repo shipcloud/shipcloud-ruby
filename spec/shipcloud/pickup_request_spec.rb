@@ -35,15 +35,16 @@ describe Shipcloud::PickupRequest do
     end
 
     it "initializes a PickupRequest with id, carrier and pickup_time" do
-      allow(Shipcloud).to receive(:request).
-        and_return(
-          "id": "123456",
-          "carrier": "dpd",
-          "pickup_time": {
-            "earliest": "2015-09-15T09:00:00+02:00",
-            "latest": "2015-09-15T18:00:00+02:00"
-          }
-        )
+      response = {
+        "id": "123456",
+        "carrier": "dpd",
+        "pickup_time": {
+          "earliest": "2015-09-15T09:00:00+02:00",
+          "latest": "2015-09-15T18:00:00+02:00"
+        }
+      }
+
+      allow(Shipcloud).to receive(:request).and_return(response)
 
       pickup_request = Shipcloud::PickupRequest.create(valid_attributes)
 
