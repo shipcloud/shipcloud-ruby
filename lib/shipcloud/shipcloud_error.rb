@@ -26,6 +26,7 @@ module Shipcloud
       when 400, 422 then InvalidRequestError
       when 401 then AuthenticationError
       when 402 then TooManyRequests
+      when 403 then ForbiddenError
       when 404 then NotFoundError
       when 400..499 then ClientError
       when 500..599 then ServerError
@@ -57,6 +58,7 @@ module Shipcloud
   # Raised on errors in the 400-499 range
   class ClientError < ShipcloudError; end
   class AuthenticationError < ClientError; end
+  class ForbiddenError < ClientError; end
   class InvalidRequestError < ClientError; end
   class TooManyRequests < ClientError; end
   class NotFoundError < ClientError; end

@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Added
 - Add attribute ```metadata``` to class ```Shipcloud::Shipment``` in order to transmit JSON data (#16).
+- Add resource pickup_request in order to submit pickup request to shipcloud
 
 ### Removed
 

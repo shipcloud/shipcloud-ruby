@@ -55,7 +55,7 @@ You can sign up for a developer account at *[shipcloud.io](http://www.shipcloud.
 
 ### Create a new shipment
 
-To create a new Shipment on the shipclod platform, you need to provide the name of the carrier, to- and from-address, and the package dimensions.
+To create a new Shipment on the shipcloud platform, you need to provide the name of the carrier, to- and from-address, and the package dimensions.
 For details, see *[shipcloud API documentation on Shipments](http://developers.shipcloud.io/reference/#shipments)*
 ```ruby
 Shipcloud::Shipment.create(
@@ -90,7 +90,7 @@ Shipcloud::Shipment.all(
 
 ### Get a shipment quote
 
-To get a shipment qoute from the shipclod platform, you need to provide the name of the carrier, the service, to- and from-address, and the package dimensions.
+To get a shipment qoute from the shipcloud platform, you need to provide the name of the carrier, the service, to- and from-address, and the package dimensions.
 For details, see *[shipcloud API documentation on shipment quotes](https://developers.shipcloud.io/reference/#shipment-quotes)*
 
 ```ruby
@@ -121,6 +121,43 @@ shipment_quote = Shipcloud::ShipmentQuote.create(
 
 shipment_quote.price # => 6.2
 ```
+
+### Create a pickup request
+
+To request parcels being picked up, you need to provide the carrier name and the time (earliest and latest) your shipments shall be fetched.
+
+```ruby
+pickup_request = Shipcloud::PickupRequest.create(
+  carrier: 'dpd',
+  pickup_time: {
+    earliest: "2016-04-04T09:00:00+02:00",
+    latest: "2016-04-04T18:00:00+02:00"
+  }
+)
+
+pickup_request.id # => "dje892dj20d2odj20"
+pickup_request.carrier_pickup_number # => "12345"
+```
+
+You may also provide a list of shipment ids to specify only certain shipments to be included in the pickup request.
+
+```ruby
+pickup_request = Shipcloud::PickupRequest.create(
+  carrier: 'dpd',
+  pickup_time: {
+    earliest: "2016-04-04T09:00:00+02:00",
+    latest: "2016-04-04T18:00:00+02:00"
+  },
+  shipments: [
+    { id: "abc_123"}
+  ]
+)
+
+pickup_request.id # => "dje892dj20d2odj20"
+pickup_request.carrier_pickup_number # => "12345"
+```
+
+
 
 ## Contributing
 
