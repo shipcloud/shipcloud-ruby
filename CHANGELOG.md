@@ -3,6 +3,7 @@
 - Add attribute ```metadata``` to class ```Shipcloud::Shipment``` in order to transmit JSON data (#16).
 - Add resource pickup_request in order to submit pickup request to shipcloud
 - Add attribute ```pickup_address``` to class ```Shipcloud::PickupRequest``` to submit an alternative address for pickup request to shipcloud
+- Add ```delete``` operation for ```webhook``` resource
 
 ### Removed
 

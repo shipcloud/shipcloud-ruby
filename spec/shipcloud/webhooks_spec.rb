@@ -52,6 +52,15 @@ describe Shipcloud::Webhook do
     end
   end
 
+  describe ".delete" do
+    it "makes a DELETE request using the correct API endpoint" do
+      expect(Shipcloud).to receive(:request).
+        with(:delete, "webhooks/123", {}, api_key: nil).
+        and_return(true)
+      Shipcloud::Webhook.delete("123")
+    end
+  end
+
   def stub_webhooks_request
     allow(Shipcloud).to receive(:request).
       with(:get, "webhooks", {}, api_key: nil).
