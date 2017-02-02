@@ -52,6 +52,28 @@ describe Shipcloud::Webhook do
     end
   end
 
+  describe ".deactivated" do
+    let(:id) { "123" }
+
+    subject { Shipcloud::Webhook.find(id).deactivated }
+
+    before do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "webhooks/#{id}", {}, api_key: nil).
+        and_return("id" => id, "deactivated" => deactivated)
+    end
+
+    context "when the webhook is deactivated" do
+      let(:deactivated) { true }
+      it { is_expected.to be true }
+    end
+
+    context "when the webhook is not deactivated" do
+      let(:deactivated) { false }
+      it { is_expected.to be false }
+    end
+  end
+
   def stub_webhooks_request
     allow(Shipcloud).to receive(:request).
       with(:get, "webhooks", {}, api_key: nil).
