@@ -5,7 +5,7 @@ rvm:
   - 2.1.7
   - 2.2.4
   - 2.3.0
-  - rbx-2
+  - rbx-2.2.7
 notifications:
   flowdock:
     secure: fSZxX5z3bHWT8aCFKBFrDDt5o3Jb6EFWcm+pAcMabpfDHc4iktWuCUlSM405798TRdKdws1A2RncQGYiQyLbqNvtLz48dvj4BxgYW7P/vg0koN+I/H2MjpZeuIQ7BRSEJIq2sAYNVya+hSil+SPEBMTngJiP6VYG0dm6fFnRkyk=
