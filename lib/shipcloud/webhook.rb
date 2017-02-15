@@ -3,7 +3,7 @@ module Shipcloud
     include Shipcloud::Operations::All
     include Shipcloud::Operations::Delete
 
-    attr_reader :url, :event_types
+    attr_reader :url, :event_types, :deactivated
 
     def self.index_response_root
       "webhooks"
