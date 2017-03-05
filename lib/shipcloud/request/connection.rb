@@ -28,16 +28,21 @@ module Shipcloud
       protected
 
       def https_request
-        https_request = case @info.http_method
-                        when :post
-                          Net::HTTP::Post.new(@info.url, API_HEADERS)
-                        when :put
-                          Net::HTTP::Put.new(@info.url, API_HEADERS)
-                        when :delete
-                          Net::HTTP::Delete.new(@info.url, API_HEADERS)
-                        else
-                          Net::HTTP::Get.new(@info.path_with_params(@info.url, @info.data), API_HEADERS)
-                        end
+        https_request =
+          case @info.http_method
+          when :post
+            Net::HTTP::Post.new(@info.url, Shipcloud.api_headers)
+          when :put
+            Net::HTTP::Put.new(@info.url, Shipcloud.api_headers)
+          when :delete
+            Net::HTTP::Delete.new(@info.url, Shipcloud.api_headers)
+          else
+            Net::HTTP::Get.new(
+              @info.path_with_params(@info.url, @info.data),
+              Shipcloud.api_headers,
+            )
+          end
+
         https_request.basic_auth(@info.api_key, "")
         https_request.body = @info.data.to_json if [:post, :put].include?(@info.http_method)
         https_request

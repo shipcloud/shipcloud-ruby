@@ -4,6 +4,7 @@
 - Add resource pickup_request in order to submit pickup request to shipcloud
 - Add attribute ```pickup_address``` to class ```Shipcloud::PickupRequest``` to submit an alternative address for pickup request to shipcloud
 - Add attribute ```deactivated``` to class ```Shipcloud::Webhook```
+- Add optional ```affiliate_id``` to ```Shipcloud::Configuration``` and submit it via API headers to shipcloud
 
 ### Removed
 

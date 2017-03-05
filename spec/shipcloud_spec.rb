@@ -99,5 +99,42 @@ describe Shipcloud do
       end
       expect(Shipcloud.configuration.debug).to be true
     end
+
+    it "defaults affiliate_id to nil" do
+      expect(Shipcloud.configuration.affiliate_id).to be_nil
+    end
+
+    it "sets and gets the affiliate_id" do
+      Shipcloud.configure do |config|
+        config.affiliate_id = "integration.my_rails_app.1234567"
+      end
+
+      expect(Shipcloud.configuration.affiliate_id).to eq "integration.my_rails_app.1234567"
+    end
+  end
+
+  describe ".api_headers" do
+    it "returns the correct api headers" do
+      Shipcloud.configuration = nil # reset configuration
+
+      expect(Shipcloud.api_headers).to eq(
+        "Content-Type" => "application/json",
+        "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
+          "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",
+      )
+    end
+
+    it "returns the correct api headers with affiliate id if configured" do
+      Shipcloud.configure do |config|
+        config.affiliate_id = "integration.my_rails_app.1234567"
+      end
+
+      expect(Shipcloud.api_headers).to eq(
+        "Content-Type" => "application/json",
+        "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
+          "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",
+        "Affiliate-ID" => "integration.my_rails_app.1234567",
+      )
+    end
   end
 end

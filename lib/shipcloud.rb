@@ -47,9 +47,14 @@ module Shipcloud
     yield(configuration)
   end
 
+  def self.api_headers
+    API_HEADERS.merge(
+      "Affiliate-ID" => configuration.affiliate_id
+    ).reject { |_k, v| v.nil? }
+  end
 
   class Configuration
-    attr_accessor :api_key, :api_base, :use_ssl, :debug
+    attr_accessor :affiliate_id, :api_key, :api_base, :use_ssl, :debug
 
     def initialize
       @api_key = nil
