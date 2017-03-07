@@ -13,6 +13,8 @@ module Shipcloud
     "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
   }
 
+  DEFAULT_AFFILIATE_ID = "integration.shipcloud-ruby-gem.v#{Shipcloud::VERSION}".freeze
+
   autoload :Base,           "shipcloud/base"
   autoload :Shipment,       "shipcloud/shipment"
   autoload :Carrier,        "shipcloud/carrier"
@@ -49,7 +51,7 @@ module Shipcloud
 
   def self.api_headers
     API_HEADERS.merge(
-      "Affiliate-ID" => configuration.affiliate_id
+      "Affiliate-ID" => configuration.affiliate_id || DEFAULT_AFFILIATE_ID
     ).reject { |_k, v| v.nil? }
   end
 

@@ -114,13 +114,14 @@ describe Shipcloud do
   end
 
   describe ".api_headers" do
-    it "returns the correct api headers" do
+    it "returns the correct api headers with default affiliate id" do
       Shipcloud.configuration = nil # reset configuration
 
       expect(Shipcloud.api_headers).to eq(
         "Content-Type" => "application/json",
         "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
           "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",
+        "Affiliate-ID" => "integration.shipcloud-ruby-gem.v#{Shipcloud::VERSION}",
       )
     end
 
