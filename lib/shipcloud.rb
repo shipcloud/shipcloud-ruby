@@ -21,6 +21,7 @@ module Shipcloud
   autoload :Address,        "shipcloud/address"
   autoload :PickupRequest,  "shipcloud/pickup_request"
   autoload :ShipmentQuote,  "shipcloud/shipment_quote"
+  autoload :Tracker,        "shipcloud/tracker"
   autoload :Webhook,        "shipcloud/webhook"
 
   module Operations
