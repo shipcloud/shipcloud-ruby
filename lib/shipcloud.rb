@@ -13,12 +13,15 @@ module Shipcloud
     "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
   }
 
+  DEFAULT_AFFILIATE_ID = "integration.shipcloud-ruby-gem.v#{Shipcloud::VERSION}".freeze
+
   autoload :Base,           "shipcloud/base"
   autoload :Shipment,       "shipcloud/shipment"
   autoload :Carrier,        "shipcloud/carrier"
   autoload :Address,        "shipcloud/address"
   autoload :PickupRequest,  "shipcloud/pickup_request"
   autoload :ShipmentQuote,  "shipcloud/shipment_quote"
+  autoload :Tracker,        "shipcloud/tracker"
   autoload :Webhook,        "shipcloud/webhook"
 
   module Operations
@@ -47,9 +50,14 @@ module Shipcloud
     yield(configuration)
   end
 
+  def self.api_headers
+    API_HEADERS.merge(
+      "Affiliate-ID" => configuration.affiliate_id || DEFAULT_AFFILIATE_ID
+    )
+  end
 
   class Configuration
-    attr_accessor :api_key, :api_base, :use_ssl, :debug
+    attr_accessor :affiliate_id, :api_key, :api_base, :use_ssl, :debug
 
     def initialize
       @api_key = nil
