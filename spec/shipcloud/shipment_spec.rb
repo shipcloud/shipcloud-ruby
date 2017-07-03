@@ -100,8 +100,9 @@ describe Shipcloud::Shipment do
     end
 
     it "doesn't raise an error" do
-      stub_request(:delete, "https://your-api-key:@api.shipcloud.io/v1/shipments/123").
+      stub_request(:delete, "https://api.shipcloud.io/v1/shipments/123").
         to_return(status: 204, body: "")
+
       expect { Shipcloud::Shipment.delete("123", api_key: "your-api-key") }.
         to_not raise_error
     end

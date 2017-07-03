@@ -16,17 +16,20 @@ describe Shipcloud do
 
       it "attempts to get a url with one param" do
         Shipcloud.request(:get, "transactions", { param_name: "param_value" })
-        WebMock.should have_requested(:get, "https://#{Shipcloud::api_key}:@#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}/transactions?param_name=param_value")
+
+        expect(WebMock).to have_requested(:get, "#{api_url}/transactions?param_name=param_value")
       end
 
       it "attempts to get a url with more than one param" do
         Shipcloud.request(:get, "transactions", { client: "client_id", order: "created_at_desc" })
-        WebMock.should have_requested(:get, "https://#{Shipcloud::api_key}:@#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}/transactions?client=client_id&order=created_at_desc")
+
+        expect(WebMock).
+          to have_requested(:get, "#{api_url}/transactions?client=client_id&order=created_at_desc")
       end
 
       it "doesn't add a question mark if no params" do
         Shipcloud.request(:get, "transactions", {})
-        WebMock.should have_requested(:get, "https://#{Shipcloud::api_key}:@#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}/transactions")
+        expect(WebMock).to have_requested(:get, "#{api_url}/transactions")
       end
     end
 
@@ -39,7 +42,11 @@ describe Shipcloud do
 
         expect(WebMock).to have_requested(
           :get,
-          "https://123:@#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}/transactions"
+          "#{api_url}/transactions",
+        ).with(
+          headers: {
+            "Authorization" => "Basic #{Base64.strict_encode64('123:').chomp}",
+          },
         )
       end
     end
@@ -137,5 +144,9 @@ describe Shipcloud do
         "Affiliate-ID" => "integration.my_rails_app.1234567",
       )
     end
+  end
+
+  def api_url
+    "https://#{Shipcloud.configuration.api_base}/#{Shipcloud::API_VERSION}"
   end
 end
