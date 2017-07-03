@@ -7,7 +7,7 @@ describe Shipcloud::Request::Connection do
 
       connection.setup_https
 
-      connection.https.should_not be_nil
+      expect(connection.https).to_not be_nil
     end
   end
 
@@ -15,9 +15,9 @@ describe Shipcloud::Request::Connection do
     it "performs the actual request" do
       connection = Shipcloud::Request::Connection.new(nil)
       connection.setup_https
-      connection.stub(:https_request)
+      allow(connection).to receive(:https_request)
 
-      connection.https.should_receive(:request)
+      expect(connection.https).to receive(:request)
 
       connection.request
     end
