@@ -142,7 +142,7 @@ describe Shipcloud::Shipment do
         with(:get, "shipments", filter, api_key: nil).
         and_return("shipments" => shipments_array)
 
-      Shipcloud::Shipment.all(filter)
+      Shipcloud::Shipment.all(filter, api_key: nil)
     end
   end
 
