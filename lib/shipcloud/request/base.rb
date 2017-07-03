@@ -12,7 +12,7 @@ module Shipcloud
         connection.setup_https
         response = connection.request
         validate_response(response)
-        JSON.parse(response.body)
+        JSON.parse(response.body) unless response.body.nil?
       rescue JSON::ParserError
         raise ShipcloudError.new(response)
       end

@@ -13,6 +13,7 @@
 ### Changed
 
 ### Fixed
+- Parse response only when it is not empty
 
 ## [0.7.0] - 2016-01-21
 ### Added
