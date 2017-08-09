@@ -40,6 +40,16 @@ describe Shipcloud::Address do
 
       Shipcloud::Address.create(valid_attributes)
     end
+
+    it "returns an address containing an id" do
+      expect(Shipcloud).to receive(:request).
+        with(:post, "addresses", valid_attributes, api_key: nil).
+        and_return(returned_address)
+
+      address = Shipcloud::Address.create(valid_attributes)
+
+      expect(address.id).to eq("1c81efb7-9b95-4dd8-92e3-cac1bca3df6f")
+    end
   end
 
   describe '.find' do
@@ -114,5 +124,22 @@ describe Shipcloud::Address do
           }
         ]
       )
+  end
+
+  def returned_address
+    {
+      "id" => "1c81efb7-9b95-4dd8-92e3-cac1bca3df6f",
+      "company" => "shipcloud GmbH",
+      "first_name" => "Maxi",
+      "last_name" => "Musterfrau",
+      "care_of" => "Mustermann",
+      "street" => "Musterstraße",
+      "street_no" => "123",
+      "zip_code" => "12345",
+      "city" => "Hamburg",
+      "state" => "Hamburg",
+      "country" => "DE",
+      "phone" => "040/123456789",
+    }
   end
 end

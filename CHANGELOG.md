@@ -1,5 +1,6 @@
 ## [Unreleased]
 ### Added
+- Add attr_reader for `id` to class `Shipcloud::Address` to be able to get the id of a created address
 
 ### Changed
 
