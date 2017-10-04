@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe Shipcloud::Webhook do
   valid_attributes = {
-    id: "583cfd8b-77c7-4447-a3a0-1568bb9cc553", 
+    id: "583cfd8b-77c7-4447-a3a0-1568bb9cc553",
     url: "https://example.com/webhook",
     event_types: ["shipment.tracking.delayed", "shipment.tracking.delivered"]
   }
