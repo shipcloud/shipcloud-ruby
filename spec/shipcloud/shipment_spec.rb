@@ -44,6 +44,7 @@ describe Shipcloud::Shipment do
       expect(shipment.to[:street_no]).to eq '43'
       expect(shipment.to[:city]).to eq 'Berlin'
       expect(shipment.to[:zip_code]).to eq '10000'
+      expect(shipment.to[:customs_declaration]).to eq {}
 
       expect(shipment.carrier).to eq 'dhl'
 
@@ -185,7 +186,8 @@ describe Shipcloud::Shipment do
           "width" => 10.0,
           "height" => 10.0,
           "weight" => 1.5
-        }
+        },
+        "customs_declaration" => {}
       },
       { "id" => "be81573799958587ae891b983aabf9c4089fc462",
         "carrier_tracking_no" => "1Z12345E1305277940",
@@ -218,7 +220,8 @@ describe Shipcloud::Shipment do
           "width" => 20.0,
           "height" => 10.0,
           "weight" => 2.0
-        }
+        },
+        "customs_declaration" => {}
       }
     ]
   end
