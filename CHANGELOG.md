@@ -2,7 +2,7 @@
 ### Added
 - Add attr_reader for `id` to class `Shipcloud::Address` to be able to get the id of a created address
 - Add attr_reader for `id` to class `Shipcloud::Webhook` to be able to get the id of a created webhook
-
+- Add attr_reader for `customs_declaration` to class `Shipcloud::Shipment` to be able to get the `customs_declaration` of a created shipment
 ### Changed
 
 ### Deprecated
