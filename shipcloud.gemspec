@@ -27,5 +27,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.6"
   spec.add_development_dependency "webmock", "~> 3.0"
   spec.add_development_dependency "pry", "~> 0.10"
-  spec.add_development_dependency "codeclimate-test-reporter"
+  spec.add_development_dependency "simplecov"
 end
