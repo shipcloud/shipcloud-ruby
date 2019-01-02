@@ -22,7 +22,7 @@ addons:
   code_climate:
     repo_token: 704eb62133d951ce460a6047a15a58e0a521aa20ec6a533fa7a37585f8a75602
 before_script:
-  - install-cc-test-reporter.sh
+  - ./install-cc-test-reporter.sh
   - ./cc-test-reporter before-build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
