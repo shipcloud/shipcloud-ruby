@@ -1,12 +1,43 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.5
   Exclude:
     - vendor/**/*
-    - db/schema.rb
 
-Style/AccessorMethodName:
+Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
   Enabled: false
+
+Naming/AsciiIdentifiers:
+  Description: 'Use only ascii symbols in identifiers.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-identifiers'
+  Enabled: false
+
+Naming/FileName:
+  Description: 'Use snake_case for source file names.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#snake-case-files'
+  Enabled: false
+
+Naming/BinaryOperatorParameterName:
+  Description: 'When defining binary operators, name the argument other.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#other-arg'
+  Enabled: false
+
+Naming/MemoizedInstanceVariableName:
+  Description: Memoized method name should match memo instance variable name.
+  Enabled: true
+  EnforcedStyleForLeadingUnderscores: required
+
+Naming/PredicateName:
+  Description: 'Check the names of predicate methods.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#bool-methods-qmark'
+  NamePrefix:
+    - is_
+    - has_
+    - have_
+  NamePrefixBlacklist:
+    - is_
+  Exclude:
+    - spec/**/*
 
 Style/Alias:
   Description: 'Use alias_method instead of alias.'
@@ -21,11 +52,6 @@ Style/ArrayJoin:
 Style/AsciiComments:
   Description: 'Use only ascii symbols in comments.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-comments'
-  Enabled: false
-
-Style/AsciiIdentifiers:
-  Description: 'Use only ascii symbols in identifiers.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-identifiers'
   Enabled: false
 
 Style/Attr:
@@ -107,11 +133,6 @@ Style/EvenOdd:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#predicate-methods'
   Enabled: false
 
-Style/FileName:
-  Description: 'Use snake_case for source file names.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#snake-case-files'
-  Enabled: false
-
 Style/FlipFlop:
   Description: 'Checks for flip flops'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-flip-flops'
@@ -139,7 +160,6 @@ Style/IfUnlessModifier:
                  single-line body.
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#if-as-a-modifier'
   Enabled: false
-  MaxLineLength: 80
 
 Style/IfWithSemicolon:
   Description: 'Do not use if x; .... Use the ternary operator instead.'
@@ -149,6 +169,10 @@ Style/IfWithSemicolon:
 Style/InlineComment:
   Description: 'Avoid inline comments.'
   Enabled: false
+
+Style/IpAddresses:
+  Description: "Don't include literal IP addresses in code."
+  Enabled: true
 
 Style/Lambda:
   Description: 'Use the new lambda literal syntax for single-line blocks.'
@@ -217,11 +241,6 @@ Style/OneLineConditional:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#ternary-operator'
   Enabled: false
 
-Style/OpMethod:
-  Description: 'When defining binary operators, name the argument other.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#other-arg'
-  Enabled: false
-
 Style/PercentLiteralDelimiters:
   Description: 'Use `%`-literal delimiters consistently'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-literal-braces'
@@ -231,18 +250,6 @@ Style/PerlBackrefs:
   Description: 'Avoid Perl-style regex back references.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-perl-regexp-last-matchers'
   Enabled: false
-
-Style/PredicateName:
-  Description: 'Check the names of predicate methods.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#bool-methods-qmark'
-  NamePrefix:
-    - is_
-    - has_
-    - have_
-  NamePrefixBlacklist:
-    - is_
-  Exclude:
-    - spec/**/*
 
 Style/Proc:
   Description: 'Use proc instead of Proc.new.'
@@ -315,8 +322,18 @@ Style/TrailingCommaInArguments:
     - no_comma
   Enabled: true
 
-Style/TrailingCommaInLiteral:
-  Description: 'Checks for trailing comma in array and hash literals.'
+Style/TrailingCommaInArrayLiteral:
+  Description: 'Checks for trailing comma in array literals.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas'
+  EnforcedStyleForMultiline: comma
+  SupportedStylesForMultiline:
+    - comma
+    - consistent_comma
+    - no_comma
+  Enabled: true
+
+Style/TrailingCommaInHashLiteral:
+  Description: 'Checks for trailing comma in hash literals.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-trailing-array-commas'
   EnforcedStyleForMultiline: comma
   SupportedStylesForMultiline:
@@ -365,6 +382,13 @@ Style/OptionHash:
   Enabled: true
 
 # Layout
+
+Layout/ConditionPosition:
+  Description: >-
+                 Checks for condition placed in a confusing position relative to
+                 the keyword.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
+  Enabled: false
 
 Layout/DotPosition:
   Description: 'Checks the position of the dot in multi-line method calls.'
@@ -439,14 +463,7 @@ Lint/AssignmentInCondition:
 
 Lint/CircularArgumentReference:
   Description: "Don't refer to the keyword argument in the default value."
-  Enabled: false
-
-Lint/ConditionPosition:
-  Description: >-
-                 Checks for condition placed in a confusing position relative to
-                 the keyword.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
-  Enabled: false
+  Enabled: true
 
 Lint/DeprecatedClassMethods:
   Description: 'Check for deprecated class method calls.'
@@ -473,13 +490,7 @@ Lint/HandleExceptions:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions'
   Enabled: false
 
-Lint/InvalidCharacterLiteral:
-  Description: >-
-                 Checks for invalid character literals with a non-escaped
-                 whitespace character.
-  Enabled: false
-
-Lint/LiteralInCondition:
+Lint/LiteralAsCondition:
   Description: 'Checks of literals used in conditions.'
   Enabled: false
 
@@ -520,7 +531,7 @@ Lint/UnderscorePrefixedVariableName:
   Description: 'Do not use prefix `_` for a variable that is used.'
   Enabled: false
 
-Lint/UnneededDisable:
+Lint/UnneededCopDisableDirective:
   Description: >-
                  Checks for rubocop:disable comments that can be removed.
                  Note: this cop is not disabled when disabling all cops.
@@ -543,6 +554,7 @@ Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
   Enabled: true
   Exclude:
+    - "gems/**/*_spec.rb"
     - "spec/**/*"
     - "config/routes.rb"
 
@@ -634,6 +646,10 @@ Performance/StringReplacement:
                   number of characters. Use `delete` instead of `gsub` when
                   you are deleting characters.
   Reference: 'https://github.com/JuanitoFatas/fast-ruby#stringgsub-vs-stringtr-code'
+  Enabled: false
+
+Performance/UnfreezeString:
+  Description: 'Use unary plus to get an unfrozen string literal.'
   Enabled: false
 
 # Rails
