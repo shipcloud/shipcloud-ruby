@@ -56,8 +56,8 @@ describe Shipcloud::Shipment do
       expect(shipment.package[:width]).to eq 20
       expect(shipment.package[:height]).to eq 20
 
-      expect(shipment.customs_declaration[:id]).to eq '123456'
-      expect(shipment.customs_declaration[:contents_type]).to eq 'commercial_goods'
+      expect(shipment.customs_declaration[:id]).to eq "123456"
+      expect(shipment.customs_declaration[:contents_type]).to eq "commercial_goods"
     end
 
     it "initializes the metadata correctly" do
