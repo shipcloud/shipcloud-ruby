@@ -31,15 +31,15 @@ module Shipcloud
         https_request =
           case @info.http_method
           when :post
-            Net::HTTP::Post.new(@info.url, Shipcloud.api_headers)
+            Net::HTTP::Post.new(@info.url, Shipcloud.api_headers(@info.data))
           when :put
-            Net::HTTP::Put.new(@info.url, Shipcloud.api_headers)
+            Net::HTTP::Put.new(@info.url, Shipcloud.api_headers(@info.data))
           when :delete
-            Net::HTTP::Delete.new(@info.url, Shipcloud.api_headers)
+            Net::HTTP::Delete.new(@info.url, Shipcloud.api_headers(@info.data))
           else
             Net::HTTP::Get.new(
               @info.path_with_params(@info.url, @info.data),
-              Shipcloud.api_headers,
+              Shipcloud.api_headers(@info.data),
             )
           end
 
