@@ -24,7 +24,7 @@ describe Shipcloud::Carrier do
   describe '.all' do
     it 'makes a new Get request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).
-        with(:get, "carriers", {}, api_key: nil).and_return([])
+        with(:get, "carriers", {}, api_key: nil, affiliate_id: nil).and_return([])
 
       Shipcloud::Carrier.all
     end
@@ -66,11 +66,18 @@ describe Shipcloud::Carrier do
           )
         )
     end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "carriers", {}, api_key: nil, affiliate_id: "affiliate_id").and_return([])
+
+      Shipcloud::Carrier.all(affiliate_id: "affiliate_id")
+    end
   end
 
-  def stub_carriers_request
+  def stub_carriers_request(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
-      with(:get, "carriers", {}, api_key: nil).
+      with(:get, "carriers", {}, api_key: nil, affiliate_id: affiliate_id).
       and_return(
         [
           {

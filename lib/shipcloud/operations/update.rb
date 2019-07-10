@@ -8,8 +8,10 @@ module Shipcloud
         # @param [Hash] attributes The attributes that should be updated
         # @param \[String\] optional api_key The api key. If no api key is given, Shipcloud.api_key
         # will be used for the request
-        def update(id, attributes, api_key: nil)
-          response = Shipcloud.request(:put, "#{base_url}/#{id}", attributes, api_key: api_key)
+        def update(id, attributes, api_key: nil, affiliate_id: nil)
+          response = Shipcloud.request(
+            :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id,
+          )
           self.new(response)
         end
       end
@@ -23,8 +25,10 @@ module Shipcloud
       # @param [Hash] attributes The attributes that should be updated
       # @param \[String\] optional api_key The api key. If no api key is given, Shipcloud.api_key
       # will be used for the request
-      def update(attributes, api_key: nil)
-        response = Shipcloud.request(:put, "#{base_url}/#{id}", attributes, api_key: api_key)
+      def update(attributes, api_key: nil, affiliate_id: nil)
+        response = Shipcloud.request(
+          :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id,
+        )
         set_attributes(response)
       end
     end

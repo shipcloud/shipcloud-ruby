@@ -52,7 +52,7 @@ describe Shipcloud::ShipmentQuote do
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "shipment_quotes", valid_attributes, api_key: nil).
+        with(:post, "shipment_quotes", valid_attributes, api_key: nil, affiliate_id: nil).
         and_return("data" => {})
 
       Shipcloud::ShipmentQuote.create(valid_attributes)
@@ -69,6 +69,14 @@ describe Shipcloud::ShipmentQuote do
       shipment_quote = Shipcloud::ShipmentQuote.create(valid_attributes)
 
       expect(shipment_quote.price).to eq 42.12
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:post, "shipment_quotes", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("data" => {})
+
+      Shipcloud::ShipmentQuote.create(valid_attributes, affiliate_id: "affiliate_id")
     end
   end
 end

@@ -3,7 +3,7 @@ require "spec_helper"
 describe Shipcloud::Request::Base do
   context "#perform" do
     it "checks for an api key" do
-      info = Shipcloud::Request::Info.new(:get, "shipments", nil, {})
+      info = Shipcloud::Request::Info.new(:get, "shipments", nil, "affiliate_id", {})
 
       expect{
         Shipcloud::Request::Base.new(info).perform
@@ -16,7 +16,7 @@ describe Shipcloud::Request::Base do
       expect(connection).to receive(:setup_https)
       response = double(code: "200", body: { id: 1 }.to_json)
       expect(connection).to receive(:request).and_return(response)
-      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", {})
+      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", "affiliate_id", {})
 
       data = Shipcloud::Request::Base.new(info).perform
 
@@ -30,7 +30,7 @@ describe Shipcloud::Request::Base do
       expect(connection).to receive(:setup_https)
       response = double(code: "400", body: { id: 1 }.to_json)
       expect(connection).to receive(:request).and_return(response)
-      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", {})
+      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", "affiliate_id", {})
 
       expect { Shipcloud::Request::Base.new(info).perform }.to raise_error(Shipcloud::ClientError)
     end
@@ -42,7 +42,7 @@ describe Shipcloud::Request::Base do
       expect(connection).to receive(:setup_https)
       response = double(code: "500", body: { id: 1 }.to_json)
       expect(connection).to receive(:request).and_return(response)
-      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", {})
+      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", "affiliate_id", {})
 
       expect { Shipcloud::Request::Base.new(info).perform }.to raise_error(Shipcloud::ServerError)
     end
@@ -54,7 +54,7 @@ describe Shipcloud::Request::Base do
       expect(connection).to receive(:setup_https)
       response = double(code: "200", body: "no json")
       expect(connection).to receive(:request).and_return(response)
-      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", {})
+      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", "affiliate_id", {})
 
       expect { Shipcloud::Request::Base.new(info).perform }.
         to raise_error(Shipcloud::ShipcloudError)

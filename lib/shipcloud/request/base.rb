@@ -10,7 +10,7 @@ module Shipcloud
       def perform
         raise AuthenticationError unless @info.api_key
         connection.setup_https
-        response = connection.request
+        response = connection.request(info.affiliate_id)
         validate_response(response)
         JSON.parse(response.body) unless response.body.nil?
       rescue JSON::ParserError

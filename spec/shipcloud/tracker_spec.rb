@@ -19,7 +19,7 @@ describe Shipcloud::PickupRequest do
   describe ".all" do
     it "makes a new GET request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:get, "trackers", {}, api_key: nil).
+        with(:get, "trackers", {}, api_key: nil, affiliate_id: nil).
         and_return("trackers" => [])
 
       Shipcloud::Tracker.all
@@ -34,30 +34,53 @@ describe Shipcloud::PickupRequest do
         expect(tracker).to be_a Shipcloud::Tracker
       end
     end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "trackers", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("trackers" => [])
+
+      Shipcloud::Tracker.all(affiliate_id: "affiliate_id")
+    end
   end
 
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "trackers", valid_attributes, api_key: nil).
+        with(:post, "trackers", valid_attributes, api_key: nil, affiliate_id: nil).
         and_return("data" => {})
 
       Shipcloud::Tracker.create(valid_attributes)
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:post, "trackers", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("data" => {})
+
+      Shipcloud::Tracker.create(valid_attributes, affiliate_id: "affiliate_id")
     end
   end
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific tracker" do
-      expect(Shipcloud).to receive(:request).with(:get, "trackers/123", {}, api_key: nil).
+      expect(Shipcloud).to receive(:request).with(:get, "trackers/123", {}, api_key: nil, affiliate_id: nil).
         and_return("id" => "123")
 
       Shipcloud::Tracker.find("123")
     end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).with(:get, "trackers/123", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("id" => "123")
+
+      Shipcloud::Tracker.find("123", affiliate_id: "affiliate_id")
+    end
   end
 
-  def stub_trackers_requests
+  def stub_trackers_requests(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
-      with(:get, "trackers", {}, api_key: nil).
+      with(:get, "trackers", {}, api_key: nil, affiliate_id: affiliate_id).
       and_return("trackers" => trackers_array)
   end
 
