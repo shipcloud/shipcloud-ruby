@@ -141,7 +141,7 @@ describe Shipcloud do
         },
         metadata: {
           product: {
-            name: "foo"
+            name: "foo",
           },
           category: {
             id: "123456",
@@ -222,7 +222,7 @@ describe Shipcloud do
         },
         metadata: {
           product: {
-            name: "foo"
+            name: "foo",
           },
           category: {
             id: "123456",
