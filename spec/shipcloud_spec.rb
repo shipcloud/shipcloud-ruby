@@ -45,7 +45,7 @@ describe Shipcloud do
           "#{api_url}/transactions",
         ).with(
           headers: {
-            "Authorization" => "Basic #{Base64.strict_encode64("123:").chomp}",
+            "Authorization" => "Basic #{Base64.strict_encode64('123:').chomp}",
           },
         )
       end
