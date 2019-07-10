@@ -44,6 +44,9 @@ module Shipcloud
           end
 
         https_request.basic_auth(@info.api_key, "")
+        if !@info.data[:metadata].nil? && !@info.data[:metadata][:affiliate_id].nil?
+          @info.data[:metadata].delete(:affiliate_id)
+        end
         https_request.body = @info.data.to_json if [:post, :put].include?(@info.http_method)
         https_request
       end
