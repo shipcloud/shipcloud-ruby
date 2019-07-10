@@ -51,7 +51,7 @@ module Shipcloud
   end
 
   def self.api_headers(data)
-    if data&.[](:metadata)&.[](:affiliate_id).nil?
+    if data[:metadata].nil? || data[:metadata][:affiliate_id].nil?
       API_HEADERS.merge(
         "Affiliate-ID" => configuration.affiliate_id || DEFAULT_AFFILIATE_ID,
       )
