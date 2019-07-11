@@ -44,7 +44,8 @@ describe Shipcloud::Request::Base do
       expect(connection).to receive(:request).and_return(response)
       info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", {})
 
-      expect { Shipcloud::Request::Base.new(info, "affiliate_id").perform }.to raise_error(Shipcloud::ServerError)
+      expect { Shipcloud::Request::Base.new(info, "affiliate_id").perform }.
+        to raise_error(Shipcloud::ServerError)
     end
 
     it "performs an https request and raises an Shipcloud::ShipcloudError if the body of the "\
