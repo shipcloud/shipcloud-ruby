@@ -10,7 +10,7 @@ module Shipcloud
         # will be used for the request
         def update(id, attributes, api_key: nil, affiliate_id: nil)
           response = Shipcloud.request(
-            :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id,
+            :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id
           )
           self.new(response)
         end
@@ -27,7 +27,7 @@ module Shipcloud
       # will be used for the request
       def update(attributes, api_key: nil, affiliate_id: nil)
         response = Shipcloud.request(
-          :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id,
+          :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id
         )
         set_attributes(response)
       end

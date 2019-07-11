@@ -122,8 +122,12 @@ describe Shipcloud::PickupRequest do
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "pickup_requests", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").
-        and_return("data" => {})
+        with(:post,
+          "pickup_requests",
+          valid_attributes,
+          api_key: nil,
+          affiliate_id: "affiliate_id"
+          ).and_return("data" => {})
 
       Shipcloud::PickupRequest.create(valid_attributes, affiliate_id: "affiliate_id")
     end

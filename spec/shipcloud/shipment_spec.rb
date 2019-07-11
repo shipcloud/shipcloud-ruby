@@ -91,14 +91,15 @@ describe Shipcloud::Shipment do
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific subscription" do
-      expect(Shipcloud).to receive(:request).with(:get, "shipments/123", {}, api_key: nil, affiliate_id: nil).
+      expect(Shipcloud).to receive(:request).
+        with(:get, "shipments/123", {}, api_key: nil, affiliate_id: nil).
         and_return("id" => "123")
       Shipcloud::Shipment.find("123")
     end
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).with(
-        :get, "shipments/123", {}, api_key: nil, affiliate_id: "affiliate_id",
+        :get, "shipments/123", {}, api_key: nil, affiliate_id: "affiliate_id"
       ).and_return("id" => "123")
       Shipcloud::Shipment.find("123", affiliate_id: "affiliate_id")
     end
@@ -107,14 +108,15 @@ describe Shipcloud::Shipment do
   describe ".update" do
     it "makes a new PUT request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: nil).and_return("data" => {})
+        with(:put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: nil).
+        and_return("data" => {})
       Shipcloud::Shipment.update("123", carrier: "ups")
     end
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).
         with(
-          :put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: "affiliate_id",
+          :put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: "affiliate_id"
         ).and_return("data" => {})
       Shipcloud::Shipment.update("123", { carrier: "ups" }, affiliate_id: "affiliate_id")
     end
@@ -122,7 +124,8 @@ describe Shipcloud::Shipment do
 
   describe ".delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      expect(Shipcloud).to receive(:request).with(:delete, "shipments/123", {}, api_key: nil, affiliate_id: nil).
+      expect(Shipcloud).to receive(:request).
+        with(:delete, "shipments/123", {}, api_key: nil, affiliate_id: nil).
         and_return(true)
       Shipcloud::Shipment.delete("123")
     end
@@ -137,7 +140,7 @@ describe Shipcloud::Shipment do
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).with(
-        :delete, "shipments/123", {}, api_key: nil, affiliate_id: "affiliate_id",
+        :delete, "shipments/123", {}, api_key: nil, affiliate_id: "affiliate_id"
       ).and_return(true)
       Shipcloud::Shipment.delete("123", affiliate_id: "affiliate_id")
     end

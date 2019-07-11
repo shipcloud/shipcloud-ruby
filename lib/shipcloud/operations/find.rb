@@ -9,7 +9,13 @@ module Shipcloud
         # will be used for the request
         # @return [Shipcloud::Base] The found object
         def find(id, api_key: nil, affiliate_id: nil)
-          response = Shipcloud.request(:get, "#{base_url}/#{id}", {}, api_key: api_key, affiliate_id: affiliate_id)
+          response = Shipcloud.request(
+            :get,
+            "#{base_url}/#{id}",
+            {},
+            api_key: api_key,
+            affiliate_id: affiliate_id,
+          )
           self.new(response)
         end
       end

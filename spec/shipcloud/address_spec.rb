@@ -36,7 +36,8 @@ describe Shipcloud::Address do
   describe '.create' do
     it 'makes a new POST request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).
-        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil).and_return("data" => {})
+        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil
+        ).and_return("data" => {})
 
       Shipcloud::Address.create(valid_attributes)
     end
@@ -72,7 +73,8 @@ describe Shipcloud::Address do
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).with(
-        :get, "addresses/123", {}, api_key: nil, affiliate_id: "affiliate_id").and_return("id" => "123")
+        :get, "addresses/123", {}, api_key: nil, affiliate_id: "affiliate_id"
+      ).and_return("id" => "123")
 
       Shipcloud::Address.find("123", affiliate_id: "affiliate_id")
     end
@@ -81,14 +83,15 @@ describe Shipcloud::Address do
   describe '.update' do
     it 'makes a new PUT request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).with(
-        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: nil).and_return("data" => {})
+        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: nil
+      ).and_return("data" => {})
 
       Shipcloud::Address.update("123", street: "Mittelweg")
     end
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).with(
-        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: "affiliate_id",
+        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: "affiliate_id"
       ).and_return("data" => {})
 
       Shipcloud::Address.update("123", { street: "Mittelweg" }, affiliate_id: "affiliate_id")
