@@ -51,7 +51,6 @@ module Shipcloud
               Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
             )
           end
-
         https_request.basic_auth(@info.api_key, "")
         https_request.body = @info.data.to_json if [:post, :put].include?(@info.http_method)
         https_request
