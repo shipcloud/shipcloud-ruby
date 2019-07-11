@@ -122,37 +122,6 @@ describe Shipcloud do
 
   describe ".api_headers" do
     it "returns the correct api headers with default affiliate id" do
-      data = {
-        to: {
-          company: "shipcloud GmbH",
-          first_name:   "Max",
-          last_name: "Mustermann",
-          street: "Musterallee",
-          street_no: "43",
-          city: "Berlin",
-          zip_code: "10000",
-        },
-        carrier: "dhl",
-        package: {
-          weight: 2.5,
-          length: 40,
-          width: 20,
-          height: 20,
-        },
-        metadata: {
-          product: {
-            name: "foo",
-          },
-          category: {
-            id: "123456",
-            name: "bar",
-          },
-        },
-        customs_declaration: {
-          id: "123456",
-          contents_type: "commercial_goods",
-        },
-      }
       Shipcloud.configuration = nil # reset configuration
 
       expect(Shipcloud.api_headers).to eq(
@@ -164,37 +133,6 @@ describe Shipcloud do
     end
 
     it "returns the correct api headers with affiliate id if configured" do
-      data = {
-        to: {
-          company: "shipcloud GmbH",
-          first_name:   "Max",
-          last_name: "Mustermann",
-          street: "Musterallee",
-          street_no: "43",
-          city: "Berlin",
-          zip_code: "10000",
-        },
-        carrier: "dhl",
-        package: {
-          weight: 2.5,
-          length: 40,
-          width: 20,
-          height: 20,
-        },
-        metadata: {
-          product: {
-            name: "foo",
-          },
-          category: {
-            id: "123456",
-            name: "bar",
-          },
-        },
-        customs_declaration: {
-          id: "123456",
-          contents_type: "commercial_goods",
-        },
-      }
       Shipcloud.configure do |config|
         config.affiliate_id = "integration.my_rails_app.1234567"
       end
