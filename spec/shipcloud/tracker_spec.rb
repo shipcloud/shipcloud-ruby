@@ -65,16 +65,16 @@ describe Shipcloud::PickupRequest do
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific tracker" do
       expect(Shipcloud).to receive(:request).
-      with(:get, "trackers/123", {}, api_key: nil, affiliate_id: nil).
-      and_return("id" => "123")
+        with(:get, "trackers/123", {}, api_key: nil, affiliate_id: nil).
+        and_return("id" => "123")
 
       Shipcloud::Tracker.find("123")
     end
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).
-      with(:get, "trackers/123", {}, api_key: nil, affiliate_id: "affiliate_id").
-      and_return("id" => "123")
+        with(:get, "trackers/123", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("id" => "123")
 
       Shipcloud::Tracker.find("123", affiliate_id: "affiliate_id")
     end

@@ -73,8 +73,13 @@ describe Shipcloud::ShipmentQuote do
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "shipment_quotes", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").
-        and_return("data" => {})
+        with(
+          :post,
+          "shipment_quotes",
+          valid_attributes,
+          api_key: nil,
+          affiliate_id: "affiliate_id",
+          ).and_return("data" => {})
 
       Shipcloud::ShipmentQuote.create(valid_attributes, affiliate_id: "affiliate_id")
     end

@@ -78,13 +78,20 @@ describe Shipcloud::Shipment do
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "shipments", valid_attributes, api_key: nil, affiliate_id: nil).and_return("data" => {})
+        with(:post, "shipments", valid_attributes, api_key: nil, affiliate_id: nil).
+        and_return("data" => {})
       Shipcloud::Shipment.create(valid_attributes)
     end
 
     it "use the affiliate ID provided for the request" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "shipments", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").and_return("data" => {})
+        with(
+          :post,
+          "shipments",
+          valid_attributes,
+          api_key: nil,
+          affiliate_id: "affiliate_id",
+        ).and_return("data" => {})
       Shipcloud::Shipment.create(valid_attributes, affiliate_id: "affiliate_id")
     end
   end
