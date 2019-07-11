@@ -28,29 +28,22 @@ module Shipcloud
       protected
 
       def https_request(affiliate_id)
+        affiliate = Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id)
         https_request =
           case @info.http_method
           when :post
-            Net::HTTP::Post.new(
-              @info.url,
-              Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
-            )
+            Net::HTTP::Post.new(@info.url, affiliate)
           when :put
-            Net::HTTP::Put.new(
-              @info.url,
-              Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
-            )
+            Net::HTTP::Put.new(@info.url, affiliate)
           when :delete
-            Net::HTTP::Delete.new(
-              @info.url,
-              Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
-            )
+            Net::HTTP::Delete.new(@info.url, affiliate)
           else
             Net::HTTP::Get.new(
               @info.path_with_params(@info.url, @info.data),
-              Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
+              affiliate,
             )
           end
+
         https_request.basic_auth(@info.api_key, "")
         https_request.body = @info.data.to_json if [:post, :put].include?(@info.http_method)
         https_request
