@@ -79,7 +79,7 @@ describe Shipcloud::ShipmentQuote do
           valid_attributes,
           api_key: nil,
           affiliate_id: "affiliate_id",
-          ).and_return("data" => {})
+        ).and_return("data" => {})
 
       Shipcloud::ShipmentQuote.create(valid_attributes, affiliate_id: "affiliate_id")
     end

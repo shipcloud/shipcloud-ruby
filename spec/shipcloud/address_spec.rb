@@ -36,8 +36,8 @@ describe Shipcloud::Address do
   describe '.create' do
     it 'makes a new POST request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).
-        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil
-        ).and_return("data" => {})
+        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil).
+        and_return("data" => {})
 
       Shipcloud::Address.create(valid_attributes)
     end
