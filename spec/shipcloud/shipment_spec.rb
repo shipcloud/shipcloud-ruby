@@ -78,30 +78,51 @@ describe Shipcloud::Shipment do
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "shipments", valid_attributes, api_key: nil).and_return("data" => {})
+        with(:post, "shipments", valid_attributes, api_key: nil, affiliate_id: nil).and_return("data" => {})
       Shipcloud::Shipment.create(valid_attributes)
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:post, "shipments", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").and_return("data" => {})
+      Shipcloud::Shipment.create(valid_attributes, affiliate_id: "affiliate_id")
     end
   end
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific subscription" do
-      expect(Shipcloud).to receive(:request).with(:get, "shipments/123", {}, api_key: nil).
+      expect(Shipcloud).to receive(:request).with(:get, "shipments/123", {}, api_key: nil, affiliate_id: nil).
         and_return("id" => "123")
       Shipcloud::Shipment.find("123")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).with(
+        :get, "shipments/123", {}, api_key: nil, affiliate_id: "affiliate_id",
+      ).and_return("id" => "123")
+      Shipcloud::Shipment.find("123", affiliate_id: "affiliate_id")
     end
   end
 
   describe ".update" do
     it "makes a new PUT request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:put, "shipments/123", { carrier: "ups" }, api_key: nil).and_return("data" => {})
+        with(:put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: nil).and_return("data" => {})
       Shipcloud::Shipment.update("123", carrier: "ups")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(
+          :put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: "affiliate_id",
+        ).and_return("data" => {})
+      Shipcloud::Shipment.update("123", { carrier: "ups" }, affiliate_id: "affiliate_id")
     end
   end
 
   describe ".delete" do
     it "makes a new DELETE request using the correct API endpoint" do
-      expect(Shipcloud).to receive(:request).with(:delete, "shipments/123", {}, api_key: nil).
+      expect(Shipcloud).to receive(:request).with(:delete, "shipments/123", {}, api_key: nil, affiliate_id: nil).
         and_return(true)
       Shipcloud::Shipment.delete("123")
     end
@@ -113,12 +134,19 @@ describe Shipcloud::Shipment do
       expect { Shipcloud::Shipment.delete("123", api_key: "your-api-key") }.
         to_not raise_error
     end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).with(
+        :delete, "shipments/123", {}, api_key: nil, affiliate_id: "affiliate_id",
+      ).and_return(true)
+      Shipcloud::Shipment.delete("123", affiliate_id: "affiliate_id")
+    end
   end
 
   describe ".all" do
     it "makes a new Get request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:get, "shipments", {}, api_key: nil).
+        with(:get, "shipments", {}, api_key: nil, affiliate_id: nil).
         and_return("shipments" => [])
 
       Shipcloud::Shipment.all
@@ -146,16 +174,24 @@ describe Shipcloud::Shipment do
       }
 
       expect(Shipcloud).to receive(:request).
-        with(:get, "shipments", filter, api_key: nil).
+        with(:get, "shipments", filter, api_key: nil, affiliate_id: nil).
         and_return("shipments" => shipments_array)
 
       Shipcloud::Shipment.all(filter, api_key: nil)
     end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "shipments", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("shipments" => [])
+
+      Shipcloud::Shipment.all(affiliate_id: "affiliate_id")
+    end
   end
 
-  def stub_shipments_requests
+  def stub_shipments_requests(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
-      with(:get, "shipments", {}, api_key: nil).
+      with(:get, "shipments", {}, api_key: nil, affiliate_id: affiliate_id).
       and_return("shipments" => shipments_array)
   end
 

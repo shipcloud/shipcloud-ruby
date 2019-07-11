@@ -50,16 +50,10 @@ module Shipcloud
     yield(configuration)
   end
 
-  def self.api_headers(data)
-    if data[:metadata].nil? || data[:metadata][:affiliate_id].nil?
-      API_HEADERS.merge(
-        "Affiliate-ID" => configuration.affiliate_id || DEFAULT_AFFILIATE_ID,
-      )
-    else
-      API_HEADERS.merge(
-        "Affiliate-ID" => data[:metadata][:affiliate_id],
-      )
-    end
+  def self.api_headers
+    API_HEADERS.merge(
+      "Affiliate-ID" => configuration.affiliate_id || DEFAULT_AFFILIATE_ID,
+    )
   end
 
   class Configuration
@@ -87,6 +81,10 @@ module Shipcloud
     configuration.api_key = api_key
   end
 
+  def self.affiliate_id
+    configuration.affiliate_id || DEFAULT_AFFILIATE_ID
+  end
+
   # Makes a request against the shipcloud API
   #
   # @param [Symbol] http_method The http method to use, must be one of :get, :post, :put and :delete
@@ -95,9 +93,10 @@ module Shipcloud
   # @param [String] optional api_key The api key. If no api key is given, Shipcloud.api_key will
   # be used for the request
   # @return [Array] The parsed JSON response.
-  def self.request(http_method, api_url, data, api_key: nil)
+  def self.request(http_method, api_url, data, api_key: nil, affiliate_id: nil)
     api_key ||= Shipcloud.api_key
-    info = Request::Info.new(http_method, api_url, api_key, data)
+    affiliate_id ||= Shipcloud.affiliate_id
+    info = Request::Info.new(http_method, api_url, api_key, affiliate_id, data)
     Request::Base.new(info).perform
   end
 end

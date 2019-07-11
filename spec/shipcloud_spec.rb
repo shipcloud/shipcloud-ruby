@@ -155,50 +155,11 @@ describe Shipcloud do
       }
       Shipcloud.configuration = nil # reset configuration
 
-      expect(Shipcloud.api_headers(data)).to eq(
+      expect(Shipcloud.api_headers).to eq(
         "Content-Type" => "application/json",
         "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
           "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",
         "Affiliate-ID" => "integration.shipcloud-ruby-gem.v#{Shipcloud::VERSION}",
-      )
-    end
-    it "returns the correct api headers with organization affiliate id" do
-      data = {
-        to: {
-          company: "shipcloud GmbH",
-          first_name:   "Max",
-          last_name: "Mustermann",
-          street: "Musterallee",
-          street_no: "43",
-          city: "Berlin",
-          zip_code: "10000",
-        },
-        carrier: "dhl",
-        package: {
-          weight: 2.5,
-          length: 40,
-          width: 20,
-          height: 20,
-        },
-        metadata: {
-          affiliate_id: "gfhjdgfkjhadg",
-          category: {
-            id: "123456",
-            name: "bar",
-          },
-        },
-        customs_declaration: {
-          id: "123456",
-          contents_type: "commercial_goods",
-        },
-      }
-      Shipcloud.configuration = nil # reset configuration
-
-      expect(Shipcloud.api_headers(data)).to eq(
-        "Content-Type" => "application/json",
-        "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
-          "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",
-        "Affiliate-ID" => "gfhjdgfkjhadg",
       )
     end
 
@@ -237,7 +198,7 @@ describe Shipcloud do
       Shipcloud.configure do |config|
         config.affiliate_id = "integration.my_rails_app.1234567"
       end
-      expect(Shipcloud.api_headers(data)).to eq(
+      expect(Shipcloud.api_headers).to eq(
         "Content-Type" => "application/json",
         "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
           "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",

@@ -19,25 +19,39 @@ describe Shipcloud::Webhook do
   describe ".create" do
     it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "webhooks", valid_attributes, api_key: nil).
+        with(:post, "webhooks", valid_attributes, api_key: nil, affiliate_id: nil).
         and_return("data" => {})
       Shipcloud::Webhook.create(valid_attributes)
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:post, "webhooks", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("data" => {})
+      Shipcloud::Webhook.create(valid_attributes, affiliate_id: "affiliate_id")
     end
   end
 
   describe ".find" do
     it "makes a new GET request using the correct API endpoint to receive a specific webhook" do
       expect(Shipcloud).to receive(:request).
-        with(:get, "webhooks/123", {}, api_key: nil).
+        with(:get, "webhooks/123", {}, api_key: nil, affiliate_id: nil).
         and_return("id" => "123")
       Shipcloud::Webhook.find("123")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "webhooks/123", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("id" => "123")
+      Shipcloud::Webhook.find("123", affiliate_id: "affiliate_id")
     end
   end
 
   describe ".all" do
     it "makes a new Get request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:get, "webhooks", {}, api_key: nil).
+        with(:get, "webhooks", {}, api_key: nil, affiliate_id: nil).
         and_return("webhooks" => [])
 
       Shipcloud::Webhook.all
@@ -52,14 +66,29 @@ describe Shipcloud::Webhook do
         expect(webhook).to be_a Shipcloud::Webhook
       end
     end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "webhooks", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return("webhooks" => [])
+
+      Shipcloud::Webhook.all(affiliate_id: "affiliate_id")
+    end
   end
 
   describe ".delete" do
     it "makes a DELETE request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
-        with(:delete, "webhooks/123", {}, api_key: nil).
+        with(:delete, "webhooks/123", {}, api_key: nil, affiliate_id: nil).
         and_return(true)
       Shipcloud::Webhook.delete("123")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:delete, "webhooks/123", {}, api_key: nil, affiliate_id: "affiliate_id").
+        and_return(true)
+      Shipcloud::Webhook.delete("123", affiliate_id: "affiliate_id")
     end
   end
 
@@ -70,7 +99,7 @@ describe Shipcloud::Webhook do
 
     before do
       expect(Shipcloud).to receive(:request).
-        with(:get, "webhooks/#{id}", {}, api_key: nil).
+        with(:get, "webhooks/#{id}", {}, api_key: nil, affiliate_id: nil).
         and_return("id" => id, "deactivated" => deactivated)
     end
 
@@ -85,9 +114,9 @@ describe Shipcloud::Webhook do
     end
   end
 
-  def stub_webhooks_request
+  def stub_webhooks_request(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
-      with(:get, "webhooks", {}, api_key: nil).
+      with(:get, "webhooks", {}, api_key: nil, affiliate_id: affiliate_id).
       and_return("webhooks" => webhooks_array)
   end
 
