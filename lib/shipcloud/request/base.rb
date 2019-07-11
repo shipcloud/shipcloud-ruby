@@ -1,7 +1,7 @@
 module Shipcloud
   module Request
     class Base
-      attr_reader :info, :affiliate_id
+      attr_reader :info
 
       def initialize(info, affiliate_id)
         @info = info
