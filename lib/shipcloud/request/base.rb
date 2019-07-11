@@ -1,16 +1,17 @@
 module Shipcloud
   module Request
     class Base
-      attr_reader :info
+      attr_reader :info, :affiliate_id
 
-      def initialize(info)
+      def initialize(info, affiliate_id)
         @info = info
+        @affiliate_id = affiliate_id
       end
 
       def perform
         raise AuthenticationError unless @info.api_key
         connection.setup_https
-        response = connection.request(info.affiliate_id)
+        response = connection.request(@affiliate_id)
         validate_response(response)
         JSON.parse(response.body) unless response.body.nil?
       rescue JSON::ParserError

@@ -20,7 +20,7 @@ module Shipcloud
       end
 
       def request(affiliate_id)
-        https.start do |connection|
+        https.start do
           https.request(https_request(affiliate_id))
         end
       end
