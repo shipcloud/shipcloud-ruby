@@ -21,7 +21,6 @@ module Shipcloud
 
       def request(affiliate_id)
         https.start do
-          #binding.pry
           https.request(https_request(affiliate_id))
         end
       end
@@ -32,9 +31,15 @@ module Shipcloud
         https_request =
           case @info.http_method
           when :post
-            Net::HTTP::Post.new(@info.url, Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id))
+            Net::HTTP::Post.new(
+              @info.url,
+              Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
+            )
           when :put
-            Net::HTTP::Put.new(@info.url, Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id))
+            Net::HTTP::Put.new(
+              @info.url,
+              Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id),
+            )
           when :delete
             Net::HTTP::Delete.new(
               @info.url,
