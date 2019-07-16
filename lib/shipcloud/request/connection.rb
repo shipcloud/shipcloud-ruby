@@ -32,7 +32,7 @@ module Shipcloud
         https_request =
           case @info.http_method
           when :post
-            Net::HTTP::Post.new(@info.url, affiliate)
+            Net::HTTP::Post.new(@info.url, headers)
           when :put
             Net::HTTP::Put.new(@info.url, affiliate)
           when :delete
