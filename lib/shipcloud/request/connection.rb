@@ -36,7 +36,7 @@ module Shipcloud
           when :put
             Net::HTTP::Put.new(@info.url, headers)
           when :delete
-            Net::HTTP::Delete.new(@info.url, affiliate)
+            Net::HTTP::Delete.new(@info.url, headers)
           else
             Net::HTTP::Get.new(
               @info.path_with_params(@info.url, @info.data),
