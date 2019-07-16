@@ -40,7 +40,7 @@ module Shipcloud
           else
             Net::HTTP::Get.new(
               @info.path_with_params(@info.url, @info.data),
-              affiliate,
+              headers,
             )
           end
 
