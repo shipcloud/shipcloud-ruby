@@ -19,7 +19,7 @@ describe Shipcloud::Request::Connection do
 
       expect(connection.https).to receive(:request)
 
-      connection.request("affiliate_id")
+      connection.request
     end
   end
 end

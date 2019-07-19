@@ -96,7 +96,7 @@ module Shipcloud
   def self.request(http_method, api_url, data, api_key: nil, affiliate_id: nil)
     api_key ||= Shipcloud.api_key
     affiliate_id ||= Shipcloud.affiliate_id
-    info = Request::Info.new(http_method, api_url, api_key, data)
-    Request::Base.new(info, affiliate_id).perform
+    info = Request::Info.new(http_method, api_url, api_key, data, affiliate_id)
+    Request::Base.new(info).perform
   end
 end

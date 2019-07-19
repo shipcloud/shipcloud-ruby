@@ -19,16 +19,16 @@ module Shipcloud
         @https.set_debug_output $stdout if Shipcloud.configuration.debug
       end
 
-      def request(affiliate_id)
+      def request
         https.start do
-          https.request(https_request(affiliate_id))
+          https.request(https_request)
         end
       end
 
       protected
 
-      def https_request(affiliate_id)
-        headers = Shipcloud.api_headers.merge("Affiliate-ID" => affiliate_id)
+      def https_request
+        headers = Shipcloud.api_headers.merge("Affiliate-ID" => @info.affiliate_id)
         https_request =
           case @info.http_method
           when :post
