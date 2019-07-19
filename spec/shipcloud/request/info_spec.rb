@@ -19,7 +19,13 @@ describe Shipcloud::Request::Info do
     end
 
     it "returns the path and given params" do
-      info = Shipcloud::Request::Info.new(:get, "shipments", "api_key", {foo: "bar"}, "affiliate_id")
+      info = Shipcloud::Request::Info.new(
+        :get,
+        "shipments",
+        "api_key",
+        { foo: "bar" },
+        "affiliate_id",
+      )
       path = info.path_with_params(info.url, info.data)
 
       expect(path).to eq "/v1/shipments?foo=bar"
