@@ -1,7 +1,10 @@
+require: rubocop-performance
+
 AllCops:
   TargetRubyVersion: 2.5
   Exclude:
     - vendor/**/*
+    - bin/*
 
 Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
@@ -38,6 +41,11 @@ Naming/PredicateName:
     - is_
   Exclude:
     - spec/**/*
+
+Naming/RescuedExceptionsVariableName:
+  Description: 'Use consistent rescued exceptions variables naming.'
+  Enabled: true
+  PreferredName: error
 
 Style/Alias:
   Description: 'Use alias_method instead of alias.'
@@ -133,7 +141,7 @@ Style/EvenOdd:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#predicate-methods'
   Enabled: false
 
-Style/FlipFlop:
+Lint/FlipFlop:
   Description: 'Checks for flip flops'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-flip-flops'
   Enabled: false
@@ -264,6 +272,13 @@ Style/RaiseArgs:
 Style/RegexpLiteral:
   Description: 'Use / or %r around regular expressions.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-r'
+  Enabled: false
+
+Style/Sample:
+  Description: >-
+                  Use `sample` instead of `shuffle.first`,
+                  `shuffle.last`, and `shuffle[Fixnum]`.
+  Reference: 'https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code'
   Enabled: false
 
 Style/SelfAssignment:
@@ -624,13 +639,6 @@ Performance/FlatMap:
 Performance/ReverseEach:
   Description: 'Use `reverse_each` instead of `reverse.each`.'
   Reference: 'https://github.com/JuanitoFatas/fast-ruby#enumerablereverseeach-vs-enumerablereverse_each-code'
-  Enabled: false
-
-Performance/Sample:
-  Description: >-
-                  Use `sample` instead of `shuffle.first`,
-                  `shuffle.last`, and `shuffle[Fixnum]`.
-  Reference: 'https://github.com/JuanitoFatas/fast-ruby#arrayshufflefirst-vs-arraysample-code'
   Enabled: false
 
 Performance/Size:
