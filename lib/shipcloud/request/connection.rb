@@ -28,7 +28,7 @@ module Shipcloud
       protected
 
       def https_request
-        headers = API_HEADERS.merge("Affiliate-ID" => @info.affiliate_id)
+        headers = Shipcloud.api_headers.merge("Affiliate-ID" => @info.affiliate_id)
         https_request =
           case @info.http_method
           when :post
