@@ -52,7 +52,7 @@ module Shipcloud
 
   def self.api_headers
     API_HEADERS.merge(
-      "Affiliate-ID" => configuration.affiliate_id || DEFAULT_AFFILIATE_ID,
+      "Affiliate-ID" => affiliate_id,
     )
   end
 
