@@ -1,4 +1,5 @@
 ## [Unreleased]
+- Add the possibility to specify custom affiliate_id on every request
 ### Added
 
 ### Changed

@@ -1,13 +1,14 @@
 module Shipcloud
   module Request
     class Info
-      attr_accessor :http_method, :api_url, :api_key, :data
+      attr_accessor :http_method, :api_url, :api_key, :data, :affiliate_id
 
-      def initialize(http_method, api_url, api_key, data)
-        @api_key = api_key
-        @http_method = http_method
-        @api_url     = api_url
-        @data        = data
+      def initialize(http_method, api_url, api_key, data, affiliate_id)
+        @api_key      = api_key
+        @http_method  = http_method
+        @api_url      = api_url
+        @data         = data
+        @affiliate_id = affiliate_id
       end
 
       def url

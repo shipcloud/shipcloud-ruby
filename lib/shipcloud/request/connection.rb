@@ -20,7 +20,7 @@ module Shipcloud
       end
 
       def request
-        https.start do |connection|
+        https.start do
           https.request(https_request)
         end
       end
@@ -28,18 +28,19 @@ module Shipcloud
       protected
 
       def https_request
+        headers = Shipcloud.api_headers.merge("Affiliate-ID" => @info.affiliate_id)
         https_request =
           case @info.http_method
           when :post
-            Net::HTTP::Post.new(@info.url, Shipcloud.api_headers)
+            Net::HTTP::Post.new(@info.url, headers)
           when :put
-            Net::HTTP::Put.new(@info.url, Shipcloud.api_headers)
+            Net::HTTP::Put.new(@info.url, headers)
           when :delete
-            Net::HTTP::Delete.new(@info.url, Shipcloud.api_headers)
+            Net::HTTP::Delete.new(@info.url, headers)
           else
             Net::HTTP::Get.new(
               @info.path_with_params(@info.url, @info.data),
-              Shipcloud.api_headers,
+              headers,
             )
           end
 
