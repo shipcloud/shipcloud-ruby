@@ -9,6 +9,7 @@ module Shipcloud
 
       def perform
         raise AuthenticationError unless @info.api_key
+
         connection.setup_https
         response = connection.request
         validate_response(response)
@@ -26,9 +27,11 @@ module Shipcloud
         end
       end
 
+      # rubocop:disable Naming/MemoizedInstanceVariableName
       def connection
         @connection ||= Connection.new(info)
       end
+      # rubocop:enable Naming/MemoizedInstanceVariableName
     end
   end
 end
