@@ -1,5 +1,5 @@
 # coding: utf-8
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path("lib", __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "shipcloud/version"
 
@@ -19,12 +19,14 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.0"
+  spec.required_ruby_version = ">= 2.3"
 
   spec.add_runtime_dependency "json", ">= 1.8.0"
+  spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", "~> 3.6"
-  spec.add_development_dependency "webmock", "~> 3.0"
-  spec.add_development_dependency "pry", "~> 0.10"
+  spec.add_development_dependency "rubocop", "~> 0.71.0"
+  spec.add_development_dependency "rubocop-performance"
   spec.add_development_dependency "simplecov"
+  spec.add_development_dependency "webmock", "~> 3.0"
 end

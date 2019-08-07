@@ -7,6 +7,7 @@
 ### Deprecated
 
 ### Removed
+- Removed support for ruby < 2.3. Target ruby version is 2.6
 
 ### Fixed
 
