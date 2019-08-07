@@ -1,5 +1,4 @@
 ## [Unreleased]
-- Add the possibility to specify custom affiliate_id on every request
 ### Added
 
 ### Changed
@@ -7,11 +6,17 @@
 ### Deprecated
 
 ### Removed
-- Removed support for ruby < 2.3. Target ruby version is 2.6
 
 ### Fixed
 
 ### Security
+
+## [0.10.0] - 2019-08-07
+### Added
+- Add the possibility to specify custom affiliate_id on every request
+
+### Removed
+- Removed support for ruby < 2.3. Target ruby version is 2.6
 
 ## [0.9.0] - 2019-01-09
 ### Added
