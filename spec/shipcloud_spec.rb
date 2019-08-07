@@ -52,55 +52,55 @@ describe Shipcloud do
     end
   end
 
-  describe '.configure' do
+  describe ".configure" do
     before :each do
       Shipcloud.configuration = nil
     end
 
-    it 'defaults api_key to nil' do
+    it "defaults api_key to nil" do
       expect(Shipcloud.configuration.api_key).to be_nil
     end
 
-    it 'sets the api_key' do
+    it "sets the api_key" do
       Shipcloud.configure do |config|
-        config.api_key = 'your-api-key'
+        config.api_key = "your-api-key"
       end
-      expect(Shipcloud.configuration.api_key).to eq 'your-api-key'
+      expect(Shipcloud.configuration.api_key).to eq "your-api-key"
     end
 
-    it 'gets the api key, set as a class variable (DEPRECATED)' do
-      Shipcloud.api_key = 'old-school-api-key'
-      expect(Shipcloud.api_key).to eq 'old-school-api-key'
-      expect(Shipcloud.configuration.api_key).to eq 'old-school-api-key'
+    it "gets the api key, set as a class variable (DEPRECATED)" do
+      Shipcloud.api_key = "old-school-api-key"
+      expect(Shipcloud.api_key).to eq "old-school-api-key"
+      expect(Shipcloud.configuration.api_key).to eq "old-school-api-key"
     end
 
     it "defaults api_base to 'api.shipcloud.io'" do
-      expect(Shipcloud.configuration.api_base).to eq 'api.shipcloud.io'
+      expect(Shipcloud.configuration.api_base).to eq "api.shipcloud.io"
     end
 
-    it 'overwrites the default api base' do
+    it "overwrites the default api base" do
       Shipcloud.configure do |config|
-        config.api_base = 'api.shipcloud.dev'
+        config.api_base = "api.shipcloud.dev"
       end
-      expect(Shipcloud.configuration.api_base).to eq 'api.shipcloud.dev'
+      expect(Shipcloud.configuration.api_base).to eq "api.shipcloud.dev"
     end
 
-    it 'defaults use_ssl to true' do
+    it "defaults use_ssl to true" do
       expect(Shipcloud.configuration.use_ssl).to be true
     end
 
-    it 'overwrites the default ssl mode' do
+    it "overwrites the default ssl mode" do
       Shipcloud.configure do |config|
         config.use_ssl = false
       end
       expect(Shipcloud.configuration.use_ssl).to be false
     end
 
-    it 'defaults debug to false' do
+    it "defaults debug to false" do
       expect(Shipcloud.configuration.debug).to be false
     end
 
-    it 'overwrites the default debug mode' do
+    it "overwrites the default debug mode" do
       Shipcloud.configure do |config|
         config.debug = true
       end
@@ -136,7 +136,6 @@ describe Shipcloud do
       Shipcloud.configure do |config|
         config.affiliate_id = "integration.my_rails_app.1234567"
       end
-
       expect(Shipcloud.api_headers).to eq(
         "Content-Type" => "application/json",
         "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \

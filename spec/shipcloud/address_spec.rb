@@ -36,17 +36,28 @@ describe Shipcloud::Address do
   describe '.create' do
     it 'makes a new POST request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).
-        with(:post, "addresses", valid_attributes, api_key: nil).and_return("data" => {})
+        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil).
+        and_return("data" => {})
 
       Shipcloud::Address.create(valid_attributes)
     end
 
     it "returns an address containing an id" do
       expect(Shipcloud).to receive(:request).
-        with(:post, "addresses", valid_attributes, api_key: nil).
+        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil).
         and_return(returned_address)
 
       address = Shipcloud::Address.create(valid_attributes)
+
+      expect(address.id).to eq("1c81efb7-9b95-4dd8-92e3-cac1bca3df6f")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: "affiliate_id").
+        and_return(returned_address)
+
+      address = Shipcloud::Address.create(valid_attributes, affiliate_id: "affiliate_id")
 
       expect(address.id).to eq("1c81efb7-9b95-4dd8-92e3-cac1bca3df6f")
     end
@@ -55,25 +66,42 @@ describe Shipcloud::Address do
   describe '.find' do
     it 'makes a new GET request using the correct API endpoint to receive a specific address' do
       expect(Shipcloud).to receive(:request).with(
-        :get, "addresses/123", {}, api_key: nil).and_return("id" => "123")
+        :get, "addresses/123", {}, api_key: nil, affiliate_id: nil).and_return("id" => "123")
 
       Shipcloud::Address.find("123")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).with(
+        :get, "addresses/123", {}, api_key: nil, affiliate_id: "affiliate_id"
+      ).and_return("id" => "123")
+
+      Shipcloud::Address.find("123", affiliate_id: "affiliate_id")
     end
   end
 
   describe '.update' do
     it 'makes a new PUT request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).with(
-        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil).and_return("data" => {})
+        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: nil
+      ).and_return("data" => {})
 
       Shipcloud::Address.update("123", street: "Mittelweg")
+    end
+
+    it "use the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).with(
+        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: "affiliate_id"
+      ).and_return("data" => {})
+
+      Shipcloud::Address.update("123", { street: "Mittelweg" }, affiliate_id: "affiliate_id")
     end
   end
 
   describe '.all' do
     it 'makes a new Get request using the correct API endpoint' do
       expect(Shipcloud).to receive(:request).
-        with(:get, "addresses", {}, api_key: nil).and_return([])
+        with(:get, "addresses", {}, api_key: nil, affiliate_id: nil).and_return([])
 
       Shipcloud::Address.all
     end
@@ -87,11 +115,21 @@ describe Shipcloud::Address do
         expect(address).to be_a Shipcloud::Address
       end
     end
+
+    it "use the affiliate ID provided for the request" do
+      stub_addresses_request(affiliate_id: "affiliate_id")
+
+      addresses = Shipcloud::Address.all(affiliate_id: "affiliate_id")
+
+      addresses.each do |address|
+        expect(address).to be_a Shipcloud::Address
+      end
+    end
   end
 
-  def stub_addresses_request
+  def stub_addresses_request(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
-      with(:get, "addresses", {}, api_key: nil).
+      with(:get, "addresses", {}, api_key: nil, affiliate_id: affiliate_id).
       and_return(
         [
           {
