@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "net/http"
 require "net/https"
 require "json"
@@ -10,10 +11,11 @@ module Shipcloud
 
   API_HEADERS = {
     "Content-Type" => "application/json",
-    "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, #{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}"
-  }
+    "User-Agent" => "shipcloud-ruby v#{Shipcloud::VERSION}, API #{Shipcloud::API_VERSION}, " \
+      "#{RUBY_VERSION}, #{RUBY_PLATFORM}, #{RUBY_PATCHLEVEL}",
+  }.freeze
 
-  DEFAULT_AFFILIATE_ID = "integration.shipcloud-ruby-gem.v#{Shipcloud::VERSION}".freeze
+  DEFAULT_AFFILIATE_ID = "integration.shipcloud-ruby-gem.v#{Shipcloud::VERSION}"
 
   autoload :Base,           "shipcloud/base"
   autoload :Shipment,       "shipcloud/shipment"
@@ -39,12 +41,14 @@ module Shipcloud
   end
 
   class << self
-    attr_accessor :configuration
+    attr_writer :configuration
   end
 
+  # rubocop:disable Naming/MemoizedInstanceVariableName
   def self.configuration
     @configuration ||= Configuration.new
   end
+  # rubocop:enable Naming/MemoizedInstanceVariableName
 
   def self.configure
     yield(configuration)
@@ -61,7 +65,7 @@ module Shipcloud
 
     def initialize
       @api_key = nil
-      @api_base = 'api.shipcloud.io'
+      @api_base = "api.shipcloud.io"
       @use_ssl = true
       @debug = false
     end

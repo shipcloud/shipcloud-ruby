@@ -39,6 +39,7 @@ module Shipcloud
 
     def parse_errors
       return [] unless response_body
+
       data = JSON.parse(response_body)
       if data.is_a?(Hash) && data["errors"]
         data["errors"]
@@ -51,6 +52,7 @@ module Shipcloud
 
     def response_body
       return unless @response
+
       @response.body
     end
   end
