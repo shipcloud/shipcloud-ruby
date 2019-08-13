@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "rake", "~> 12.0"
   spec.add_development_dependency "rspec", "~> 3.6"
-  spec.add_development_dependency "rubocop", "~> 0.71.0"
+  spec.add_development_dependency "rubocop", "~> 0.74.0"
   spec.add_development_dependency "rubocop-performance"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "webmock", "~> 3.0"
