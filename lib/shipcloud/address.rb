@@ -3,7 +3,7 @@ module Shipcloud
     include Shipcloud::Operations::Update
     include Shipcloud::Operations::All
 
-    attr_accessor :company, :first_name, :last_name, :care_of, :street,
+    attr_accessor :company, :first_name, :last_name, :care_of, :street, :email,
                   :street_no, :zip_code, :city, :state, :country, :phone
     attr_reader :id
 
