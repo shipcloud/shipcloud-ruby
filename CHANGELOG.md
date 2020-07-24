@@ -1,6 +1,8 @@
 ## [Unreleased]
 ### Added
 
+- Support shipments with pickup requests as required for [TNT](https://developers.shipcloud.io/carriers/tnt.html).
+
 ### Changed
 
 ### Deprecated
