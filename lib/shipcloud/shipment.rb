@@ -6,7 +6,7 @@ module Shipcloud
 
     attr_accessor :from, :to, :carrier, :package, :reference_number, :metadata
     attr_reader :id, :created_at, :carrier_tracking_no, :tracking_url, :label_url,
-                :packages, :price, :customs_declaration
+                :packages, :price, :customs_declaration, :pickup
 
     def self.index_response_root
       "#{class_name.downcase}s"

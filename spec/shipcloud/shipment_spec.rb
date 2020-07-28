@@ -32,6 +32,12 @@ describe Shipcloud::Shipment do
         id: "123456",
         contents_type: "commercial_goods",
       },
+      pickup: {
+        pickup_time: {
+          earliest: "2020-07-24T13:59:58+23:57",
+          latest: "2020-07-24T18:59:58+23:57",
+        }
+      }
     }
   end
 
@@ -58,6 +64,8 @@ describe Shipcloud::Shipment do
 
       expect(shipment.customs_declaration[:id]).to eq "123456"
       expect(shipment.customs_declaration[:contents_type]).to eq "commercial_goods"
+      expect(shipment.pickup[:pickup_time][:earliest]).to eq "2020-07-24T13:59:58+23:57"
+      expect(shipment.pickup[:pickup_time][:latest]).to eq "2020-07-24T18:59:58+23:57"
     end
 
     it "initializes the metadata correctly" do
