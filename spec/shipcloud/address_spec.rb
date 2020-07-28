@@ -13,7 +13,8 @@ describe Shipcloud::Address do
     city:        'Hamburg',
     state:       'Hamburg',
     country:     'DE',
-    phone:       '040/123456789'
+    phone:       '040/123456789',
+    email:       'max@mustermail.com',
   }
 
   describe '#initialize' do
@@ -30,6 +31,7 @@ describe Shipcloud::Address do
       expect(address.state).to eq 'Hamburg'
       expect(address.country).to eq 'DE'
       expect(address.phone).to eq '040/123456789'
+      expect(address.email).to eq 'max@mustermail.com'
     end
   end
 
