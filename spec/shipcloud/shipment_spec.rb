@@ -19,6 +19,22 @@ describe Shipcloud::Shipment do
         width: 20,
         height: 20
       },
+      pickup: {
+        pickup_time: {
+          earliest: "2015-09-15T09:00:00+02:00",
+          latest: "2015-09-15T18:00:00+02:00"
+        },
+        pickup_address: {
+          company: "Sender Ltd.",
+          first_name: "Jane",
+          last_name: "Doe",
+          street: "Musterstraße",
+          street_no: "42",
+          zip_code: "54321",
+          city: "Musterstadt",
+          country: "DE"
+         },
+      },
       metadata: {
         product: {
           name: "foo"
@@ -32,12 +48,6 @@ describe Shipcloud::Shipment do
         id: "123456",
         contents_type: "commercial_goods",
       },
-      pickup: {
-        pickup_time: {
-          earliest: "2020-07-24T13:59:58+23:57",
-          latest: "2020-07-24T18:59:58+23:57",
-        }
-      }
     }
   end
 
@@ -62,10 +72,19 @@ describe Shipcloud::Shipment do
       expect(shipment.package[:width]).to eq 20
       expect(shipment.package[:height]).to eq 20
 
+      expect(shipment.pickup[:pickup_time][:earliest]).to eq "2015-09-15T09:00:00+02:00"
+      expect(shipment.pickup[:pickup_time][:latest]).to eq "2015-09-15T18:00:00+02:00"
+      expect(shipment.pickup[:pickup_address][:company]).to eq "Sender Ltd."
+      expect(shipment.pickup[:pickup_address][:first_name]).to eq "Jane"
+      expect(shipment.pickup[:pickup_address][:last_name]).to eq "Doe"
+      expect(shipment.pickup[:pickup_address][:street]).to eq "Musterstraße"
+      expect(shipment.pickup[:pickup_address][:street_no]).to eq "42"
+      expect(shipment.pickup[:pickup_address][:zip_code]).to eq "54321"
+      expect(shipment.pickup[:pickup_address][:city]).to eq "Musterstadt"
+      expect(shipment.pickup[:pickup_address][:country]).to eq "DE"
+
       expect(shipment.customs_declaration[:id]).to eq "123456"
       expect(shipment.customs_declaration[:contents_type]).to eq "commercial_goods"
-      expect(shipment.pickup[:pickup_time][:earliest]).to eq "2020-07-24T13:59:58+23:57"
-      expect(shipment.pickup[:pickup_time][:latest]).to eq "2020-07-24T18:59:58+23:57"
     end
 
     it "initializes the metadata correctly" do
