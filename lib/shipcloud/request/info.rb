@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   module Request
     class Info
@@ -12,16 +14,15 @@ module Shipcloud
       end
 
       def url
-        url = "/#{API_VERSION}/#{api_url}"
-        url
+        "/#{API_VERSION}/#{api_url}"
       end
 
       def path_with_params(path, params)
-        unless params.empty?
+        if params.empty?
+          path
+        else
           encoded_params = URI.encode_www_form(params)
           [path, encoded_params].join("?")
-        else
-          path
         end
       end
     end

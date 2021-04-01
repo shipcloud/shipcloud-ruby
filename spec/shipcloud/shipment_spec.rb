@@ -1,29 +1,30 @@
-require 'spec_helper'
+# frozen_string_literal: true
+require "spec_helper"
 
 describe Shipcloud::Shipment do
   let(:valid_attributes) do
     {
       to: {
-        company: 'shipcloud GmbH',
-        first_name:   'Max',
-        last_name: 'Mustermann',
-        street: 'Musterallee',
-        street_no: '43',
-        city: 'Berlin',
-        zip_code: '10000',
+        company: "shipcloud GmbH",
+        first_name: "Max",
+        last_name: "Mustermann",
+        street: "Musterallee",
+        street_no: "43",
+        city: "Berlin",
+        zip_code: "10000",
       },
-      carrier: 'dhl',
-      service: 'standard',
+      carrier: "dhl",
+      service: "standard",
       package: {
         weight: 2.5,
         length: 40,
         width: 20,
-        height: 20
+        height: 20,
       },
       pickup: {
         pickup_time: {
           earliest: "2015-09-15T09:00:00+02:00",
-          latest: "2015-09-15T18:00:00+02:00"
+          latest: "2015-09-15T18:00:00+02:00",
         },
         pickup_address: {
           company: "Sender Ltd.",
@@ -33,17 +34,17 @@ describe Shipcloud::Shipment do
           street_no: "42",
           zip_code: "54321",
           city: "Musterstadt",
-          country: "DE"
-         },
+          country: "DE",
+        },
       },
       metadata: {
         product: {
-          name: "foo"
+          name: "foo",
         },
         category: {
           id: "123456",
-          name: "bar"
-        }
+          name: "bar",
+        },
       },
       customs_declaration: {
         id: "123456",
@@ -66,22 +67,22 @@ describe Shipcloud::Shipment do
     }
   end
 
-  let(:shipment) {
+  let(:shipment) do
     Shipcloud::Shipment.new(valid_attributes)
-  }
+  end
 
   describe "#initialize" do
     it "initializes all attributes correctly" do
-      expect(shipment.to[:company]).to eq 'shipcloud GmbH'
-      expect(shipment.to[:first_name]).to eq 'Max'
-      expect(shipment.to[:last_name]).to eq 'Mustermann'
-      expect(shipment.to[:street]).to eq 'Musterallee'
-      expect(shipment.to[:street_no]).to eq '43'
-      expect(shipment.to[:city]).to eq 'Berlin'
-      expect(shipment.to[:zip_code]).to eq '10000'
+      expect(shipment.to[:company]).to eq "shipcloud GmbH"
+      expect(shipment.to[:first_name]).to eq "Max"
+      expect(shipment.to[:last_name]).to eq "Mustermann"
+      expect(shipment.to[:street]).to eq "Musterallee"
+      expect(shipment.to[:street_no]).to eq "43"
+      expect(shipment.to[:city]).to eq "Berlin"
+      expect(shipment.to[:zip_code]).to eq "10000"
 
-      expect(shipment.carrier).to eq 'dhl'
-      expect(shipment.service).to eq 'standard'
+      expect(shipment.carrier).to eq "dhl"
+      expect(shipment.service).to eq "standard"
 
       expect(shipment.package[:weight]).to eq 2.5
       expect(shipment.package[:length]).to eq 40
@@ -121,11 +122,11 @@ describe Shipcloud::Shipment do
       metadata = {
         category: {
           id: "123456",
-          name: "bar"
+          name: "bar",
         },
         product: {
-          name: "foo"
-        }
+          name: "foo",
+        },
       }
 
       expect(shipment.metadata).to eq metadata
@@ -154,7 +155,8 @@ describe Shipcloud::Shipment do
   end
 
   describe ".find" do
-    it "makes a new GET request using the correct API endpoint to receive a specific subscription" do
+    it "makes a new GET request using the correct API endpoint " \
+       "to receive a specific subscription" do
       expect(Shipcloud).to receive(:request).
         with(:get, "shipments/123", {}, api_key: nil, affiliate_id: nil).
         and_return("id" => "123")
@@ -264,7 +266,8 @@ describe Shipcloud::Shipment do
 
   def shipments_array
     [
-      { "id" => "86afb143f9c9c0cfd4eb7a7c26a5c616585a6271",
+      {
+        "id" => "86afb143f9c9c0cfd4eb7a7c26a5c616585a6271",
         "carrier_tracking_no" => "43128000105",
         "carrier" => "hermes",
         "service" => "standard",
@@ -278,7 +281,7 @@ describe Shipcloud::Shipment do
           "street_no" => "1",
           "zip_code" => "12345",
           "city" => "Hamburg",
-          "country" => "DE"
+          "country" => "DE",
         },
         "from" => {
           "company" => "webionate GmbH",
@@ -287,17 +290,18 @@ describe Shipcloud::Shipment do
           "street_no" => "35a",
           "zip_code" => "22175",
           "city" => "Hamburg",
-          "country" => "DE"
+          "country" => "DE",
         },
         "packages" => {
           "id" => "be81573799958587ae891b983aabf9c4089fc462",
           "length" => 10.0,
           "width" => 10.0,
           "height" => 10.0,
-          "weight" => 1.5
-        }
+          "weight" => 1.5,
+        },
       },
-      { "id" => "be81573799958587ae891b983aabf9c4089fc462",
+      {
+        "id" => "be81573799958587ae891b983aabf9c4089fc462",
         "carrier_tracking_no" => "1Z12345E1305277940",
         "carrier" => "ups",
         "service" => "standard",
@@ -311,7 +315,7 @@ describe Shipcloud::Shipment do
           "street_no" => "57",
           "zip_code" => "22081",
           "city" => "Hamburg",
-          "country" => "DE"
+          "country" => "DE",
         },
         "from" => {
           "company" => "webionate GmbH",
@@ -320,16 +324,16 @@ describe Shipcloud::Shipment do
           "street_no" => "35a",
           "zip_code" => "22175",
           "city" => "Hamburg",
-          "country" => "DE"
+          "country" => "DE",
         },
         "packages" => {
           "id" => "74d4f1fc193d8a7ca542d1ee4e2021f3ddb82242",
           "length" => 15.0,
           "width" => 20.0,
           "height" => 10.0,
-          "weight" => 2.0
-        }
-      }
+          "weight" => 2.0,
+        },
+      },
     ]
   end
 end

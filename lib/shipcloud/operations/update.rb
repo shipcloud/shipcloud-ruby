@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Shipcloud
   module Operations
     module Update
-
       module ClassMethods
         # Updates a object
         # @param [String] id The id of the object that should be updated
@@ -12,7 +13,7 @@ module Shipcloud
           response = Shipcloud.request(
             :put, "#{base_url}/#{id}", attributes, api_key: api_key, affiliate_id: affiliate_id
           )
-          self.new(response)
+          new(response)
         end
       end
 

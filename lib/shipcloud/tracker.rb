@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Shipcloud
   class Tracker < Base
     include Shipcloud::Operations::All

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   module Request
     class Connection
@@ -9,12 +11,18 @@ module Shipcloud
 
       def setup_https
         if Shipcloud.configuration.use_ssl
-          @https             = Net::HTTP.new(Shipcloud.configuration.api_base, Net::HTTP.https_default_port)
+          @https = Net::HTTP.new(
+            Shipcloud.configuration.api_base,
+            Net::HTTP.https_default_port,
+          )
           @https.use_ssl     = true
           @https.verify_mode = OpenSSL::SSL::VERIFY_PEER
         else
-          @https             = Net::HTTP.new(Shipcloud.configuration.api_base, Net::HTTP.http_default_port)
-          @https.use_ssl     = false
+          @https = Net::HTTP.new(
+            Shipcloud.configuration.api_base,
+            Net::HTTP.http_default_port,
+          )
+          @https.use_ssl = false
         end
         @https.set_debug_output $stdout if Shipcloud.configuration.debug
       end

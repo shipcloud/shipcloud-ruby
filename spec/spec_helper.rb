@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require "simplecov"
 SimpleCov.start
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), "..", "lib"))
-require 'shipcloud'
-require 'rspec'
+require "shipcloud"
+require "rspec"
 require "webmock/rspec"
 require "pry"
 

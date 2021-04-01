@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 describe Shipcloud::PickupRequest do
@@ -5,18 +6,18 @@ describe Shipcloud::PickupRequest do
     carrier: "dpd",
     pickup_time: {
       earliest: "2015-09-15T09:00:00+02:00",
-      latest: "2015-09-15T18:00:00+02:00"
+      latest: "2015-09-15T18:00:00+02:00",
     },
     shipments: [
-      { id: "abc_123" }
-    ]
+      { id: "abc_123" },
+    ],
   }
 
   valid_attributes_with_pickup_address = {
     carrier: "dpd",
     pickup_time: {
       earliest: "2015-09-15T09:00:00+02:00",
-      latest: "2015-09-15T18:00:00+02:00"
+      latest: "2015-09-15T18:00:00+02:00",
     },
     pickup_address: {
       company: "Muster-Company",
@@ -27,11 +28,11 @@ describe Shipcloud::PickupRequest do
       zip_code: "54321",
       city: "Musterstadt",
       country: "DE",
-      phone: "555-555"
+      phone: "555-555",
     },
     shipments: [
-      { id: "abc_123" }
-    ]
+      { id: "abc_123" },
+    ],
   }
 
   describe "#initialize" do
@@ -70,8 +71,8 @@ describe Shipcloud::PickupRequest do
           "carrier" => "dpd",
           "pickup_time" => {
             "earliest" => "2015-09-15T09:00:00+02:00",
-            "latest" => "2015-09-15T18:00:00+02:00"
-          }
+            "latest" => "2015-09-15T18:00:00+02:00",
+          },
         )
 
       pickup_request = Shipcloud::PickupRequest.create(valid_attributes)
@@ -88,7 +89,7 @@ describe Shipcloud::PickupRequest do
           "carrier" => "dpd",
           "pickup_time" => {
             "earliest" => "2015-09-15T09:00:00+02:00",
-            "latest" => "2015-09-15T18:00:00+02:00"
+            "latest" => "2015-09-15T18:00:00+02:00",
           },
           "pickup_address" => {
             "id" => "522a7cb1-d6c8-418c-ac26-011127ab5bbe",
@@ -100,8 +101,8 @@ describe Shipcloud::PickupRequest do
             "zip_code" => "54321",
             "city" => "Musterstadt",
             "country" => "DE",
-            "phone" => "555-555"
-          }
+            "phone" => "555-555",
+          },
         )
 
       pickup_request = Shipcloud::PickupRequest.create(valid_attributes_with_pickup_address)
@@ -116,7 +117,7 @@ describe Shipcloud::PickupRequest do
         "zip_code" => "54321",
         "city" => "Musterstadt",
         "country" => "DE",
-        "phone" => "555-555"
+        "phone" => "555-555",
       )
     end
 

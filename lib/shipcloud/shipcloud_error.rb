@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   class ShipcloudError < StandardError
     attr_reader :errors, :response
@@ -59,10 +61,15 @@ module Shipcloud
 
   # Raised on errors in the 400-499 range
   class ClientError < ShipcloudError; end
+
   class AuthenticationError < ClientError; end
+
   class ForbiddenError < ClientError; end
+
   class InvalidRequestError < ClientError; end
+
   class TooManyRequests < ClientError; end
+
   class NotFoundError < ClientError; end
 
   # Raised on errors in the 500-599 range

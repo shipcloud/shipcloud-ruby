@@ -3,13 +3,14 @@
 - Add attr_accessor for `service` to class `Shipcloud::Shipment` to be able to access the service attribute at the shipment object.
 - Add attr_accessor for `additional_services` to class `Shipcloud::Shipment` to be able to access the additional_services attribute at the shipment object.
 - Add attr_reader for `label_voucher_url` to class `Shipcloud::Shipment` to be able to read the label_voucher_url (QR Code url) attribute at the shipment object.
+- Added missing `frozen_string_literal: true` magic comments to files
 
 ### Changed
 - Set required ruby version to >= 2.6
 - Replace Travis CI with CircleCI
 - Specify simplecov to be ~> 0.21.0
-- `rubocop` version is specified to be `~> 1.8.1`
-- `rubocop-performance` version is specified to be `~> 1.7.0`
+- Changed `rubocop` version specification to `~> 1.8.1`
+- Changed `rubocop-performance` version specification to `~> 1.7.0`
 
 ### Deprecated
 
@@ -18,6 +19,7 @@
 - Drop support for RBX
 
 ### Fixed
+- Fixed rubocop styling issues
 
 ### Security
 

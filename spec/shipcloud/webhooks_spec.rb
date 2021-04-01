@@ -1,10 +1,11 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 describe Shipcloud::Webhook do
   valid_attributes = {
     id: "583cfd8b-77c7-4447-a3a0-1568bb9cc553",
     url: "https://example.com/webhook",
-    event_types: ["shipment.tracking.delayed", "shipment.tracking.delivered"]
+    event_types: ["shipment.tracking.delayed", "shipment.tracking.delivered"],
   }
 
   describe "#initialize" do
@@ -126,14 +127,14 @@ describe Shipcloud::Webhook do
         "id" => "583cfd8b-77c7-4447-a3a0-1568bb9cc553",
         "url" => "https://example.com/webhook",
         "event_types" => ["shipment.tracking.delayed", "shipment.tracking.delivered"],
-        "deactivated" => false
+        "deactivated" => false,
       },
       {
         "id" => "e0ff4250-6c8e-494d-a069-afd9d566e372",
         "url" => "https://example.com/webhook",
         "event_types" => ["shipment.tracking.delayed", "shipment.tracking.delivered"],
-        "deactivated" => false
-      }
+        "deactivated" => false,
+      },
     ]
   end
 end
