@@ -49,6 +49,20 @@ describe Shipcloud::Shipment do
         id: "123456",
         contents_type: "commercial_goods",
       },
+      additional_services: [
+        {
+          name: "cash_on_delivery",
+          properties: {
+            amount: 123.45,
+            currency: "EUR",
+            bank_account_holder: "Max Mustermann",
+            bank_name: "Musterbank",
+            bank_account_number: "DE12500105170648489890",
+            bank_code: "BENEDEPPYYY",
+            reference1: "reason for transfer",
+          }
+        }
+      ]
     }
   end
 
@@ -87,6 +101,20 @@ describe Shipcloud::Shipment do
 
       expect(shipment.customs_declaration[:id]).to eq "123456"
       expect(shipment.customs_declaration[:contents_type]).to eq "commercial_goods"
+      expect(shipment.additional_services.first[:name]).to eq "cash_on_delivery"
+      expect(shipment.additional_services.first[:properties][:amount]).to eq 123.45
+      expect(shipment.additional_services.first[:properties][:currency]).to eq "EUR"
+      expect(
+        shipment.additional_services.first[:properties][:bank_account_holder],
+      ).to eq "Max Mustermann"
+      expect(shipment.additional_services.first[:properties][:bank_name]).to eq "Musterbank"
+      expect(
+        shipment.additional_services.first[:properties][:bank_account_number],
+      ).to eq "DE12500105170648489890"
+      expect(shipment.additional_services.first[:properties][:bank_code]).to eq "BENEDEPPYYY"
+      expect(
+        shipment.additional_services.first[:properties][:reference1],
+      ).to eq "reason for transfer"
     end
 
     it "initializes the metadata correctly" do
