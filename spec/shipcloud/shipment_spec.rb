@@ -13,6 +13,7 @@ describe Shipcloud::Shipment do
         zip_code: '10000',
       },
       carrier: 'dhl',
+      service: 'standard',
       package: {
         weight: 2.5,
         length: 40,
@@ -66,6 +67,7 @@ describe Shipcloud::Shipment do
       expect(shipment.to[:zip_code]).to eq '10000'
 
       expect(shipment.carrier).to eq 'dhl'
+      expect(shipment.service).to eq 'standard'
 
       expect(shipment.package[:weight]).to eq 2.5
       expect(shipment.package[:length]).to eq 40
