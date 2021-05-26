@@ -1,7 +1,7 @@
-## [0.11.0] - 2020-07-28
+## [Unreleased]
 ### Added
-- Support shipments with pickup requests as required for [TNT](https://developers.shipcloud.io/carriers/tnt.html).
-- Add attr_accessor for `email` to class `Shipcloud::Address` to be able to access the email attribute at the address object.
+- Add attr_accessor for `service` to class `Shipcloud::Shipment` to be able to access the service attribute at the shipment object.
+- Add attr_accessor for `additional_services` to class `Shipcloud::Shipment` to be able to access the additional_services attribute at the shipment object.
 
 ### Changed
 
@@ -13,8 +13,10 @@
 
 ### Security
 
-## [Unreleased]
+## [0.11.0] - 2020-07-28
 ### Added
+- Support shipments with pickup requests as required for [TNT](https://developers.shipcloud.io/carriers/tnt.html).
+- Add attr_accessor for `email` to class `Shipcloud::Address` to be able to access the email attribute at the address object.
 
 ### Changed
 
