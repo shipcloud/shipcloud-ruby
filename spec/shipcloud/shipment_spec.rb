@@ -61,9 +61,9 @@ describe Shipcloud::Shipment do
             bank_account_number: "DE12500105170648489890",
             bank_code: "BENEDEPPYYY",
             reference1: "reason for transfer",
-          }
-        }
-      ]
+          },
+        },
+      ],
     }
   end
 
