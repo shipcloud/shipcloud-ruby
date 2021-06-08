@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 describe Shipcloud::ShipcloudError do
@@ -5,7 +6,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with status code 400" do
       it "returns a Shipcloud::InvalidRequestError" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 400))).to be_a(
-          Shipcloud::InvalidRequestError
+          Shipcloud::InvalidRequestError,
         )
       end
     end
@@ -13,7 +14,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with status code 422" do
       it "returns a Shipcloud::InvalidRequestError" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 422))).to be_a(
-          Shipcloud::InvalidRequestError
+          Shipcloud::InvalidRequestError,
         )
       end
     end
@@ -21,7 +22,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with status code 401" do
       it "returns a Shipcloud::AuthenticationError" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 401))).to be_a(
-          Shipcloud::AuthenticationError
+          Shipcloud::AuthenticationError,
         )
       end
     end
@@ -29,7 +30,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with status code 402" do
       it "returns a Shipcloud::TooManyRequests" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 402))).to be_a(
-          Shipcloud::TooManyRequests
+          Shipcloud::TooManyRequests,
         )
       end
     end
@@ -37,7 +38,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with status code 404" do
       it "returns a Shipcloud::NotFoundError" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 404))).to be_a(
-          Shipcloud::NotFoundError
+          Shipcloud::NotFoundError,
         )
       end
     end
@@ -45,7 +46,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with a 4xx status code" do
       it "returns a Shipcloud::ClientError" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 400))).to be_a(
-          Shipcloud::ClientError
+          Shipcloud::ClientError,
         )
       end
     end
@@ -53,7 +54,7 @@ describe Shipcloud::ShipcloudError do
     context "with a response with a 5xx status code" do
       it "returns a Shipcloud::ClientError" do
         expect(Shipcloud::ShipcloudError.from_response(build_response(status_code: 500))).to be_a(
-          Shipcloud::ServerError
+          Shipcloud::ServerError,
         )
       end
     end

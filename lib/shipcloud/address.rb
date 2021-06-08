@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   class Address < Base
     include Shipcloud::Operations::Update

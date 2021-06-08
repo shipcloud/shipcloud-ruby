@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   class ShipmentQuote < Base
     include Shipcloud::Operations::Create

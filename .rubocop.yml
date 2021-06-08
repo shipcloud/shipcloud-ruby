@@ -1,10 +1,239 @@
 require: rubocop-performance
 
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.6
   Exclude:
     - vendor/**/*
     - bin/*
+
+# rubocop
+# https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
+
+# Layout - https://docs.rubocop.org/rubocop/cops_layout.html
+
+Layout/ConditionPosition:
+  Description: >-
+                 Checks for condition placed in a confusing position relative to
+                 the keyword.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
+  Enabled: false
+
+Layout/DotPosition:
+  Description: 'Checks the position of the dot in multi-line method calls.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
+  EnforcedStyle: trailing
+
+Layout/EmptyLineAfterMagicComment:
+  Description: 'Add an empty line after magic comments to separate them from code.'
+  StyleGuide: '#separate-magic-comments-from-code'
+  Enabled: false
+
+Layout/EmptyLinesAroundAttributeAccessor:
+  Description: "Keep blank lines around attribute accessors."
+  Enabled: true
+
+Layout/ExtraSpacing:
+  Description: 'Do not use unnecessary spacing.'
+  Enabled: true
+
+Layout/FirstArrayElementLineBreak:
+  Description: >-
+                 Checks for a line break before the first element in a
+                 multi-line array.
+  Enabled: true
+
+Layout/FirstHashElementLineBreak:
+  Description: >-
+                 Checks for a line break before the first element in a
+                 multi-line hash.
+  Enabled: true
+
+Layout/FirstMethodArgumentLineBreak:
+  Description: >-
+                 Checks for a line break before the first argument in a
+                 multi-line method call.
+  Enabled: true
+
+Layout/InitialIndentation:
+  Description: >-
+    Checks the indentation of the first non-blank non-comment line in a file.
+  Enabled: false
+
+Layout/LineLength:
+  Description: "Limit lines to 100 characters."
+  Max: 100
+  Enabled: true
+
+Layout/MultilineMethodCallIndentation:
+  Description: >-
+                 Checks indentation of method calls with the dot operator
+                 that span more than one line.
+  Enabled: true
+  EnforcedStyle: indented
+
+Layout/MultilineOperationIndentation:
+  Description: >-
+                 Checks indentation of binary operations that span more than
+                 one line.
+  Enabled: true
+  EnforcedStyle: indented
+
+# Lint - https://docs.rubocop.org/rubocop/cops_lint.html
+
+Lint/AmbiguousOperator:
+  Description: >-
+                 Checks for ambiguous operators in the first argument of a
+                 method invocation without parentheses.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-as-args'
+  Enabled: false
+
+Lint/AmbiguousRegexpLiteral:
+  Description: >-
+                 Checks for ambiguous regexp literals in the first argument of
+                 a method invocation without parenthesis.
+  Enabled: false
+
+Lint/AssignmentInCondition:
+  Description: "Don't use assignment in conditions."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition'
+  Enabled: false
+
+Lint/DeprecatedClassMethods:
+  Description: 'Check for deprecated class method calls.'
+  Enabled: false
+
+Lint/DuplicateHashKey:
+  Description: 'Check for duplicate keys in hash literals.'
+  Enabled: false
+
+Lint/EachWithObjectArgument:
+  Description: 'Check for immutable argument given to each_with_object.'
+  Enabled: false
+
+Lint/ElseLayout:
+  Description: 'Check for odd code arrangement in an else block.'
+  Enabled: false
+
+Lint/FlipFlop:
+  Description: 'Checks for flip flops'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-flip-flops'
+  Enabled: false
+
+Lint/FormatParameterMismatch:
+  Description: 'The number of parameters to format/sprint must match the fields.'
+  Enabled: false
+
+Lint/LiteralAsCondition:
+  Description: 'Checks of literals used in conditions.'
+  Enabled: false
+
+Lint/LiteralInInterpolation:
+  Description: 'Checks for literals used in interpolation.'
+  Enabled: false
+
+Lint/Loop:
+  Description: >-
+                 Use Kernel#loop with break rather than begin/end/until or
+                 begin/end/while for post-loop tests.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#loop-with-break'
+  Enabled: false
+
+Lint/NestedMethodDefinition:
+  Description: 'Do not use nested method definitions.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-nested-methods'
+  Enabled: false
+
+Lint/NonDeterministicRequireOrder:
+  Description: 'Always sort arrays returned by Dir.glob when requiring files.'
+  Enabled: true
+
+Lint/NonLocalExitFromIterator:
+  Description: 'Do not use return in iterator to cause non-local exit.'
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Description: >-
+                 Checks for method calls with a space before the opening
+                 parenthesis.
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-no-spaces'
+  Enabled: false
+
+Lint/RaiseException:
+  Description: Checks for `raise` or `fail` statements which are raising `Exception` class.
+  Enabled: true
+
+Lint/RedundantCopDisableDirective:
+  Description: >-
+    Checks for rubocop:disable comments that can be removed.
+    Note: this cop is not disabled when disabling all cops.
+    It must be explicitly disabled.
+    Enabled: false
+
+Lint/RequireParentheses:
+  Description: >-
+                 Use parentheses in the method call to avoid confusion
+                 about precedence.
+  Enabled: false
+
+Lint/SuppressedException:
+  Description: "Don't suppress exception."
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions'
+  Enabled: false
+
+Lint/UnderscorePrefixedVariableName:
+  Description: 'Do not use prefix `_` for a variable that is used.'
+  Enabled: false
+
+Lint/Void:
+  Description: 'Possible use of operator/literal/variable in void context.'
+  Enabled: false
+
+# Metrics - https://docs.rubocop.org/rubocop/cops_metrics.html
+
+Metrics/AbcSize:
+  Description: >-
+                 A calculated magnitude based on number of assignments,
+                 branches, and conditions.
+  Enabled: false
+
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Enabled: true
+  Exclude:
+    - !ruby/regexp /spec(\/.*)*\/.*\.rb$/
+    - !ruby/regexp /config/routes.rb$/
+
+Metrics/BlockNesting:
+  Description: 'Avoid excessive block nesting'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count'
+  Enabled: false
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Description: >-
+                 A complexity metric that is strongly correlated to the number
+                 of test cases needed to validate a method.
+  Enabled: false
+
+Metrics/MethodLength:
+  Description: 'Avoid methods longer than 10 lines of code.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
+  Enabled: false
+
+Metrics/ModuleLength:
+  Description: 'Avoid modules longer than 100 lines of code.'
+  Enabled: false
+
+Metrics/ParameterLists:
+  Description: 'Avoid parameter lists longer than three or four parameters.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#too-many-params'
+  Enabled: false
+
+# Naming - https://docs.rubocop.org/rubocop/cops_naming.html
 
 Naming/AccessorMethodName:
   Description: Check the naming of accessor methods for get_/set_.
@@ -15,14 +244,14 @@ Naming/AsciiIdentifiers:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#english-identifiers'
   Enabled: false
 
-Naming/FileName:
-  Description: 'Use snake_case for source file names.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#snake-case-files'
-  Enabled: false
-
 Naming/BinaryOperatorParameterName:
   Description: 'When defining binary operators, name the argument other.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#other-arg'
+  Enabled: false
+
+Naming/FileName:
+  Description: 'Use snake_case for source file names.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#snake-case-files'
   Enabled: false
 
 Naming/MemoizedInstanceVariableName:
@@ -37,20 +266,32 @@ Naming/PredicateName:
     - is_
     - has_
     - have_
-  NamePrefixBlacklist:
+  ForbiddenPrefixes:
     - is_
   Exclude:
-    - spec/**/*
+    - !ruby/regexp /spec(\/.*)*\/.*\.rb$/
 
 Naming/RescuedExceptionsVariableName:
   Description: 'Use consistent rescued exceptions variables naming.'
   Enabled: true
   PreferredName: error
 
+# Style - https://docs.rubocop.org/rubocop/cops_style.html
+
+Style/AccessorGrouping:
+  Description: 'Checks for grouping of accessors in `class` and `module` bodies.'
+  Enabled: true
+
 Style/Alias:
   Description: 'Use alias_method instead of alias.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#alias-method'
   Enabled: false
+
+Style/ArrayCoercion:
+  Description: >-
+    Use Array() instead of explicit Array check or [*var], when dealing
+    with a variable you want to treat as an Array, but you're not certain it's an array.
+  Enabled: true
 
 Style/ArrayJoin:
   Description: 'Use Array#join instead of Array#*.'
@@ -71,6 +312,10 @@ Style/CaseEquality:
   Description: 'Avoid explicit use of the case equality operator(===).'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-case-equality'
   Enabled: false
+
+Style/CaseLikeIf:
+  Description: 'This cop identifies places where `if-elsif` constructions can be replaced with `case-when`.'
+  Enabled: true
 
 Style/CharacterLiteral:
   Description: 'Checks for uses of character literals.'
@@ -107,11 +352,6 @@ Style/CommentAnnotation:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#annotate-keywords'
   Enabled: false
 
-Style/PreferredHashMethods:
-  Description: 'Checks use of `has_key?` and `has_value?` Hash methods.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#hash-key'
-  Enabled: false
-
 Style/Documentation:
   Description: 'Document classes and non-namespace modules.'
   Enabled: false
@@ -141,11 +381,6 @@ Style/EvenOdd:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#predicate-methods'
   Enabled: false
 
-Lint/FlipFlop:
-  Description: 'Checks for flip flops'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-flip-flops'
-  Enabled: false
-
 Style/FormatString:
   Description: 'Enforce the use of Kernel#sprintf, Kernel#format or String#%.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#sprintf'
@@ -162,6 +397,30 @@ Style/GuardClause:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-nested-conditionals'
   Enabled: false
 
+Style/HashAsLastArrayItem:
+  Description: >-
+                 Checks for presence or absence of braces around hash literal as a last
+                 array item depending on configuration.
+  Enabled: true
+
+Style/HashEachMethods:
+  Description: 'Use Hash#each_key and Hash#each_value.'
+  Enabled: false
+
+Style/HashLikeCase:
+  Description: >-
+                  Checks for places where `case-when` represents a simple 1:1
+                  mapping and can be replaced with a hash lookup.
+  Enabled: true
+
+Style/HashTransformKeys:
+  Description: 'Prefer `transform_keys` over `each_with_object` and `map`.'
+  Enabled: false
+
+Style/HashTransformValues:
+  Description: 'Prefer `transform_values` over `each_with_object` and `map`.'
+  Enabled: false
+
 Style/IfUnlessModifier:
   Description: >-
                  Favor modifier if/unless usage when you have a
@@ -174,13 +433,11 @@ Style/IfWithSemicolon:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-semicolon-ifs'
   Enabled: false
 
-Style/InlineComment:
-  Description: 'Avoid inline comments.'
-  Enabled: false
-
 Style/IpAddresses:
   Description: "Don't include literal IP addresses in code."
   Enabled: true
+  Exclude:
+    - !ruby/regexp /spec(\/.*)*\/.*\.rb$/
 
 Style/Lambda:
   Description: 'Use the new lambda literal syntax for single-line blocks.'
@@ -249,6 +506,16 @@ Style/OneLineConditional:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#ternary-operator'
   Enabled: false
 
+Style/OptionHash:
+  Description: Don\'t use option hashes when you can use keyword arguments.
+  SuspiciousParamNames:
+    - options
+    - opts
+    - args
+    - params
+    - parameters
+  Enabled: true
+
 Style/PercentLiteralDelimiters:
   Description: 'Use `%`-literal delimiters consistently'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-literal-braces'
@@ -257,6 +524,11 @@ Style/PercentLiteralDelimiters:
 Style/PerlBackrefs:
   Description: 'Avoid Perl-style regex back references.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-perl-regexp-last-matchers'
+  Enabled: false
+
+Style/PreferredHashMethods:
+  Description: 'Checks use of `has_key?` and `has_value?` Hash methods.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#hash-key'
   Enabled: false
 
 Style/Proc:
@@ -268,6 +540,12 @@ Style/RaiseArgs:
   Description: 'Checks the arguments passed to raise/fail.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#exception-class-messages'
   Enabled: false
+
+Style/RedundantFetchBlock:
+  Description: >-
+                  Use `fetch(key, value)` instead of `fetch(key) { value }`
+                  when value has Numeric, Rational, Complex, Symbol or String type, `false`, `true`, `nil` or is a constant.
+  Enabled: true
 
 Style/RegexpLiteral:
   Description: 'Use / or %r around regular expressions.'
@@ -288,6 +566,11 @@ Style/SelfAssignment:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#self-assignment'
   Enabled: false
 
+Style/SignalException:
+  Description: 'Checks for proper usage of fail and raise.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#fail-method'
+  Enabled: false
+
 Style/SingleLineBlockParams:
   Description: 'Enforces the names of some block params.'
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#reduce-blocks'
@@ -298,10 +581,9 @@ Style/SingleLineMethods:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-single-line-methods'
   Enabled: false
 
-Style/SignalException:
-  Description: 'Checks for proper usage of fail and raise.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#fail-method'
-  Enabled: false
+Style/SlicingWithRange:
+  Description: 'Checks array slicing is done with endless ranges when suitable.'
+  Enabled: true
 
 Style/SpecialGlobalVars:
   Description: 'Avoid Perl-style global variables.'
@@ -313,16 +595,6 @@ Style/StringLiterals:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-string-literals'
   EnforcedStyle: double_quotes
   Enabled: true
-
-Style/StringLiteralsInInterpolation:
-  Description: >-
-                 Checks if uses of quotes inside expressions in interpolated strings
-                 match the configured preference.
-  Enabled: true
-  EnforcedStyle: single_quotes
-  SupportedStyles:
-  - single_quotes
-  - double_quotes
 
 Style/SymbolArray:
   Enabled: false
@@ -386,233 +658,10 @@ Style/WordArray:
   StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#percent-w'
   Enabled: false
 
-Style/OptionHash:
-  Description: Don\'t use option hashes when you can use keyword arguments.
-  SuspiciousParamNames:
-    - options
-    - opts
-    - args
-    - params
-    - parameters
-  Enabled: true
+# rubocop-performance
+# https://github.com/rubocop-hq/rubocop-performance/blob/master/config/default.yml
 
-# Layout
-
-Layout/ConditionPosition:
-  Description: >-
-                 Checks for condition placed in a confusing position relative to
-                 the keyword.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#same-line-condition'
-  Enabled: false
-
-Layout/DotPosition:
-  Description: 'Checks the position of the dot in multi-line method calls.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
-  EnforcedStyle: trailing
-
-Layout/EmptyLineAfterMagicComment:
-  Description: 'Add an empty line after magic comments to separate them from code.'
-  StyleGuide: '#separate-magic-comments-from-code'
-  Enabled: false
-
-Layout/ExtraSpacing:
-  Description: 'Do not use unnecessary spacing.'
-  Enabled: true
-
-Layout/FirstArrayElementLineBreak:
-  Description: >-
-                 Checks for a line break before the first element in a
-                 multi-line array.
-  Enabled: true
-
-Layout/FirstHashElementLineBreak:
-  Description: >-
-                 Checks for a line break before the first element in a
-                 multi-line hash.
-  Enabled: true
-
-Layout/FirstMethodArgumentLineBreak:
-  Description: >-
-                 Checks for a line break before the first argument in a
-                 multi-line method call.
-  Enabled: true
-
-Layout/InitialIndentation:
-  Description: >-
-    Checks the indentation of the first non-blank non-comment line in a file.
-  Enabled: false
-
-Layout/MultilineMethodCallIndentation:
-  Description: >-
-                 Checks indentation of method calls with the dot operator
-                 that span more than one line.
-  Enabled: true
-  EnforcedStyle: indented
-
-Layout/MultilineOperationIndentation:
-  Description: >-
-                 Checks indentation of binary operations that span more than
-                 one line.
-  Enabled: true
-  EnforcedStyle: indented
-
-# Lint
-
-Lint/AmbiguousOperator:
-  Description: >-
-                 Checks for ambiguous operators in the first argument of a
-                 method invocation without parentheses.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-as-args'
-  Enabled: false
-
-Lint/AmbiguousRegexpLiteral:
-  Description: >-
-                 Checks for ambiguous regexp literals in the first argument of
-                 a method invocation without parenthesis.
-  Enabled: false
-
-Lint/AssignmentInCondition:
-  Description: "Don't use assignment in conditions."
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#safe-assignment-in-condition'
-  Enabled: false
-
-Lint/CircularArgumentReference:
-  Description: "Don't refer to the keyword argument in the default value."
-  Enabled: true
-
-Lint/DeprecatedClassMethods:
-  Description: 'Check for deprecated class method calls.'
-  Enabled: false
-
-Lint/DuplicatedKey:
-  Description: 'Check for duplicate keys in hash literals.'
-  Enabled: false
-
-Lint/EachWithObjectArgument:
-  Description: 'Check for immutable argument given to each_with_object.'
-  Enabled: false
-
-Lint/ElseLayout:
-  Description: 'Check for odd code arrangement in an else block.'
-  Enabled: false
-
-Lint/FormatParameterMismatch:
-  Description: 'The number of parameters to format/sprint must match the fields.'
-  Enabled: false
-
-Lint/HandleExceptions:
-  Description: "Don't suppress exception."
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#dont-hide-exceptions'
-  Enabled: false
-
-Lint/LiteralAsCondition:
-  Description: 'Checks of literals used in conditions.'
-  Enabled: false
-
-Lint/LiteralInInterpolation:
-  Description: 'Checks for literals used in interpolation.'
-  Enabled: false
-
-Lint/Loop:
-  Description: >-
-                 Use Kernel#loop with break rather than begin/end/until or
-                 begin/end/while for post-loop tests.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#loop-with-break'
-  Enabled: false
-
-Lint/NestedMethodDefinition:
-  Description: 'Do not use nested method definitions.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#no-nested-methods'
-  Enabled: false
-
-Lint/NonLocalExitFromIterator:
-  Description: 'Do not use return in iterator to cause non-local exit.'
-  Enabled: false
-
-Lint/ParenthesesAsGroupedExpression:
-  Description: >-
-                 Checks for method calls with a space before the opening
-                 parenthesis.
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#parens-no-spaces'
-  Enabled: false
-
-Lint/RequireParentheses:
-  Description: >-
-                 Use parentheses in the method call to avoid confusion
-                 about precedence.
-  Enabled: false
-
-Lint/UnderscorePrefixedVariableName:
-  Description: 'Do not use prefix `_` for a variable that is used.'
-  Enabled: false
-
-Lint/UnneededCopDisableDirective:
-  Description: >-
-                 Checks for rubocop:disable comments that can be removed.
-                 Note: this cop is not disabled when disabling all cops.
-                 It must be explicitly disabled.
-  Enabled: false
-
-Lint/Void:
-  Description: 'Possible use of operator/literal/variable in void context.'
-  Enabled: false
-
-# Metrics
-
-Metrics/AbcSize:
-  Description: >-
-                 A calculated magnitude based on number of assignments,
-                 branches, and conditions.
-  Enabled: false
-
-Metrics/BlockLength:
-  Description: 'Avoid long blocks with many lines.'
-  Enabled: true
-  Exclude:
-    - "gems/**/*_spec.rb"
-    - "spec/**/*"
-    - "config/routes.rb"
-
-Metrics/BlockNesting:
-  Description: 'Avoid excessive block nesting'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#three-is-the-number-thou-shalt-count'
-  Enabled: false
-
-Metrics/ClassLength:
-  Description: 'Avoid classes longer than 100 lines of code.'
-  Enabled: false
-
-Metrics/CyclomaticComplexity:
-  Description: >-
-                 A complexity metric that is strongly correlated to the number
-                 of test cases needed to validate a method.
-  Enabled: false
-
-Metrics/LineLength:
-  Description: 'Limit lines to 100 characters.'
-  Max: 100
-
-Metrics/MethodLength:
-  Description: 'Avoid methods longer than 10 lines of code.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#short-methods'
-  Enabled: false
-
-Metrics/ModuleLength:
-  Description: 'Avoid modules longer than 100 lines of code.'
-  Enabled: false
-
-Metrics/ParameterLists:
-  Description: 'Avoid parameter lists longer than three or four parameters.'
-  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#too-many-params'
-  Enabled: false
-
-# Performance
-
-Performance/CaseWhenSplat:
-  Description: >-
-                  Place `when` conditions that use splat at the end
-                  of the list of `when` branches.
-  Enabled: false
+# Performance - https://docs.rubocop.org/rubocop-performance/cops_performance.html
 
 Performance/Count:
   Description: >-
@@ -658,56 +707,4 @@ Performance/StringReplacement:
 
 Performance/UnfreezeString:
   Description: 'Use unary plus to get an unfrozen string literal.'
-  Enabled: false
-
-# Rails
-
-Rails/ActionFilter:
-  Description: 'Enforces consistent use of action filter methods.'
-  Enabled: false
-
-Rails/Date:
-  Description: >-
-                  Checks the correct usage of date aware methods,
-                  such as Date.today, Date.current etc.
-  Enabled: false
-
-Rails/Delegate:
-  Description: 'Prefer delegate method for delegations.'
-  Enabled: false
-
-Rails/FindBy:
-  Description: 'Prefer find_by over where.first.'
-  Enabled: false
-
-Rails/FindEach:
-  Description: 'Prefer all.find_each over all.find.'
-  Enabled: false
-
-Rails/HasAndBelongsToMany:
-  Description: 'Prefer has_many :through to has_and_belongs_to_many.'
-  Enabled: false
-
-Rails/Output:
-  Description: 'Checks for calls to puts, print, etc.'
-  Enabled: false
-
-Rails/ReadWriteAttribute:
-  Description: >-
-                 Checks for read_attribute(:attr) and
-                 write_attribute(:attr, val).
-  Enabled: false
-
-Rails/ScopeArgs:
-  Description: 'Checks the arguments of ActiveRecord scopes.'
-  Enabled: false
-
-Rails/TimeZone:
-  Description: 'Checks the correct usage of time zone aware methods.'
-  StyleGuide: 'https://github.com/bbatsov/rails-style-guide#time'
-  Reference: 'http://danilenko.org/2012/7/6/rails_timezones'
-  Enabled: false
-
-Rails/Validation:
-  Description: 'Use validates :attribute, hash of validations.'
   Enabled: false

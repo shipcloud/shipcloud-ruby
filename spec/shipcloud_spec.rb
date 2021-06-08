@@ -1,16 +1,19 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 describe Shipcloud do
   describe ".request" do
     context "given no api key exists" do
       it "raises an authentication error" do
-        expect { Shipcloud.request(:get, "clients", {}) }.to raise_error(Shipcloud::AuthenticationError)
+        expect do
+          Shipcloud.request(:get, "clients", {})
+        end.to raise_error(Shipcloud::AuthenticationError)
       end
     end
 
     context "with an invalid api key" do
       before(:each) do
-        WebMock.stub_request(:any, /#{Shipcloud.configuration.api_base}/).to_return(:body => "{}")
+        WebMock.stub_request(:any, /#{Shipcloud.configuration.api_base}/).to_return(body: "{}")
         Shipcloud.api_key = "your-api-key"
       end
 

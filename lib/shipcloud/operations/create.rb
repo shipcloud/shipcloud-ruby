@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   module Operations
     module Create
@@ -18,7 +20,7 @@ module Shipcloud
           if create_response_root
             response = response.fetch(create_response_root, {})
           end
-          self.new(response)
+          new(response)
         end
       end
 
