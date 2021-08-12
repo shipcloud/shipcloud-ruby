@@ -1,4 +1,4 @@
-[![Code Climate](https://codeclimate.com/github/shipcloud/shipcloud-ruby.png)](https://codeclimate.com/github/shipcloud/shipcloud-ruby) [![Build Status](https://travis-ci.org/shipcloud/shipcloud-ruby.png?branch=master)](https://travis-ci.org/shipcloud/shipcloud-ruby)
+[![Code Climate](https://codeclimate.com/github/shipcloud/shipcloud-ruby.png)](https://codeclimate.com/github/shipcloud/shipcloud-ruby) [![CircleCI](https://circleci.com/gh/shipcloud/shipcloud-ruby/tree/master.svg?style=svg)](https://circleci.com/gh/shipcloud/shipcloud-ruby/tree/master)
 
 # shipcloud
 

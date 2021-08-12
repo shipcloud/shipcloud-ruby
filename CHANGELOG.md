@@ -4,10 +4,14 @@
 - Add attr_accessor for `additional_services` to class `Shipcloud::Shipment` to be able to access the additional_services attribute at the shipment object.
 
 ### Changed
+- Replace Travis CI with CircleCI
+- Specify simplecov to be ~> 0.21.0
 
 ### Deprecated
 
 ### Removed
+- Drop support for Ruby <= 2.5
+- Drop support for RBX
 
 ### Fixed
 

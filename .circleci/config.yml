@@ -1,0 +1,60 @@
+version: 2.1
+jobs:
+  build:
+    parameters:
+      image-tag:
+        description: The target docker image
+        type: string
+      check-code-quality:
+        description: Execute style checks in build workflow
+        type: boolean
+        default: false
+    docker:
+      - image: circleci/<< parameters.image-tag >>
+        environment:
+          LANG: en_US.UTF-8
+          BUNDLE_DISABLE_VERSION_CHECK: 1
+    steps:
+      - checkout
+      - run:
+          name: Install ruby dependencies
+          command: gem update --system; bin/setup
+      - when:
+          condition: << parameters.check-code-quality >>
+          steps:
+            - run:
+                name: Install Code Climate test-reporter
+                command: ./install-cc-test-reporter.sh
+            - run:
+                name: Prepare Code Climate test-reporter
+                command: ./cc-test-reporter before-build
+      - run:
+          name: Execute specs
+          command: bundle exec rake
+      - when:
+          condition: << parameters.check-code-quality >>
+          steps:
+            - run:
+                name: Report coverage
+                command: ./cc-test-reporter after-build --exit-code $?
+
+workflows:
+  build:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              image-tag:
+                - "ruby:2.6"
+              check-code-quality:
+                - true
+  version-check:
+    jobs:
+      - build:
+          matrix:
+            parameters:
+              image-tag:
+                - "ruby:2.7"
+                - "ruby:3.0"
+                - "ruby:latest"
+                - "jruby:latest"
