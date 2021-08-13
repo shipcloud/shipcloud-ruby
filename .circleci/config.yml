@@ -24,7 +24,9 @@ jobs:
           steps:
             - run:
                 name: Install Code Climate test-reporter
-                command: ./install-cc-test-reporter.sh
+                command: |
+                  curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+                  chmod +x ./cc-test-reporter
             - run:
                 name: Prepare Code Climate test-reporter
                 command: ./cc-test-reporter before-build
