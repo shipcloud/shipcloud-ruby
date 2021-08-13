@@ -8,7 +8,7 @@ jobs:
       check-code-quality:
         description: Execute style checks in build workflow
         type: boolean
-        default: 0
+        default: true
     docker:
       - image: circleci/<< parameters.image-tag >>
         environment:
@@ -47,8 +47,6 @@ workflows:
               image-tag:
                 - "ruby:2.6"
                 - "ruby:2.7"
-              check-code-quality:
-                - 1
   version-check:
     jobs:
       - build:
@@ -58,3 +56,5 @@ workflows:
                 - "ruby:3.0"
                 - "ruby:latest"
                 - "jruby:latest"
+              check-code-quality:
+                - false
