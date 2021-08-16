@@ -2,77 +2,10 @@
 require "spec_helper"
 
 describe Shipcloud::Shipment do
-  let(:valid_attributes) do
-    {
-      to: {
-        company: "shipcloud GmbH",
-        first_name: "Max",
-        last_name: "Mustermann",
-        street: "Musterallee",
-        street_no: "43",
-        city: "Berlin",
-        zip_code: "10000",
-      },
-      carrier: "dhl",
-      service: "standard",
-      package: {
-        weight: 2.5,
-        length: 40,
-        width: 20,
-        height: 20,
-      },
-      pickup: {
-        pickup_time: {
-          earliest: "2015-09-15T09:00:00+02:00",
-          latest: "2015-09-15T18:00:00+02:00",
-        },
-        pickup_address: {
-          company: "Sender Ltd.",
-          first_name: "Jane",
-          last_name: "Doe",
-          street: "Musterstraße",
-          street_no: "42",
-          zip_code: "54321",
-          city: "Musterstadt",
-          country: "DE",
-        },
-      },
-      metadata: {
-        product: {
-          name: "foo",
-        },
-        category: {
-          id: "123456",
-          name: "bar",
-        },
-      },
-      customs_declaration: {
-        id: "123456",
-        contents_type: "commercial_goods",
-      },
-      additional_services: [
-        {
-          name: "cash_on_delivery",
-          properties: {
-            amount: 123.45,
-            currency: "EUR",
-            bank_account_holder: "Max Mustermann",
-            bank_name: "Musterbank",
-            bank_account_number: "DE12500105170648489890",
-            bank_code: "BENEDEPPYYY",
-            reference1: "reason for transfer",
-          },
-        },
-      ],
-    }
-  end
-
-  let(:shipment) do
-    Shipcloud::Shipment.new(valid_attributes)
-  end
-
   describe "#initialize" do
     it "initializes all attributes correctly" do
+      shipment = Shipcloud::Shipment.new(valid_attributes)
+
       expect(shipment.to[:company]).to eq "shipcloud GmbH"
       expect(shipment.to[:first_name]).to eq "Max"
       expect(shipment.to[:last_name]).to eq "Mustermann"
@@ -119,6 +52,8 @@ describe Shipcloud::Shipment do
     end
 
     it "initializes the metadata correctly" do
+      shipment = Shipcloud::Shipment.new(valid_attributes)
+
       metadata = {
         category: {
           id: "123456",
@@ -335,5 +270,70 @@ describe Shipcloud::Shipment do
         },
       },
     ]
+  end
+
+  def valid_attributes
+    {
+      to: {
+        company: "shipcloud GmbH",
+        first_name: "Max",
+        last_name: "Mustermann",
+        street: "Musterallee",
+        street_no: "43",
+        city: "Berlin",
+        zip_code: "10000",
+      },
+      carrier: "dhl",
+      service: "standard",
+      package: {
+        weight: 2.5,
+        length: 40,
+        width: 20,
+        height: 20,
+      },
+      pickup: {
+        pickup_time: {
+          earliest: "2015-09-15T09:00:00+02:00",
+          latest: "2015-09-15T18:00:00+02:00",
+        },
+        pickup_address: {
+          company: "Sender Ltd.",
+          first_name: "Jane",
+          last_name: "Doe",
+          street: "Musterstraße",
+          street_no: "42",
+          zip_code: "54321",
+          city: "Musterstadt",
+          country: "DE",
+        },
+      },
+      metadata: {
+        product: {
+          name: "foo",
+        },
+        category: {
+          id: "123456",
+          name: "bar",
+        },
+      },
+      customs_declaration: {
+        id: "123456",
+        contents_type: "commercial_goods",
+      },
+      additional_services: [
+        {
+          name: "cash_on_delivery",
+          properties: {
+            amount: 123.45,
+            currency: "EUR",
+            bank_account_holder: "Max Mustermann",
+            bank_name: "Musterbank",
+            bank_account_number: "DE12500105170648489890",
+            bank_code: "BENEDEPPYYY",
+            reference1: "reason for transfer",
+          },
+        },
+      ],
+    }
   end
 end
