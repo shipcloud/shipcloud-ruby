@@ -9,8 +9,8 @@
 - Set required ruby version to >= 2.6
 - Replace Travis CI with CircleCI
 - Specify simplecov to be ~> 0.21.0
-- Change `rubocop` version specification to `~> 1.8.1`
-- Change `rubocop-performance` version specification to `~> 1.7.0`
+- Specify `rubocop` to be `~> 1.8.1`
+- Specify `rubocop-performance` to be `~> 1.7.0`
 
 ### Deprecated
 
