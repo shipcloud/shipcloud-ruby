@@ -200,8 +200,8 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Description: 'Avoid long blocks with many lines.'
   Enabled: true
+  IgnoredMethods: [task, namespace, describe, context, factory, it]
   Exclude:
-    - !ruby/regexp /spec(\/.*)*\/.*\.rb$/
     - !ruby/regexp /config/routes.rb$/
 
 Metrics/BlockNesting:
