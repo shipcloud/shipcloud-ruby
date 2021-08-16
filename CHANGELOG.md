@@ -9,7 +9,7 @@
 - Set required ruby version to >= 2.6
 - Replace Travis CI with CircleCI
 - Specify simplecov to be ~> 0.21.0
-- Specify `rubocop` to be `~> 1.8.1`
+- Specify `rubocop` to be `~> 1.10.0`
 - Specify `rubocop-performance` to be `~> 1.7.0`
 
 ### Deprecated
@@ -27,6 +27,8 @@
 ### Added
 - Support shipments with pickup requests as required for [TNT](https://developers.shipcloud.io/carriers/tnt.html).
 - Add attr_accessor for `email` to class `Shipcloud::Address` to be able to access the email attribute at the address object.
+- Add `rubocop-rake` as a development dependency
+- Add `rubocop-rspec` as a development dependency
 
 ## [0.10.0] - 2019-08-07
 ### Added
