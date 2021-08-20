@@ -2,6 +2,7 @@
 ### Added
 - Add attr_accessor for `service` to class `Shipcloud::Shipment` to be able to access the service attribute at the shipment object.
 - Add attr_accessor for `additional_services` to class `Shipcloud::Shipment` to be able to access the additional_services attribute at the shipment object.
+- Add attr_reader for `label_voucher_url` to class `Shipcloud::Shipment` to be able to read the label_voucher_url (QR Code url) attribute at the shipment object.
 
 ### Changed
 - Set required ruby version to >= 2.6
