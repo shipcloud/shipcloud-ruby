@@ -27,8 +27,6 @@
 ### Added
 - Support shipments with pickup requests as required for [TNT](https://developers.shipcloud.io/carriers/tnt.html).
 - Add attr_accessor for `email` to class `Shipcloud::Address` to be able to access the email attribute at the address object.
-- Add `rubocop-rake` as a development dependency
-- Add `rubocop-rspec` as a development dependency
 
 ## [0.10.0] - 2019-08-07
 ### Added
