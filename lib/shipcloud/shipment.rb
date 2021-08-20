@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   class Shipment < Base
     include Shipcloud::Operations::Delete

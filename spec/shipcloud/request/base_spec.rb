@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 describe Shipcloud::Request::Base do
@@ -5,9 +6,9 @@ describe Shipcloud::Request::Base do
     it "checks for an api key" do
       info = Shipcloud::Request::Info.new(:get, "shipments", nil, {}, "affiliate_id")
 
-      expect{
+      expect do
         Shipcloud::Request::Base.new(info).perform
-      }.to raise_error Shipcloud::AuthenticationError
+      end.to raise_error Shipcloud::AuthenticationError
     end
 
     it "performs an https request and returns a response hash" do

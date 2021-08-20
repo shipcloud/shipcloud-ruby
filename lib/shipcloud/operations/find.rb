@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   module Operations
     module Find
@@ -16,7 +18,7 @@ module Shipcloud
             api_key: api_key,
             affiliate_id: affiliate_id,
           )
-          self.new(response)
+          new(response)
         end
       end
 

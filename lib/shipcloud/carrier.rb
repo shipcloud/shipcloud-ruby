@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   class Carrier < Base
     include Shipcloud::Operations::All

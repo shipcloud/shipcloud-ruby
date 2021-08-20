@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Shipcloud
   class Base
     include Shipcloud::Operations::Create
@@ -28,17 +30,15 @@ module Shipcloud
     end
 
     def self.class_name
-      self.name.split("::").last
+      name.split("::").last
     end
 
     def self.base_url
       "#{class_name.downcase}s"
     end
 
-    def self.create_response_root
-    end
+    def self.create_response_root; end
 
-    def self.index_response_root
-    end
+    def self.index_response_root; end
   end
 end

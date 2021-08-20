@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "spec_helper"
 
 describe Shipcloud::ShipmentQuote do
@@ -22,8 +23,8 @@ describe Shipcloud::ShipmentQuote do
       weight: 2.5,
       length: 40,
       width: 20,
-      height: 20
-    }
+      height: 20,
+    },
   }
 
   describe "#initialize" do
@@ -62,8 +63,8 @@ describe Shipcloud::ShipmentQuote do
       allow(Shipcloud).to receive(:request).
         and_return(
           "shipment_quote" => {
-            "price" => 42.12
-          }
+            "price" => 42.12,
+          },
         )
 
       shipment_quote = Shipcloud::ShipmentQuote.create(valid_attributes)

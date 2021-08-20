@@ -1,42 +1,43 @@
- # encoding: utf-8
-require 'spec_helper'
+# encoding: utf-8
+# frozen_string_literal: true
+require "spec_helper"
 
 describe Shipcloud::Address do
   valid_attributes = {
-    company:     'shipcloud GmbH',
-    first_name:  'Maxi',
-    last_name:   'Musterfrau',
-    care_of:     'Mustermann',
-    street:      'Musterstraße',
-    street_no:   '123',
-    zip_code:    '12345',
-    city:        'Hamburg',
-    state:       'Hamburg',
-    country:     'DE',
-    phone:       '040/123456789',
-    email:       'max@mustermail.com',
+    company: "shipcloud GmbH",
+    first_name: "Maxi",
+    last_name: "Musterfrau",
+    care_of: "Mustermann",
+    street: "Musterstraße",
+    street_no: "123",
+    zip_code: "12345",
+    city: "Hamburg",
+    state: "Hamburg",
+    country: "DE",
+    phone: "040/123456789",
+    email: "max@mustermail.com",
   }
 
-  describe '#initialize' do
-    it 'initializes all attributes correctly' do
+  describe "#initialize" do
+    it "initializes all attributes correctly" do
       address = Shipcloud::Address.new(valid_attributes)
-      expect(address.company).to eq 'shipcloud GmbH'
-      expect(address.first_name).to eq 'Maxi'
-      expect(address.last_name).to eq 'Musterfrau'
-      expect(address.care_of).to eq 'Mustermann'
-      expect(address.street).to eq 'Musterstraße'
-      expect(address.street_no).to eq '123'
-      expect(address.zip_code).to eq '12345'
-      expect(address.city).to eq 'Hamburg'
-      expect(address.state).to eq 'Hamburg'
-      expect(address.country).to eq 'DE'
-      expect(address.phone).to eq '040/123456789'
-      expect(address.email).to eq 'max@mustermail.com'
+      expect(address.company).to eq "shipcloud GmbH"
+      expect(address.first_name).to eq "Maxi"
+      expect(address.last_name).to eq "Musterfrau"
+      expect(address.care_of).to eq "Mustermann"
+      expect(address.street).to eq "Musterstraße"
+      expect(address.street_no).to eq "123"
+      expect(address.zip_code).to eq "12345"
+      expect(address.city).to eq "Hamburg"
+      expect(address.state).to eq "Hamburg"
+      expect(address.country).to eq "DE"
+      expect(address.phone).to eq "040/123456789"
+      expect(address.email).to eq "max@mustermail.com"
     end
   end
 
-  describe '.create' do
-    it 'makes a new POST request using the correct API endpoint' do
+  describe ".create" do
+    it "makes a new POST request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
         with(:post, "addresses", valid_attributes, api_key: nil, affiliate_id: nil).
         and_return("data" => {})
@@ -65,10 +66,11 @@ describe Shipcloud::Address do
     end
   end
 
-  describe '.find' do
-    it 'makes a new GET request using the correct API endpoint to receive a specific address' do
+  describe ".find" do
+    it "makes a new GET request using the correct API endpoint to receive a specific address" do
       expect(Shipcloud).to receive(:request).with(
-        :get, "addresses/123", {}, api_key: nil, affiliate_id: nil).and_return("id" => "123")
+        :get, "addresses/123", {}, api_key: nil, affiliate_id: nil
+      ).and_return("id" => "123")
 
       Shipcloud::Address.find("123")
     end
@@ -82,8 +84,8 @@ describe Shipcloud::Address do
     end
   end
 
-  describe '.update' do
-    it 'makes a new PUT request using the correct API endpoint' do
+  describe ".update" do
+    it "makes a new PUT request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).with(
         :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: nil
       ).and_return("data" => {})
@@ -100,15 +102,15 @@ describe Shipcloud::Address do
     end
   end
 
-  describe '.all' do
-    it 'makes a new Get request using the correct API endpoint' do
+  describe ".all" do
+    it "makes a new Get request using the correct API endpoint" do
       expect(Shipcloud).to receive(:request).
         with(:get, "addresses", {}, api_key: nil, affiliate_id: nil).and_return([])
 
       Shipcloud::Address.all
     end
 
-    it 'returns a list of Address objects' do
+    it "returns a list of Address objects" do
       stub_addresses_request
 
       addresses = Shipcloud::Address.all
@@ -146,7 +148,7 @@ describe Shipcloud::Address do
             "city" => "Musterstadt",
             "state" => "",
             "country" => "DE",
-            "phone" => ""
+            "phone" => "",
           },
           {
             "id" => "7ea2a290-b456-4ecf-9010-e82b3da298f0",
@@ -160,9 +162,9 @@ describe Shipcloud::Address do
             "city" => "Musterstadt",
             "state" => "",
             "country" => "DE",
-            "phone" => ""
-          }
-        ]
+            "phone" => "",
+          },
+        ],
       )
   end
 
