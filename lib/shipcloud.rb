@@ -21,6 +21,7 @@ module Shipcloud
   autoload :Shipment,       "shipcloud/shipment"
   autoload :Carrier,        "shipcloud/carrier"
   autoload :Address,        "shipcloud/address"
+  autoload :Order,          "shipcloud/order"
   autoload :PickupRequest,  "shipcloud/pickup_request"
   autoload :ShipmentQuote,  "shipcloud/shipment_quote"
   autoload :Tracker,        "shipcloud/tracker"
