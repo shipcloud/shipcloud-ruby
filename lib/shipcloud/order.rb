@@ -3,7 +3,9 @@
 module Shipcloud
   class Order < Base
     include Shipcloud::Operations::All
+    include Shipcloud::Operations::Find
 
-    attr_reader :delivery_address, :external_customer_id, :external_order_id, :order_line_items
+    attr_reader :id, :external_customer_id, :external_order_id, :placed_at, :delivery_address,
+                :order_line_items
   end
 end

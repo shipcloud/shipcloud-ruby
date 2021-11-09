@@ -68,6 +68,17 @@ describe Shipcloud::Order do
     end
   end
 
+  describe ".find" do
+    it "makes a new GET request using the correct API endpoint " \
+       "to receive a specific subscription" do
+      expect(Shipcloud).to receive(:request).
+        with(:get, "orders/order_id", {}, api_key: nil, affiliate_id: nil).
+        and_return("id" => "order_id")
+
+      Shipcloud::Order.find("order_id")
+    end
+  end
+
   def stub_orders_request(params: {}, affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
       with(:get, "orders", params, api_key: nil, affiliate_id: affiliate_id).
@@ -77,6 +88,7 @@ describe Shipcloud::Order do
   def orders_array
     [
       {
+        id: "order_id",
         external_order_id: "external_order_id",
         external_customer_id: "external_customer_id",
         delivery_address: {
@@ -89,6 +101,7 @@ describe Shipcloud::Order do
         ],
       },
       {
+        id: "order_id1",
         external_order_id: "external_order_id1",
         external_customer_id: "external_customer_id1",
         delivery_address: {
