@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["stefan@shipcloud.io"]
   spec.summary       = "A wrapper for the shipcloud API"
   spec.description   = "A wrapper for the shipcloud API. " \
-    "Fore more details visit https://developers.shipcloud.io/"
+                       "Fore more details visit https://developers.shipcloud.io/"
   spec.homepage      = "https://github.com/shipcloud/shipcloud-ruby"
   spec.license       = "MIT"
 
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.required_ruby_version = ">= 2.6"
+  spec.required_ruby_version = ">= 2.7.4"
 
   spec.add_runtime_dependency "json", "2.6.1"
   spec.add_development_dependency "pry", "~> 0.10"
@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop-performance", "~> 1.7.0"
   spec.add_development_dependency "simplecov", "~> 0.21.0"
   spec.add_development_dependency "webmock", "~> 3.0"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end

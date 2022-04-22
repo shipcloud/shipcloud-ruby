@@ -47,14 +47,14 @@ workflows:
           matrix:
             parameters:
               image-tag:
-                - "ruby:2.6"
+                - "ruby:2.7.4"
   version-check:
     jobs:
       - build:
           matrix:
             parameters:
               image-tag:
-                - "ruby:2.7"
+                - "ruby:2.7.4"
                 - "ruby:3.0"
                 - "ruby:latest"
                 - "jruby:latest"
