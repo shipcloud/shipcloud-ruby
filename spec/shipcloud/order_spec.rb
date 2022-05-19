@@ -7,6 +7,7 @@ describe Shipcloud::Order do
       valid_attributes = {
         external_order_id: "external_order_id",
         external_customer_id: "external_customer_id",
+        refundable_until: "refundable_until",
         delivery_address: {
           id: "adress_id",
         },
@@ -20,6 +21,7 @@ describe Shipcloud::Order do
 
       expect(order.external_order_id).to eq "external_order_id"
       expect(order.external_customer_id).to eq "external_customer_id"
+      expect(order.refundable_until).to eq "refundable_until"
       expect(order.delivery_address).to eq(id: "adress_id")
       expect(order.order_line_items).to eq [
         { id: "order_line_item_id" },
