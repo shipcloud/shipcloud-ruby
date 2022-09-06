@@ -7,7 +7,7 @@ module Shipcloud
     include Shipcloud::Operations::All
 
     attr_accessor :from, :to, :carrier, :service, :package, :reference_number, :metadata,
-                  :additional_services
+                  :additional_services, :order_id
     attr_reader :id, :created_at, :carrier_tracking_no, :tracking_url, :label_url,
                 :packages, :price, :customs_declaration, :pickup, :label_voucher_url
 

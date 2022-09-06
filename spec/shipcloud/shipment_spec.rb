@@ -49,6 +49,7 @@ describe Shipcloud::Shipment do
       expect(
         shipment.additional_services.first[:properties][:reference1],
       ).to eq "reason for transfer"
+      expect(shipment.order_id).to eq "01234567-89ab-cdef-1234-56789abcdef0"
     end
 
     it "initializes the metadata correctly" do
@@ -334,6 +335,7 @@ describe Shipcloud::Shipment do
           },
         },
       ],
+      order_id: "01234567-89ab-cdef-1234-56789abcdef0",
     }
   end
 end
