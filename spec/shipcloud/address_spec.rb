@@ -131,6 +131,28 @@ describe Shipcloud::Address do
     end
   end
 
+  describe "#update" do
+    it "makes a new PUT request using the correct API endpoint" do
+      expect(Shipcloud).to receive(:request).with(
+        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: nil
+      ).and_return("data" => {})
+
+      address = Shipcloud::Address.new(id: "123")
+
+      address.update(street: "Mittelweg")
+    end
+
+    it "uses the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).with(
+        :put, "addresses/123", { street: "Mittelweg" }, api_key: nil, affiliate_id: "affiliate_id"
+      ).and_return("data" => {})
+
+      address = Shipcloud::Address.new(id: "123")
+
+      address.update({ street: "Mittelweg" }, affiliate_id: "affiliate_id")
+    end
+  end
+
   def stub_addresses_request(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
       with(:get, "addresses", {}, api_key: nil, affiliate_id: affiliate_id).

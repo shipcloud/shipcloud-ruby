@@ -193,6 +193,29 @@ describe Shipcloud::Shipment do
     end
   end
 
+  describe "#update" do
+    it "makes a new PUT request using the correct API endpoint" do
+      expect(Shipcloud).to receive(:request).
+        with(:put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: nil).
+        and_return("data" => {})
+
+      shipment = Shipcloud::Shipment.new(id: "123")
+
+      shipment.update(carrier: "ups")
+    end
+
+    it "uses the affiliate ID provided for the request" do
+      expect(Shipcloud).to receive(:request).
+        with(
+          :put, "shipments/123", { carrier: "ups" }, api_key: nil, affiliate_id: "affiliate_id"
+        ).and_return("data" => {})
+
+      shipment = Shipcloud::Shipment.new(id: "123")
+
+      shipment.update({ carrier: "ups" }, affiliate_id: "affiliate_id")
+    end
+  end
+
   def stub_shipments_requests(affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
       with(:get, "shipments", {}, api_key: nil, affiliate_id: affiliate_id).
