@@ -20,7 +20,7 @@
 - Added missing `frozen_string_literal: true` magic comments to files
 
 ### Changed
-- Ensure compatibilty with ruby 2.x and 3.x
+- Ensure compatibility with ruby 2.x and 3.x
 - Set required ruby version to >= 2.6
 - Replace Travis CI with CircleCI
 - Specify simplecov to be ~> 0.21.0
