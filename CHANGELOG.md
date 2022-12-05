@@ -1,3 +1,16 @@
+## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
 ## [0.12.0] - 2022-12-05
 ### Added
 - Add order model
@@ -22,19 +35,6 @@
 
 ### Fixed
 - Fix rubocop styling issues
-
-### Security
-
-## [Unreleased]
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
 
 ### Security
 
