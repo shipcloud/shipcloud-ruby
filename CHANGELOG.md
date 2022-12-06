@@ -11,7 +11,7 @@
 
 ### Security
 
-## [0.12.0] - 2022-12-05
+## [0.12.0] - 2022-12-06
 ### Added
 - Add order model
 - Add attr_accessor for `service` to class `Shipcloud::Shipment` to be able to access the service attribute at the shipment object.
