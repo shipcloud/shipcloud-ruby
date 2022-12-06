@@ -1,11 +1,26 @@
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.12.0] - 2022-12-06
+### Added
+- Add order model
 - Add attr_accessor for `service` to class `Shipcloud::Shipment` to be able to access the service attribute at the shipment object.
 - Add attr_accessor for `additional_services` to class `Shipcloud::Shipment` to be able to access the additional_services attribute at the shipment object.
 - Add attr_reader for `label_voucher_url` to class `Shipcloud::Shipment` to be able to read the label_voucher_url (QR Code url) attribute at the shipment object.
 - Added missing `frozen_string_literal: true` magic comments to files
 
 ### Changed
+- Ensure compatibility with ruby 2.x and 3.x
 - Set required ruby version to >= 2.6
 - Replace Travis CI with CircleCI
 - Specify simplecov to be ~> 0.21.0
