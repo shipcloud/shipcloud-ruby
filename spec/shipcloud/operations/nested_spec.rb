@@ -9,6 +9,7 @@ describe Shipcloud::Operations::Nested do
       nested_operation = described_class.new(
         nested_class, "parent/parent-id/nested", build_params
       )
+      nested_operation.add :all
 
       nested_operation.all({ filter_param: :foo }, api_key: "api-key", affiliate_id: "affiliate-id")
 
@@ -27,6 +28,7 @@ describe Shipcloud::Operations::Nested do
       nested_operation = described_class.new(
         nested_class, "parent/parent-id/nested", build_params
       )
+      nested_operation.add :all
 
       nested_resources = nested_operation.all
 
@@ -42,6 +44,7 @@ describe Shipcloud::Operations::Nested do
       nested_operation = described_class.new(
         nested_class, "parent/parent-id/nested", build_params
       )
+      nested_operation.add :find
 
       nested_operation.find("nested-resource-id", api_key: "api-key", affiliate_id: "affiliate-id")
 
@@ -60,6 +63,7 @@ describe Shipcloud::Operations::Nested do
       nested_operation = described_class.new(
         nested_class, "parent/parent-id/nested", build_params
       )
+      nested_operation.add :find
 
       nested_resource = nested_operation.find("nested-resource-id")
 
@@ -75,6 +79,7 @@ describe Shipcloud::Operations::Nested do
         nested_class, "parent/parent-id/nested", build_params
       )
       create_params = { bar: "baz" }
+      nested_operation.add :create
 
       nested_operation.create(create_params, api_key: "api-key", affiliate_id: "affiliate-id")
 
@@ -94,6 +99,7 @@ describe Shipcloud::Operations::Nested do
         nested_class, "parent/parent-id/nested", build_params
       )
       create_params = { bar: "baz" }
+      nested_operation.add :create
 
       nested_resource = nested_operation.create(create_params)
 

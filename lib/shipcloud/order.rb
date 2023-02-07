@@ -15,7 +15,11 @@ module Shipcloud
     def returns
       @_returns ||= Shipcloud::Operations::Nested.new(
         OrderReturn, "orders/#{id}/returns", order: self
-      )
+      ) do |nested_operations|
+        nested_operations.add :all
+        nested_operations.add :find
+        nested_operations.add :create
+      end
     end
   end
 end

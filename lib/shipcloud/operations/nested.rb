@@ -9,9 +9,19 @@ module Shipcloud
         @nested_resource_class = nested_resource_class
         @nested_resource_route = nested_resource_route
         @nested_resource_build_params = nested_resource_build_params
+        @operations = []
+        if block_given?
+          yield self
+        end
+      end
+
+      def add(operation_name)
+        @operations << operation_name
       end
 
       def all(filter = {}, api_key: nil, affiliate_id: nil)
+        raise NotImplementedError unless @operations.include?(:all)
+
         Shipcloud.request(
           :get,
           nested_resource_route,
@@ -22,6 +32,8 @@ module Shipcloud
       end
 
       def find(id, api_key: nil, affiliate_id: nil)
+        raise NotImplementedError unless @operations.include?(:find)
+
         response = Shipcloud.request(
           :get,
           "#{nested_resource_route}/#{id}",
@@ -33,6 +45,8 @@ module Shipcloud
       end
 
       def create(data, api_key: nil, affiliate_id: nil)
+        raise NotImplementedError unless @operations.include?(:create)
+
         response = Shipcloud.request(
           :post,
           nested_resource_route,
