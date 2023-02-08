@@ -8,6 +8,7 @@ describe Shipcloud::OrderReturn do
       valid_attributes = {
         order: order,
         id: "order-return-id",
+        order_id: order.id,
         status: "requested",
         created_at: "2023-01-15T15:30:00+01:00",
         updated_at: "2023-01-15T16:30:00+01:00",
@@ -24,6 +25,7 @@ describe Shipcloud::OrderReturn do
 
       expect(order_return.order).to be order
       expect(order_return.id).to eq "order-return-id"
+      expect(order_return.order_id).to eq "order-id"
       expect(order_return.status).to eq "requested"
       expect(order_return.created_at).to eq "2023-01-15T15:30:00+01:00"
       expect(order_return.updated_at).to eq "2023-01-15T16:30:00+01:00"

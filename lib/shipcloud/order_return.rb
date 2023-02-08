@@ -5,7 +5,7 @@ module Shipcloud
     include Shipcloud::Operations::All
     include Shipcloud::Operations::Find
 
-    attr_reader :id, :order, :created_at, :updated_at
+    attr_reader :id, :order, :order_id, :created_at, :updated_at
     attr_accessor :status, :returned_items
 
     def self.base_url
