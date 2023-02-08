@@ -133,6 +133,19 @@ describe Shipcloud::Order do
     end
   end
 
+  describe "#returns" do
+    it "builds a nested operations object with the correct attributes" do
+      order = Shipcloud::Order.new(id: "the-order-id")
+
+      order_returns = order.returns
+
+      expect(order_returns).to be_an_instance_of(Shipcloud::Operations::Nested)
+      expect(order_returns.nested_resource_class).to be Shipcloud::OrderReturn
+      expect(order_returns.nested_resource_route).to eq "orders/the-order-id/returns"
+      expect(order_returns.nested_resource_build_params).to eq(order: order)
+    end
+  end
+
   def stub_orders_request(params: {}, affiliate_id: nil)
     allow(Shipcloud).to receive(:request).
       with(:get, "orders", params, api_key: nil, affiliate_id: affiliate_id).

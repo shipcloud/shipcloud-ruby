@@ -22,6 +22,7 @@ module Shipcloud
   autoload :Carrier,        "shipcloud/carrier"
   autoload :Address,        "shipcloud/address"
   autoload :Order,          "shipcloud/order"
+  autoload :OrderReturn,    "shipcloud/order_return"
   autoload :PickupRequest,  "shipcloud/pickup_request"
   autoload :ShipmentQuote,  "shipcloud/shipment_quote"
   autoload :Tracker,        "shipcloud/tracker"
@@ -33,6 +34,7 @@ module Shipcloud
     autoload :All,          "shipcloud/operations/all"
     autoload :Delete,       "shipcloud/operations/delete"
     autoload :Update,       "shipcloud/operations/update"
+    autoload :Nested,       "shipcloud/operations/nested"
   end
 
   module Request
