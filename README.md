@@ -2,6 +2,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c8c3cba2068e5d649567/maintainability)](https://codeclimate.com/github/shipcloud/shipcloud-ruby/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/c8c3cba2068e5d649567/test_coverage)](https://codeclimate.com/github/shipcloud/shipcloud-ruby/test_coverage)
 
+**NOTE**: _This repository is no longer supported or updated._
+
 # shipcloud
 
 A Ruby wrapper for the shipcloud API
